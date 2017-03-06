@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPanelComponent implements OnInit {
 
+  prueba = ["prjnewf", "wkj2nd2", "kn2jen2jh"];
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  metodo() {
+    console.log("Prueba");
+  }
 }
