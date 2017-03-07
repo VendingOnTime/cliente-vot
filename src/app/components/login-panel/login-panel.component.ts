@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {UsernameValidator} from "../../validators/UsernameValidator";
 
 @Component({
   selector: 'login-panel',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(public formBuilder: FormBuilder) {
+    this.formBuilder.group({
+      user: new FormControl('', [Validators.required, UsernameValidator]),
+      email: new FormControl('', [Validators.required]),
+    });
+  }
 
   ngOnInit() {
   }
