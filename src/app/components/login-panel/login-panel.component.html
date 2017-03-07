@@ -1,34 +1,37 @@
 <div class="container">
 
-  <form class="form-horizontal">
+  <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitRegister()">
     <h2 class="text-center">Registrarse</h2>
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="text" class="form-control" placeholder="Usuario">
+        <input type="text" class="form-control" placeholder="Usuario" [formControl]="userInput" [(ngModel)]="username">
+        <div *ngIf="userInput.hasError('required')">Ha de introducirse un nombre de usuario</div>
+        <div *ngIf="userInput.hasError('short_username')">Nombre de usuario demasiado corto</div>
+        <div *ngIf="userInput.hasError('large_username')">Nombre de usuario demasiado largo</div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" placeholder="Email" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="password" class="form-control" placeholder="Confirmar Password">
+        <input type="password" class="form-control" placeholder="Confirmar Password" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="submit" class="btn btn-block btn-lg btn-primary" value="Enviar">
+        <input type="submit" class="btn btn-block btn-lg btn-primary" value="Enviar" [disabled]="form.status !== 'VALID'">
       </div>
     </div>
   </form>
   <div class="text-center">
-    ¿Ya eres cliente? <a class="" href="#">Iniciar sessión</a>
+    ¿Ya eres cliente? <a class="" href="#">Iniciar sesión</a>
   </div>
 </div>
