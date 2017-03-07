@@ -6,6 +6,7 @@ import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 
 import { AppComponent } from './app.component';
 import { LoginPanelComponent } from './components/login-panel/login-panel.component';
+import {UserService} from "./services/UserService";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { LoginPanelComponent } from './components/login-panel/login-panel.compon
     HttpModule,
     ProgressbarModule.forRoot()
   ],
-  providers: [FormBuilder],
+  providers: [FormBuilder, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

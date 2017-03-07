@@ -5,9 +5,9 @@
     <div class="form-group">
       <div class="col-xs-12">
         <input type="text" class="form-control" placeholder="Usuario" [formControl]="userInput" [(ngModel)]="username">
-        <div *ngIf="userInput.hasError('required')">Ha de introducirse un nombre de usuario</div>
-        <div *ngIf="userInput.hasError('short_username')">Nombre de usuario demasiado corto</div>
-        <div *ngIf="userInput.hasError('large_username')">Nombre de usuario demasiado largo</div>
+        <div class="alert alert-danger" *ngIf="userInput.hasError('required')">Ha de introducirse un nombre de usuario</div>
+        <div class="alert alert-danger" *ngIf="userInput.hasError('short_username')">Nombre de usuario demasiado corto</div>
+        <div class="alert alert-danger" *ngIf="userInput.hasError('large_username')">Nombre de usuario demasiado largo</div>
       </div>
     </div>
     <div class="form-group">

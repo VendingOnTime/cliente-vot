@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "@angular/forms";
 import {UsernameValidator} from "../../validators/UsernameValidator";
+import {UserService} from "../../services/UserService";
 
 @Component({
   selector: 'login-panel',
@@ -23,7 +24,8 @@ export class LoginPanelComponent implements OnInit {
   private repeatPasswordInput: AbstractControl;
   private repeatPassword: string = '';
 
-  constructor(public formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, public userService: UserService) {
+
     this.form = this.formBuilder.group({
       user: new FormControl('', Validators.compose([Validators.required, UsernameValidator])),
       email: new FormControl('', [Validators.required]),
@@ -42,6 +44,7 @@ export class LoginPanelComponent implements OnInit {
 
   public onSubmitRegister() {
     //TODO: Manage register
+
   }
 
 }
