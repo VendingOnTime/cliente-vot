@@ -7,11 +7,13 @@ import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 import { AppComponent } from './app.component';
 import {UserService} from "./services/UserService";
 import { SignupPanelComponent } from './components/signup-panel/signup-panel.component';
+import { LoginPanelComponent } from './components/login-panel/login-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupPanelComponent
+    SignupPanelComponent,
+    LoginPanelComponent
   ],
   imports: [
     BrowserModule,
