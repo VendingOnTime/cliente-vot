@@ -5,13 +5,13 @@ import { HttpModule } from '@angular/http';
 import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 
 import { AppComponent } from './app.component';
-import { LoginPanelComponent } from './components/login-panel/login-panel.component';
 import {UserService} from "./services/UserService";
+import { SignupPanelComponent } from './components/signup-panel/signup-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPanelComponent
+    SignupPanelComponent
   ],
   imports: [
     BrowserModule,
