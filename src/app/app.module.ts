@@ -9,20 +9,17 @@ import {UserService} from "./services/UserService";
 import { SignupPanelComponent } from './components/signup-panel/signup-panel.component';
 import { LoginPanelComponent } from './components/login-panel/login-panel.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import {CollapseDirective} from "ng2-bootstrap";
 import {Routes, RouterModule} from "@angular/router";
 
-const routes: Routes = [
-  {path: '', component: AppComponent},
-  {path: 'register', component: SignupPanelComponent},
-  {path: 'login', component: LoginPanelComponent}
-];
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupPanelComponent,
     LoginPanelComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    CollapseDirective
   ],
   imports: [
     BrowserModule,
@@ -30,7 +27,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     ProgressbarModule.forRoot(),
-    RouterModule.forRoot(routes)
+    //RouterModule.forRoot(routes)
   ],
   providers: [FormBuilder, UserService],
   bootstrap: [AppComponent]
