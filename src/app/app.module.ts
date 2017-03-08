@@ -8,19 +8,29 @@ import { AppComponent } from './app.component';
 import {UserService} from "./services/UserService";
 import { SignupPanelComponent } from './components/signup-panel/signup-panel.component';
 import { LoginPanelComponent } from './components/login-panel/login-panel.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import {Routes, RouterModule} from "@angular/router";
+
+const routes: Routes = [
+  {path: '', component: AppComponent},
+  {path: 'register', component: SignupPanelComponent},
+  {path: 'login', component: LoginPanelComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupPanelComponent,
-    LoginPanelComponent
+    LoginPanelComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    ProgressbarModule.forRoot()
+    ProgressbarModule.forRoot(),
+    RouterModule.forRoot(routes)
   ],
   providers: [FormBuilder, UserService],
   bootstrap: [AppComponent]

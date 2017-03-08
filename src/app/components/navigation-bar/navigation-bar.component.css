@@ -1,0 +1,14 @@
+.logo {
+  max-height: 10vh;
+  max-width: 20vw;
+  margin-right: auto;
+  display: flex;
+}
+
+.register-button {
+  margin-right: 2vw;
+}
+
+.login-button {
+  margin-right: 2vw;
+}

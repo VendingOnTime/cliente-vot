@@ -1,0 +1,25 @@
+<div class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a [routerLink]="['']"><img class="logo" src="assets/mock.png"/></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div *ngIf="!loggedUser" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn btn-danger navbar-btn register-button" [routerLink]="['register']">Regístrate</button></li>
+        <li><button class="btn btn-default navbar-btn login-button" [routerLink]="['login']">Inicia sesión</button></li>
+      </ul>
+    </div>
+
+    <div *ngIf="loggedUser" class="collapse navbar-collapse">
+
+    </div>
+
+  </div>
+
+</div>
