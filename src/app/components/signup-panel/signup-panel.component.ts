@@ -37,9 +37,6 @@ export class SignupPanelComponent implements OnInit {
       repeatPassword: new FormControl('', Validators.required)
     },{validator: RepeatPasswordValidator});
 
-    console.log(this.form.errors);
-
-
     this.userInput = this.form.controls['user'];
     this.emailInput = this.form.controls['email'];
     this.passwordInput = this.form.controls['password'];
@@ -51,7 +48,7 @@ export class SignupPanelComponent implements OnInit {
 
   public onSubmitRegister() {
     //TODO: Manage register
-
+    console.log("Submit del registro enviado");
   }
 }
 
