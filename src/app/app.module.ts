@@ -7,18 +7,27 @@ import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 import { AppComponent } from './app.component';
 import {UserService} from "./services/UserService";
 import { SignupPanelComponent } from './components/signup-panel/signup-panel.component';
+import { LoginPanelComponent } from './components/login-panel/login-panel.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import {CollapseDirective} from "ng2-bootstrap";
+import {Routes, RouterModule} from "@angular/router";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupPanelComponent
+    SignupPanelComponent,
+    LoginPanelComponent,
+    NavigationBarComponent,
+    CollapseDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    ProgressbarModule.forRoot()
+    ProgressbarModule.forRoot(),
+    //RouterModule.forRoot(routes)
   ],
   providers: [FormBuilder, UserService],
   bootstrap: [AppComponent]

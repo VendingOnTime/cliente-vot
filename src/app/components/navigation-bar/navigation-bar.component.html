@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <a><img class="logo" src="assets/mock.png" alt="VOT Logo"/></a>
+
+      <button type="button" class="navbar-toggle collapsed register-button" (click)="isCollapsed = !isCollapsed">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div *ngIf="!loggedUser" [collapse]="!isCollapsed" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right" (click)="isCollapsed = !isCollapsed">
+        <li><button class="btn btn-danger register-button" data-toggle="collapse">Regístrate</button></li>
+        <li><button class="btn btn-default login-button" data-toggle="collapse">Inicia sesión</button></li>
+      </ul>
+    </div>
+
+    <div *ngIf="loggedUser" class="collapse navbar-collapse">
+
+    </div>
+
+  </div>
+</nav>
