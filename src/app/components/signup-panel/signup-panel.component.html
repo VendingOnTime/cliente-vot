@@ -5,24 +5,29 @@
     <div class="form-group">
       <div class="col-xs-12">
         <input type="text" class="form-control" placeholder="Usuario" [formControl]="userInput" [(ngModel)]="username">
-        <div class="alert alert-danger" *ngIf="userInput.hasError('required')">Ha de introducirse un nombre de usuario</div>
-        <div class="alert alert-danger" *ngIf="userInput.hasError('short_username')">Nombre de usuario demasiado corto</div>
-        <div class="alert alert-danger" *ngIf="userInput.hasError('large_username')">Nombre de usuario demasiado largo</div>
+        <div class="alert alert-danger" *ngIf="userInput.hasError('required')" [hidden]="userInput.untouched">Ha de introducirse un nombre de usuario</div>
+        <div class="alert alert-danger" *ngIf="userInput.hasError('short_username')" [hidden]="userInput.untouched">Nombre de usuario demasiado corto</div>
+        <div class="alert alert-danger" *ngIf="userInput.hasError('large_username')" [hidden]="userInput.untouched">Nombre de usuario demasiado largo</div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
         <input type="email" class="form-control" placeholder="Email" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
+        <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">El formato del email no está admitido</div>
+        <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">El formato del email no está admitido</div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
         <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
+        <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">Es necesario introducir una contraseña</div>
+        <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">La contraseña no es lo suficientemente segura</div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
         <input type="password" class="form-control" placeholder="Confirmar Password" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
+        <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="passwordInput.untouched">La contraseña introducida es diferente</div>
       </div>
     </div>
     <div class="form-group">

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "@angular/forms";
-import {UsernameValidator} from "../../validators/UsernameValidator";
 import {UserService} from "../../services/UserService";
+
+import {UsernameValidator} from "../../validators/UsernameValidator";
+import {EmailValidator} from "../../validators/EmailValidator";
+import {PasswordValidator} from "../../validators/PasswordValidator";
+import {RepeatPasswordValidator} from "../../validators/RepeatPasswordValidator";
 
 @Component({
   selector: 'signup-panel',
@@ -28,10 +32,13 @@ export class SignupPanelComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       user: new FormControl('', Validators.compose([Validators.required, UsernameValidator])),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      repeatPassword: new FormControl('', [Validators.required])
-    });
+      email: new FormControl('', Validators.compose([Validators.required, EmailValidator])),
+      password: new FormControl('', Validators.compose([Validators.required, PasswordValidator])),
+      repeatPassword: new FormControl('', Validators.required)
+    },{validator: RepeatPasswordValidator});
+
+    console.log(this.form.errors);
+
 
     this.userInput = this.form.controls['user'];
     this.emailInput = this.form.controls['email'];
@@ -46,5 +53,5 @@ export class SignupPanelComponent implements OnInit {
     //TODO: Manage register
 
   }
-
 }
+
