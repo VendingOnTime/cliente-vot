@@ -7,12 +7,14 @@ export class UserService {
   public constructor(public http: Http) { }
 
 
-  public doLogin(username: string, password: string) {
+  public doLogin(username: string, password: string) : boolean {
     //TODO: Do HTTP request to the server to do the login
+    return false;
   }
 
-  public registerUser(username: string, password: string, email: string) {
+  public registerUser(username: string, password: string, email: string) : boolean {
     //TODO: Do HTTP request to the server to register a new user
+    return false;
   }
 
 

@@ -9,14 +9,21 @@ import {UserService} from "../../services/UserService";
 })
 export class LoginPanelComponent implements OnInit {
 
-
   private form : FormGroup;
 
   private userInput: AbstractControl;
-  private username: string = '';
+  private user: string = '';
+  private errorUser: string = 'Ha de introducirse un nombre de usuario o email';
 
   private passwordInput: AbstractControl;
   private password: string = '';
+
+  private loginError: boolean = false;
+  private loginErrorMessage: string = 'La combinación de usuario y contraseña introducida es incorrecta';
+
+  private initSessionMessage: string = 'Iniciar sesión';
+  private registerMessage: string = '¿Aun no eres cliente?';
+  private registerLink: string = 'Registrarse';
 
   constructor(public formBuilder: FormBuilder, public userService: UserService) {
 
@@ -32,9 +39,21 @@ export class LoginPanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onSubmitLogin() {
-    //TODO: Manage register
-    console.log("Submit del login enviado");
+  public onSubmitLogin() : void {
+    if (this.form.valid) {
+      let introducedUsername = this.userInput.value;
+      let introducedPassword = this.passwordInput.value;
+      let correctLogin = this.userService.doLogin(introducedUsername, introducedPassword);
+
+      if (correctLogin)
+        this.manageLogin();
+      else
+        this.loginError = true;
+    }
+  }
+
+  public manageLogin() {
+    //TODO: Redirigir a otra página o hacer que otro componente redirija a otra página
   }
 
 }
