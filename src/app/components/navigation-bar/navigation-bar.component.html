@@ -11,15 +11,31 @@
       </button>
     </div>
 
-    <div *ngIf="!loggedUser" [collapse]="!isCollapsed" class="collapse navbar-collapse">
+    <div *ngIf="!userIsLogged()" [collapse]="!isCollapsed" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right" (click)="isCollapsed = !isCollapsed">
         <li><button class="btn btn-danger register-button" data-toggle="collapse">Regístrate</button></li>
         <li><button class="btn btn-default login-button" data-toggle="collapse">Inicia sesión</button></li>
       </ul>
     </div>
 
-    <div *ngIf="loggedUser" class="collapse navbar-collapse">
+    <div *ngIf="userIsLogged()" class="logged-actions">
+      <ul class="nav navbar-nav">
+        <li>
+          <div class="btn-group btn-group-justified" style="max-width: 60vw; margin-left: 1vw">
+            <label class="btn btn-primary">Mis máquinas</label>
+            <label class="btn btn-primary">Técnicos</label>
+            <label class="btn btn-primary">Incidencias</label>
+            <label class="btn btn-primary">Administración</label>
+          </div>
+        </li>
+      </ul>
 
+      <button class="btn btn-primary dropdown-toggle navbar-right button-group-actions" style="margin-left: 4vw" data-toggle="loggedActions">
+        Hola, NOMBRE_USUARIO<span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+
+      </ul>
     </div>
 
   </div>
