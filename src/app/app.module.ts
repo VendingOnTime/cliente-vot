@@ -13,6 +13,7 @@ import {CollapseDirective} from "ng2-bootstrap";
 import {Routes, RouterModule} from "@angular/router";
 import {ApplicationReducer} from "./redux/reducers/ApplicationReducer";
 import {StoreModule} from "ngrx/@ngrx/store";
+import {StorageService} from "./services/StorageService";
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import {StoreModule} from "ngrx/@ngrx/store";
     //RouterModule.forRoot(routes)
     StoreModule.provideStore({reducer: ApplicationReducer})
   ],
-  providers: [FormBuilder, UserService],
+  providers: [FormBuilder, UserService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
