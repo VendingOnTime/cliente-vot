@@ -11,6 +11,8 @@ import { LoginPanelComponent } from './components/login-panel/login-panel.compon
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import {CollapseDirective} from "ng2-bootstrap";
 import {Routes, RouterModule} from "@angular/router";
+import {ApplicationReducer} from "./redux/reducers/ApplicationReducer";
+import {StoreModule} from "ngrx/@ngrx/store";
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import {Routes, RouterModule} from "@angular/router";
     HttpModule,
     ProgressbarModule.forRoot(),
     //RouterModule.forRoot(routes)
+    StoreModule.provideStore({reducer: ApplicationReducer})
   ],
   providers: [FormBuilder, UserService],
   bootstrap: [AppComponent]
