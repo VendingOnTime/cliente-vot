@@ -3,6 +3,7 @@ import {ApplicationState} from "../redux/store/AppStore";
 import {Store} from "@ngrx/store";
 import {Injectable} from "@angular/core";
 import {ApplicationActions} from "../redux/actions/ApplicationActions";
+import {Observable} from "rxjs";
 
 
 @Injectable()
@@ -16,9 +17,7 @@ export class StorageService {
     this.store.dispatch(ApplicationActions.logIn(user));
   }
 
-  public getLoggedUser() : User {
-    let actualState;
-    this.store.subscribe((state: ApplicationState) => actualState = state);
-    return actualState.user;
+  public getLoggedUser() : Observable<User> {
+    return this.store.select('user');
   }
 }

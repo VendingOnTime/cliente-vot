@@ -10,7 +10,7 @@ export class UserService {
 
 
   public doLogin(username: string, password: string) : boolean {
-    let loginOK = false;
+    let loginOK = true;
     //TODO: Do HTTP request to the server to do the login
     if (loginOK) {
       this.storage.saveUserFromLogIn(this.buildUser());

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/User";
 import {StorageService} from "../../services/StorageService";
 
+
 @Component({
   selector: 'navigation-bar',
   templateUrl: './navigation-bar.component.html',
@@ -9,16 +10,11 @@ import {StorageService} from "../../services/StorageService";
 })
 export class NavigationBarComponent implements OnInit {
 
-  //FIXME: Bind with the login state (redux)
-  private loggedUser: User;
   private isCollapsed: boolean = false;
+  public user: User = null;
 
-  constructor(private storage: StorageService) {
-    this.loggedUser = this.storage.getLoggedUser();
-  }
-
-  private userIsLogged() : boolean {
-    return this.loggedUser != null;
+  constructor(public storage: StorageService) {
+    storage.getLoggedUser().subscribe((user) => this.user = user);
   }
 
   ngOnInit() {
