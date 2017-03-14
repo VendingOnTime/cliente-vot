@@ -10,7 +10,7 @@ import {StorageService} from "../../services/StorageService";
 })
 export class NavigationBarComponent implements OnInit {
 
-  private isCollapsed: boolean = false;
+  public isCollapsed: boolean = false;
   public user: User = null;
 
   constructor(public storage: StorageService) {

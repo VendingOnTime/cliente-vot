@@ -21,7 +21,9 @@ export class UserService {
 
   private buildUser() : User {
     //FIXME: Complete
-    return new User();
+    let user = new User();
+    user.name = "Prueba";
+    return user;
   }
 
   public registerUser(username: string, password: string, email: string) : boolean {
