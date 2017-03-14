@@ -1,4 +1,4 @@
-import {ActionReducer, Action} from "ngrx/@ngrx/store";
+import {ActionReducer, Action} from "@ngrx/store";
 import {ApplicationState, INITIAL_STATE} from "../store/AppStore";
 import {ApplicationActions} from "../actions/ApplicationActions";
 

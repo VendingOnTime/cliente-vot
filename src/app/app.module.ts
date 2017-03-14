@@ -12,7 +12,7 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import {CollapseDirective} from "ng2-bootstrap";
 import {Routes, RouterModule} from "@angular/router";
 import {ApplicationReducer} from "./redux/reducers/ApplicationReducer";
-import {StoreModule} from "ngrx/@ngrx/store";
+import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
 
 

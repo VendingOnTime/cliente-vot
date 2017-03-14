@@ -5,5 +5,5 @@ export interface ApplicationState {
   user: User,
 }
 
-export const INITIAL_STATE = {logged: false, user: null};
+export const INITIAL_STATE : ApplicationState = {logged: false, user: null};
 
