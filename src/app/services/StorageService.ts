@@ -8,11 +8,11 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class StorageService {
   //FIXME: Complete
-  constructor(private store: Store<ApplicationState>) {
+  constructor() {
 
   }
 
   public saveUserFromLogIn(user: User) : void {
-    this.store.dispatch(ApplicationActions.logIn(user));
+    //this.store.dispatch(ApplicationActions.logIn(user));
   }
 }

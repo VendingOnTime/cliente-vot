@@ -6,4 +6,3 @@ export interface ApplicationState {
 }
 
 export const INITIAL_STATE : ApplicationState = {logged: false, user: null};
-

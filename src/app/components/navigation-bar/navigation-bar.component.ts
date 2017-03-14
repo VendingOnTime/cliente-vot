@@ -14,11 +14,11 @@ export class NavigationBarComponent implements OnInit {
   private loggedUser: User;
   private isCollapsed: boolean = false;
 
-  constructor(private store: Store<ApplicationState>) {
+  constructor() {
     //TODO: PROVISIONAL
     let actualState;
-    this.store.subscribe((state: ApplicationState) => actualState = state);
-    this.loggedUser = actualState.reducer.user;
+    //this.store.subscribe((state: ApplicationState) => actualState = state);
+    //this.loggedUser = actualState.reducer.user;
   }
 
   private userIsLogged() : boolean {
