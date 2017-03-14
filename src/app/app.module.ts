@@ -12,8 +12,6 @@ import {Routes, RouterModule} from "@angular/router";
 import {ApplicationReducer} from "./redux/reducers/ApplicationReducer";
 import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
-import {INITIAL_STATE} from "./redux/store/AppStore";
-import {Store} from "@ngrx/store";
 
 
 @NgModule({

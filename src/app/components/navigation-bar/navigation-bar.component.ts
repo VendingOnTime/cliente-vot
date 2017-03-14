@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/User";
-import {Store} from "ngrx/@ngrx/store";
-import {ApplicationState} from "../../redux/store/AppStore";
+import {StorageService} from "../../services/StorageService";
 
 @Component({
   selector: 'navigation-bar',
@@ -14,11 +13,8 @@ export class NavigationBarComponent implements OnInit {
   private loggedUser: User;
   private isCollapsed: boolean = false;
 
-  constructor() {
-    //TODO: PROVISIONAL
-    let actualState;
-    //this.store.subscribe((state: ApplicationState) => actualState = state);
-    //this.loggedUser = actualState.reducer.user;
+  constructor(private storage: StorageService) {
+    this.loggedUser = this.storage.getLoggedUser();
   }
 
   private userIsLogged() : boolean {

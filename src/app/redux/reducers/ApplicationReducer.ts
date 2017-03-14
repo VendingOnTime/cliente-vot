@@ -1,9 +1,9 @@
-import {ActionReducer, Action} from "@ngrx/store";
-import {ApplicationState, INITIAL_STATE} from "../store/AppStore";
+import {Action} from "@ngrx/store";
+import {INITIAL_STATE} from "../store/AppStore";
 import {ApplicationActions} from "../actions/ApplicationActions";
 
 
-export function ApplicationReducer(state, action: Action) : ApplicationState {
+export function ApplicationReducer(state = INITIAL_STATE, action: Action) {
 
   switch (action.type) {
 
