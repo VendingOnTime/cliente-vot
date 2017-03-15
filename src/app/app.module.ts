@@ -14,6 +14,7 @@ import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
 import {INITIAL_STATE} from "./redux/store/AppStore";
 import {Store} from "@ngrx/store";
+import { UpdatePanelComponent } from './components/update-panel/update-panel.component';
 
 
 @NgModule({
@@ -21,8 +22,10 @@ import {Store} from "@ngrx/store";
     AppComponent,
     SignupPanelComponent,
     LoginPanelComponent,
+    UpdatePanelComponent,
     NavigationBarComponent,
-    CollapseDirective
+    CollapseDirective,
+    UpdatePanelComponent
   ],
   imports: [
     BrowserModule,
