@@ -12,6 +12,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {ApplicationReducer} from "./redux/reducers/ApplicationReducer";
 import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
+import { UpdatePanelComponent } from './components/update-panel/update-panel.component';
 
 
 @NgModule({
@@ -19,8 +20,10 @@ import {StorageService} from "./services/StorageService";
     AppComponent,
     SignupPanelComponent,
     LoginPanelComponent,
+    UpdatePanelComponent,
     NavigationBarComponent,
-    CollapseDirective
+    CollapseDirective,
+    UpdatePanelComponent
   ],
   imports: [
     BrowserModule,

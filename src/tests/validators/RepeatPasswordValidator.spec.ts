@@ -1,10 +1,9 @@
-import {RepeatPasswordValidator} from "../../src/app/validators/RepeatPasswordValidator";
 import {FormGroup, FormControl} from "@angular/forms";
-
+import {RepeatPasswordValidator} from "../../app/validators/RepeatPasswordValidator";
 
 describe('A password validation in the system', function () {
 
-  it('should fail with passwords that are not equal', function () {
+  it('should fail with passwords that are not equal',  () => {
     let passwords = new FormGroup({password: new FormControl('password1'), repeatPassword: new FormControl('password2')});
 
     expect(RepeatPasswordValidator(passwords)).not.toBe(null);
