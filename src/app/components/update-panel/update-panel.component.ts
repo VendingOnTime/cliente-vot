@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "@angular/forms";
 import {UserService} from "../../services/UserService";
-
 import {EmailValidator} from "../../validators/EmailValidator";
 import {PasswordValidator} from "../../validators/PasswordValidator";
 import {RepeatPasswordValidator} from "../../validators/RepeatPasswordValidator";
+
+
 @Component({
   selector: 'update-panel',
   templateUrl: './update-panel.component.html',

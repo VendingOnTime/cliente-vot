@@ -14,6 +14,8 @@ import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
 import { UpdatePanelComponent } from './components/update-panel/update-panel.component';
 import { AddMachineComponent } from './components/add-machine/add-machine.component';
+import {Modal, ModalModule} from "angular2-modal";
+import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { AddMachineComponent } from './components/add-machine/add-machine.compon
     ReactiveFormsModule,
     HttpModule,
     //RouterModule.forRoot(routes)
-    StoreModule.provideStore(ApplicationReducer)
+    StoreModule.provideStore(ApplicationReducer),
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [FormBuilder, UserService, StorageService],
   bootstrap: [AppComponent]
