@@ -48,5 +48,9 @@ export class UserService {
     return correctRegistering;
   }
 
+  public updateUser(email: string, newPassword: string) : boolean {
+    //FIXME: Complete
+    return false;
+  }
 
 }

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "@angular/forms";
 import {UserService} from "../../services/UserService";
 import {EmailValidator} from "../../validators/EmailValidator";
 import {PasswordValidator} from "../../validators/PasswordValidator";
 import {RepeatPasswordValidator} from "../../validators/RepeatPasswordValidator";
+import {Overlay} from "angular2-modal";
+import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 
 @Component({
@@ -27,7 +29,16 @@ export class UpdatePanelComponent implements OnInit {
   private repeatPasswordInput: AbstractControl;
   private repeatPassword: string = '';
 
-  constructor(public formBuilder: FormBuilder, public userService: UserService) {
+
+  private modal_errorTitle = 'Error en el servidor';
+  private modal_errorBody = `Ha ocurrido un error al actualizar los datos del usuario. 
+  Inténtelo de nuevo en un momento.`;
+
+
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public formBuilder: FormBuilder, public userService: UserService, public modal: Modal) {
+
+    overlay.defaultViewContainer = vcRef;
+
     this.form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([Validators.required, EmailValidator])),
       oldPassword: new FormControl('', Validators.compose([Validators.required, PasswordValidator])),
@@ -45,8 +56,17 @@ export class UpdatePanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmitUpdate(){
-    console.log("Enviado formlario de update panel")
+  public onSubmitUpdate() {
+    let resultOK = this.userService.updateUser(this.emailInput.value, this.passwordInput.value);
+    this.manageUpdate(resultOK);
   }
 
+  public manageUpdate(resultOK : boolean) : void {
+    if (resultOK) {
+      //TODO: Manage update
+    }
+    else {
+      this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
+    }
+  }
 }
