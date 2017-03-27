@@ -1,33 +1,30 @@
-<div class="container">
-
-  <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitRegister()">
-    <h2 class="text-center">Registrarse</h2>
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Usuario" [formControl]="userInput" [(ngModel)]="username">
-        <div class="alert alert-danger" *ngIf="userInput.hasError('required')" [hidden]="userInput.untouched">Ha de introducirse un nombre de usuario</div>
-        <div class="alert alert-danger" *ngIf="userInput.hasError('short_username')" [hidden]="userInput.untouched">Nombre de usuario demasiado corto</div>
-        <div class="alert alert-danger" *ngIf="userInput.hasError('large_username')" [hidden]="userInput.untouched">Nombre de usuario demasiado largo</div>
-        <div class="alert alert-danger" *ngIf="userInput.hasError('format_username')" [hidden]="userInput.untouched">El nombre de usuario no puede contener caracteres especiales</div>
-    </div>
-    <div class="form-group">
-        <input type="email" class="form-control" placeholder="Email" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
-        <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">El formato del email no está admitido</div>
-        <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">El formato del email no está admitido</div>
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
-        <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">Es necesario introducir una contraseña</div>
-        <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">La contraseña no es lo suficientemente segura</div>
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" placeholder="Confirmar Password" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
-        <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="passwordInput.untouched">La contraseña introducida es diferente</div>
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-block btn-lg btn-primary" value="Enviar" [disabled]="form.status !== 'VALID'">
-    </div>
-  </form>
-  <div class="text-center">
-    ¿Ya eres cliente? <a class="" href="#">Iniciar sesión</a>
+<form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitRegister()">
+  <h2 class="text-center">Registrarse</h2>
+  <div class="form-group">
+      <input type="text" class="form-control" placeholder="Usuario" [formControl]="userInput" [(ngModel)]="username">
+      <div class="alert alert-danger" *ngIf="userInput.hasError('required')" [hidden]="userInput.untouched">Ha de introducirse un nombre de usuario</div>
+      <div class="alert alert-danger" *ngIf="userInput.hasError('short_username')" [hidden]="userInput.untouched">Nombre de usuario demasiado corto</div>
+      <div class="alert alert-danger" *ngIf="userInput.hasError('large_username')" [hidden]="userInput.untouched">Nombre de usuario demasiado largo</div>
+      <div class="alert alert-danger" *ngIf="userInput.hasError('format_username')" [hidden]="userInput.untouched">El nombre de usuario no puede contener caracteres especiales</div>
   </div>
+  <div class="form-group">
+      <input type="email" class="form-control" placeholder="Email" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
+      <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">El formato del email no está admitido</div>
+      <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">El formato del email no está admitido</div>
+  </div>
+  <div class="form-group">
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
+      <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">Es necesario introducir una contraseña</div>
+      <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">La contraseña no es lo suficientemente segura</div>
+  </div>
+  <div class="form-group">
+      <input type="password" class="form-control" placeholder="Confirmar Password" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
+      <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="passwordInput.untouched">La contraseña introducida es diferente</div>
+  </div>
+  <div class="form-group">
+      <input type="submit" class="btn btn-block btn-lg btn-primary" value="Enviar" [disabled]="form.status !== 'VALID'">
+  </div>
+</form>
+<div class="text-center">
+  ¿Ya eres cliente? <a class="" href="#">Iniciar sesión</a>
 </div>
