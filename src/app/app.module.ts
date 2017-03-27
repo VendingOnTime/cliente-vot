@@ -14,9 +14,15 @@ import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
 import { UpdatePanelComponent } from './components/update-panel/update-panel.component';
 import { AddMachineComponent } from './components/add-machine/add-machine.component';
-import {Modal, ModalModule} from "angular2-modal";
+import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
+const routes : Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginPanelComponent},
+  {path: 'signup', component: SignupPanelComponent},
+  {path: 'update', component: UpdatePanelComponent}
+];
 
 @NgModule({
   declarations: [
@@ -34,7 +40,7 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    //RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
     StoreModule.provideStore(ApplicationReducer),
     ModalModule.forRoot(),
     BootstrapModalModule
