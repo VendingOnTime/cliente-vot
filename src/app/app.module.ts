@@ -13,6 +13,7 @@ import {ApplicationReducer} from "./redux/reducers/ApplicationReducer";
 import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
 import { UpdatePanelComponent } from './components/update-panel/update-panel.component';
+import { AddMachineComponent } from './components/add-machine/add-machine.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UpdatePanelComponent } from './components/update-panel/update-panel.com
     UpdatePanelComponent,
     NavigationBarComponent,
     CollapseDirective,
-    UpdatePanelComponent
+    UpdatePanelComponent,
+    AddMachineComponent
   ],
   imports: [
     BrowserModule,
