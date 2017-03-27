@@ -1,4 +1,4 @@
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {StorageService} from "./StorageService";
 import {User} from "../models/User";
@@ -8,27 +8,44 @@ export class UserService {
 
   public constructor(private http: Http, private storage: StorageService) { }
 
+  private registerUserRoute = '';
+  private loginUserRoute = '';
 
   public doLogin(username: string, password: string) : boolean {
-    let loginOK = true;
-    //TODO: Do HTTP request to the server to do the login
+    let loginOK = false;
+    let data = {};
+
+    this.http.post(this.loginUserRoute, {username, password})
+      .map((response: Response) => {
+        loginOK = response.ok;
+        data = response.json();
+      });
+
     if (loginOK) {
-      this.storage.saveUserFromLogIn(this.buildUser());
+      this.storage.saveUserFromLogIn(this.buildUser(data));
       return true;
     }
     return false;
   }
 
-  private buildUser() : User {
-    //FIXME: Complete
+  private buildUser(data : any) : User {
+    //FIXME: Complete & test
+    console.log(data);
     let user = new User();
     user.name = "Prueba";
     return user;
   }
 
   public registerUser(username: string, password: string, email: string) : boolean {
-    //TODO: Do HTTP request to the server to register a new user
-    return false;
+    let waitingToServer = true;
+    let data = {username, password, email};
+    let correctRegistering = false;
+
+    this.http.post(this.registerUserRoute, data).map((userOK : Response) => {
+      waitingToServer = false;
+      correctRegistering = userOK.ok;
+    });
+    return correctRegistering;
   }
 
 

@@ -52,7 +52,7 @@ export class LoginPanelComponent implements OnInit {
     }
   }
 
-  public manageLogin() {
+  private manageLogin() {
     //TODO: Redirigir a otra página o hacer que otro componente redirija a otra página
   }
 
