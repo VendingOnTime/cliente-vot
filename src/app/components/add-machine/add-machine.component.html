@@ -1,3 +1,17 @@
-<p>
-  add-machine works!
-</p>
+<form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitCreate()">
+  <h2 class="text-center">{{initSessionMessage}}</h2>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Ubicacion" [formControl]="locationInput" [(ngModel)]="location">
+    <div class="alert alert-danger" *ngIf="locationInput.hasError('required')" [hidden]="locationInput.untouched">{{locationError}}</div>
+  </div>
+  <div class="form-group">
+    <select class="form-control" #select [formControl]="machineTypeInput" [(ngModel)]="machineType">
+      <option *ngFor="let item of getAllMachineTypes();" [value]="item" selected="{{item == getAllMachineTypes()[0]}}">
+        {{item}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-block btn-lg btn-primary" value="Crear máquina" >
+  </div>
+</form>
