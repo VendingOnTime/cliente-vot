@@ -22,10 +22,10 @@
       <ul class="nav navbar-nav">
         <li>
           <div class="btn-group btn-group-justified" style="max-width: 60vw; margin-left: 1vw">
-            <label class="btn btn-primary">Mis máquinas</label>
-            <label class="btn btn-primary">Técnicos</label>
-            <label class="btn btn-primary">Incidencias</label>
-            <label class="btn btn-primary">Administración</label>
+            <label class="btn btn-primary" (click)="goToMachinesPanel()">Mis máquinas</label>
+            <label class="btn btn-primary" (click)="goToTechniciansPanel()">Técnicos</label>
+            <label class="btn btn-primary" (click)="goToIssuesPanel()">Incidencias</label>
+            <label class="btn btn-primary" (click)="goToAdminSection()">Administración</label>
           </div>
         </li>
       </ul>

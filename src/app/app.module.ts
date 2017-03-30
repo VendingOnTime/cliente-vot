@@ -18,6 +18,10 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import { HomeSectionComponent } from './components/home-section/home-section.component';
 import {AuthGuard} from "./guards/AuthGuard.service";
 import {rootReducer} from "./redux/reducers/Application.Reducer";
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { IssuesPanelComponent } from './components/issues-panel/issues-panel.component';
+import { TechniciansPanelComponent } from './components/technicians-panel/technicians-panel.component';
+import { MachinesPanelComponent } from './components/machines-panel/machines-panel.component';
 
 
 const routes : Routes = [
@@ -25,7 +29,11 @@ const routes : Routes = [
   {path: 'home', component: HomeSectionComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginPanelComponent},
   {path: 'signup', component: SignupPanelComponent},
-  {path: 'update', component: UpdatePanelComponent}
+  {path: 'update', component: UpdatePanelComponent},
+  {path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard]},
+  {path: 'issues', component: IssuesPanelComponent, canActivate: [AuthGuard]},
+  {path: 'technicians', component: TechniciansPanelComponent, canActivate: [AuthGuard]},
+  {path: 'machines', component: MachinesPanelComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -38,7 +46,11 @@ const routes : Routes = [
     CollapseDirective,
     UpdatePanelComponent,
     AddMachineComponent,
-    HomeSectionComponent
+    HomeSectionComponent,
+    AdminPanelComponent,
+    IssuesPanelComponent,
+    TechniciansPanelComponent,
+    MachinesPanelComponent
   ],
   imports: [
     BrowserModule,

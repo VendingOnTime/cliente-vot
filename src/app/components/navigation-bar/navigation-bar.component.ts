@@ -23,6 +23,9 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Router methods
+   */
   public goToRegister() {
     this.router.navigate(['signup']);
   }
@@ -33,6 +36,22 @@ export class NavigationBarComponent implements OnInit {
 
   public goToProfile() {
 
+  }
+
+  public goToAdminSection() {
+    this.router.navigate(['admin']);
+  }
+
+  public goToIssuesPanel() {
+    this.router.navigate(['issues']);
+  }
+
+  public goToTechniciansPanel() {
+    this.router.navigate(['technicians']);
+  }
+
+  public goToMachinesPanel() {
+    this.router.navigate(['machines']);
   }
 
   public getUser() : User {
