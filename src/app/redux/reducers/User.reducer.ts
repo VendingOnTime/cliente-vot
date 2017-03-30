@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   user: null
 };
 
-export const UserReducer = (state: UserReducerState = INITIAL_STATE, action: Action) : UserReducerState => {
+export function UserReducer(state: UserReducerState = INITIAL_STATE, action: Action) : UserReducerState {
 
   switch (action.type) {
     case ApplicationActions.LOG_IN:

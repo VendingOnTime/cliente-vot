@@ -17,7 +17,7 @@ import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import { HomeSectionComponent } from './components/home-section/home-section.component';
 import {AuthGuard} from "./guards/AuthGuard.service";
-import {UserReducer} from "./redux/reducers/User.reducer";
+import {rootReducer} from "./redux/reducers/Application.Reducer";
 
 
 const routes : Routes = [
@@ -46,7 +46,7 @@ const routes : Routes = [
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    StoreModule.provideStore({userReducer: UserReducer}),
+    StoreModule.provideStore(rootReducer),
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
