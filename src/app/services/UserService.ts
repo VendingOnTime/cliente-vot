@@ -12,7 +12,7 @@ export class UserService {
   private loginUserRoute = '';
 
   public doLogin(username: string, password: string) : boolean {
-    let loginOK = false;
+    let loginOK = true;
     let data = {};
 
     this.http.post(this.loginUserRoute, {username, password})
@@ -29,8 +29,6 @@ export class UserService {
   }
 
   private buildUser(data : any) : User {
-    //FIXME: Complete & test
-    console.log(data);
     let user = new User();
     user.name = "Prueba";
     return user;
@@ -52,5 +50,4 @@ export class UserService {
     //FIXME: Complete
     return false;
   }
-
 }

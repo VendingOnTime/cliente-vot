@@ -1,8 +1,6 @@
-import {User} from "../../models/User";
+import {UserReducerState} from "../reducers/User.reducer";
+
 
 export interface ApplicationState {
-  logged: boolean,
-  user: User,
+  userReducer: UserReducerState
 }
-
-export const INITIAL_STATE : ApplicationState = {logged: false, user: null};

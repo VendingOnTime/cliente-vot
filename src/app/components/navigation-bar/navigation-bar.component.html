@@ -11,14 +11,14 @@
       </button>
     </div>
 
-    <div *ngIf="user == null" [collapse]="!isCollapsed" class="collapse navbar-collapse">
+    <div *ngIf="!getLogged()" [collapse]="!isCollapsed" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right" (click)="isCollapsed = !isCollapsed">
         <li><button class="btn btn-danger register-button" data-toggle="collapse" (click)="goToRegister()">Regístrate</button></li>
         <li><button class="btn btn-default login-button" data-toggle="collapse" (click)="goToLogin()">Inicia sesión</button></li>
       </ul>
     </div>
 
-    <div *ngIf="user !== null" class="logged-actions">
+    <div *ngIf="getLogged()" class="logged-actions">
       <ul class="nav navbar-nav">
         <li>
           <div class="btn-group btn-group-justified" style="max-width: 60vw; margin-left: 1vw">
@@ -31,7 +31,7 @@
       </ul>
 
       <button class="btn btn-primary dropdown-toggle navbar-right button-group-actions" style="margin-left: 4vw" data-toggle="loggedActions">
-        Hola, {{user.name}}<span class="caret"></span>
+        Hola, {{getUser().name}}<span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
 

@@ -10,5 +10,4 @@ export class ApplicationActions {
   public static logIn(user: User) : Action {
     return {type: ApplicationActions.LOG_IN, payload: user};
   }
-
 }

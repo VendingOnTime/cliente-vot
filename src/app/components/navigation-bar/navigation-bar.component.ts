@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/User";
 import {StorageService} from "../../services/StorageService";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {UserReducerState} from "../../redux/reducers/User.reducer";
+
 
 
 @Component({
@@ -12,10 +15,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class NavigationBarComponent implements OnInit {
 
   public isCollapsed: boolean = false;
-  public user: User = null;
+  public userReducerState: Observable<UserReducerState> = this.storage.getUserReducer();
 
-  constructor(public storage: StorageService, private route: ActivatedRoute, private router: Router) {
-    storage.getLoggedUser().subscribe((user) => this.user = user);
+  constructor(public storage: StorageService, private router: Router) {
   }
 
   ngOnInit() {
@@ -31,5 +33,17 @@ export class NavigationBarComponent implements OnInit {
 
   public goToProfile() {
 
+  }
+
+  public getUser() : User {
+    let user: User;
+    this.userReducerState.subscribe((data: UserReducerState) => user = data.user);
+    return user;
+  }
+
+  public getLogged() : boolean {
+    let logged: boolean;
+    this.userReducerState.subscribe((data: UserReducerState) => logged = data.logged);
+    return logged;
   }
 }

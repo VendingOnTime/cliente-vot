@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "@angular/forms";
 import {UserService} from "../../services/UserService";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'login-panel',
@@ -25,7 +27,7 @@ export class LoginPanelComponent implements OnInit {
   private registerMessage: string = '¿Aun no eres cliente?';
   private registerLink: string = 'Registrarse';
 
-  constructor(public formBuilder: FormBuilder, public userService: UserService) {
+  constructor(public formBuilder: FormBuilder, public userService: UserService, public router: Router) {
 
     this.form = this.formBuilder.group({
       user: new FormControl('', Validators.compose([Validators.required])),
@@ -53,7 +55,7 @@ export class LoginPanelComponent implements OnInit {
   }
 
   private manageLogin() {
-    //TODO: Redirigir a otra página o hacer que otro componente redirija a otra página
+    this.router.navigate(['/home']);
   }
 
 }
