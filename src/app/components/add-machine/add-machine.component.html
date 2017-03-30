@@ -18,6 +18,11 @@
       </option>
     </select>
   </div>
+
+  <div class="form-group">
+    <autocomplete [idList]="0"></autocomplete>
+  </div>
+
   <div class="form-group">
     <textarea placeholder="Descripción" class="form-control" rows="4" id="comment" [formControl]="descriptionInput" [(ngModel)]="description"></textarea>
   </div>

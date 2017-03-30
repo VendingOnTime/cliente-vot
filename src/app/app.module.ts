@@ -14,6 +14,7 @@ import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
 import { UpdatePanelComponent } from './components/update-panel/update-panel.component';
 import { AddMachineComponent } from './components/add-machine/add-machine.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AddMachineComponent } from './components/add-machine/add-machine.compon
     NavigationBarComponent,
     CollapseDirective,
     UpdatePanelComponent,
-    AddMachineComponent
+    AddMachineComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
