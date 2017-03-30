@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
-import {Location} from "../../models/Location";
-import {tick} from "@angular/core/testing";
+import {Position} from "../../models/Position";
+import {MachineState} from "../../models/MachineState";
+import {EnumEx} from "../../utils/EnumEx";
 import {MachineType} from "../../models/MachineType";
 
 @Component({
@@ -13,39 +14,42 @@ export class AddMachineComponent implements OnInit {
 
   private form : FormGroup;
 
-  private locationInput: AbstractControl;
-  private location: Location;
-  private locationError : string = "Error!";
+  private positionAddressInput: AbstractControl;
+  private positionAddress: string;
+  private positionAddressError : string = "Error!";
 
   private machineTypeInput: AbstractControl;
-  private machineType: MachineType;
+  private machineType: string = MachineType[0];
   private machineTypeError: string = "Se ha de seleccionar un tipo";
 
-  private stateInput: AbstractControl;
-  //private state: machineState;
-  //private stateError: machineState;
+  private machineStateInput: AbstractControl;
+  private machineState: string = MachineState[0];
+  private machineStateError: string = "Error";
 
-  private technicianInput: AbstractControl;
+  //private technicianInput: AbstractControl;
   //private technician: Technician;
   //private technicianError: Technician;
 
-  private notesInput: AbstractControl;
-  private notes: String;
-  private notesError: String;
+  private descriptionInput: AbstractControl;
+  private description: String;
+  private descriptionError: String;
+
+  public enumEx = EnumEx;
 
   constructor(public formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      location: new FormControl('', Validators.compose([Validators.required])),
+      positionAddress: new FormControl('', Validators.compose([Validators.required])),
       machineType: new FormControl('', Validators.compose([Validators.required])),
-      //state: new FormControl('', Validators.compose([Validators.required])),
+      machineState: new FormControl('', Validators.compose([Validators.required])),
       //technician: new FormControl('', Validators.compose([Validators.required])),
-      notes: new FormControl('', Validators.compose([Validators.required]))
+      description: new FormControl('', Validators.compose([Validators.required]))
     });
-    this.locationInput = this.form.controls['location'];
+
+    this.positionAddressInput = this.form.controls['positionAddress'];
     this.machineTypeInput = this.form.controls['machineType'];
-    //this.stateInput = this.form.controls['state'];
-    //this.technicianInput = this.form.controls['technician']
-    this.notesInput = this.form.controls['notes']
+    this.machineStateInput = this.form.controls['machineState'];
+    //this.technicianInput = this.form.controls['technician'];
+    this.descriptionInput = this.form.controls['description'];
   }
 
   ngOnInit() {
@@ -54,19 +58,18 @@ export class AddMachineComponent implements OnInit {
   }
 
   public onSubmitCreate() : void{
-    console.log("sdfsafsafsaffsdfsadfsdfaf  " + this.machineType)
+
+    console.log("positionAddress   " + this.positionAddress);
+    console.log("Machine state  " + MachineState[this.machineState]);
+    console.log("Machine type  " + MachineType[this.machineType]);
+    console.log("Descripción  " + this.description);
   }
 
   public getAllMachineTypes() : string[] {
-    var n = [];
-
-    for (var value in MachineType) {
-      if(typeof MachineType[value] !== 'number') {
-        n.push(MachineType[value]);
-      }
-    }
-
-    return n;
+    return this.enumEx.getNames(MachineType);
+  }
+  public getAllMachineStates() : {} {
+    return this.enumEx.getNames(MachineState);
   }
 
 }
