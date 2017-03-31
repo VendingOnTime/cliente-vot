@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, Directive, Input } from '@angular/core';
+import {AutocompleteList} from "../../models/autocompleteListRoutes";
 
 @Component({
   selector: 'autocomplete',
@@ -26,18 +27,8 @@ export class AutocompleteComponent implements OnInit {
     }
 
   ngOnInit() {
-      //TODO Falta hacer la diferenciacion para las diferentes listas
-    if (this.idList == "0"){
-      this.elements = ["Albania","Andorra","Armenia","Austria","Azerbaijan","Belarus",
-        "Belgium","Bosnia & Herzegovina","Bulgaria","Croatia","Cyprus",
-        "Czech Republic","Denmark","Estonia","Finland","France","Georgia",
-        "Germany","Greece","Hungary","Iceland","Ireland","Italy","Kosovo",
-        "Latvia","Liechtenstein","Lithuania","Luxembourg","Macedonia","Malta",
-        "Moldova","Monaco","Montenegro","Netherlands","Norway","Poland",
-        "Portugal","Romania","Russia","San Marino","Serbia","Slovakia","Slovenia",
-        "Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom","Vatican City"];
-    }
-
+      // Recupera la lista de elementos donde se buscara al escribir
+      this.elements = AutocompleteList.getList(this.idList);
   }
 
   filter() {
