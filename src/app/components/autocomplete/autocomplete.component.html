@@ -3,8 +3,8 @@
 </div>
 <div *ngIf="filteredList.length > 0">
   <div class="list-group">
-    <div *ngFor="let item of filteredList">
-      <a class="list-group-item" (click)="select(item)">{{item}}</a>
+    <div *ngFor="let key of filteredList">
+      <a class="list-group-item" (click)="select(key)">{{elements[key]}}</a>
     </div>
   </div>
 </div>

@@ -3,6 +3,9 @@
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Ubicacion" [formControl]="positionAddressInput" [(ngModel)]="positionAddress">
     <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('required')" [hidden]="positionAddressInput.untouched">{{positionAddressError}}</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionLength')" [hidden]="positionAddressInput.untouched">Localización solo puede tener más 140 carácteres</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionFormat')" [hidden]="positionAddressInput.untouched">Localización no puede contener carácteres especiales</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectDescriptionMinLength')" [hidden]="positionAddressInput.untouched">Localización debe tener más 2 carácteres</div>
   </div>
   <div class="form-group">
     <select class="form-control" #select [formControl]="machineTypeInput" [(ngModel)]="machineType">
@@ -20,13 +23,16 @@
   </div>
 
   <div class="form-group">
-    <autocomplete [idList]="0"></autocomplete>
+    <autocomplete [idList]="0" (notify)='onNotify($event)'></autocomplete>
+    <div class="alert alert-danger" *ngIf="technicianError" [hidden]="technicianErrorHidden">Es requerido que la administre alguien</div>
   </div>
 
   <div class="form-group">
-    <textarea placeholder="Descripción" class="form-control" rows="4" id="comment" [formControl]="descriptionInput" [(ngModel)]="description"></textarea>
+    <input type="text" placeholder="Descripción" class="form-control" id="comment" [formControl]="descriptionInput" [(ngModel)]="descriptionText">
+    <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionLength')" [hidden]="descriptionInput.untouched">Descripción es demasiado largo</div>
+    <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionFormat')" [hidden]="descriptionInput.untouched">Descripción no puede contener carácteres especiales</div>
   </div>
   <div class="form-group">
-    <input type="submit" class="btn btn-block btn-lg btn-primary" value="Crear máquina" >
+    <input type="submit" class="btn btn-block btn-lg btn-primary" value="Crear máquina" [disabled]="form.status !== 'VALID' || technicianError">
   </div>
 </form>
