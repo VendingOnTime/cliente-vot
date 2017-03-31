@@ -18,6 +18,7 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import { HomeSectionComponent } from './components/home-section/home-section.component';
 import {AuthGuard} from "./guards/AuthGuard.service";
 import {rootReducer} from "./redux/reducers/Application.Reducer";
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
 
 const routes : Routes = [
@@ -38,7 +39,9 @@ const routes : Routes = [
     CollapseDirective,
     UpdatePanelComponent,
     AddMachineComponent,
-    HomeSectionComponent
+    HomeSectionComponent,
+    AddMachineComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
