@@ -1,5 +1,5 @@
 <div class="input-field">
-  <input id="country" type="text" placeholder="Técnico" class="validate filter-input form-control" [(ngModel)]=query (keyup)=filter()>
+  <input id="country" autocomplete="off" type="text" placeholder="Técnico" class="validate filter-input form-control" [(ngModel)]=query (keyup)=filter()>
 </div>
 <div *ngIf="filteredList.length > 0">
   <div class="list-group">

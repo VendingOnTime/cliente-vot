@@ -28,7 +28,7 @@
   </div>
 
   <div class="form-group">
-    <input type="text" placeholder="Descripción" class="form-control" id="comment" [formControl]="descriptionInput" [(ngModel)]="descriptionText">
+    <textarea type="text" placeholder="Descripción" rows="6" maxlength="300" class="form-control" id="comment" [formControl]="descriptionInput" [(ngModel)]="descriptionText"></textarea>
     <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionLength')" [hidden]="descriptionInput.untouched">Descripción es demasiado largo</div>
     <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionFormat')" [hidden]="descriptionInput.untouched">Descripción no puede contener carácteres especiales</div>
   </div>

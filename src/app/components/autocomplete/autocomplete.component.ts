@@ -57,6 +57,8 @@ export class AutocompleteComponent implements OnInit {
     this.notify.emit(key);
   }
 
+  touched = false;
+
   handleClick(event){
     var clickedComponent = event.target;
     var inside = false;
@@ -64,10 +66,11 @@ export class AutocompleteComponent implements OnInit {
     do {
       if (clickedComponent === this.elementRef.nativeElement) {
         inside = true;
+        this.touched = true;
       }
       clickedComponent = clickedComponent.parentNode;
     } while (clickedComponent);
-    if(!inside){
+    if(!inside && this.touched){
       this.filteredList = [];
 
       var exist = false;
