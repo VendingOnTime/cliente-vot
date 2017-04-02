@@ -19,6 +19,7 @@ import { HomeSectionComponent } from './components/home-section/home-section.com
 import {AuthGuard} from "./guards/AuthGuard.service";
 import {rootReducer} from "./redux/reducers/Application.Reducer";
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { ListMachineComponent } from './components/list-machine/list-machine.component';
 
 
 const routes : Routes = [
@@ -41,7 +42,8 @@ const routes : Routes = [
     AddMachineComponent,
     HomeSectionComponent,
     AddMachineComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    ListMachineComponent
   ],
   imports: [
     BrowserModule,
