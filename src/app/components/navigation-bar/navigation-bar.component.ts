@@ -4,6 +4,8 @@ import {StorageService} from "../../services/StorageService";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {UserReducerState} from "../../redux/reducers/User.reducer";
+import {ApplicationState} from "../../redux/store/AppStore";
+import {Store} from "ngrx/@ngrx/store";
 
 
 
@@ -18,6 +20,7 @@ export class NavigationBarComponent implements OnInit {
   public userReducerState: Observable<UserReducerState> = this.storage.getUserReducer();
 
   constructor(public storage: StorageService, private router: Router) {
+    this.storage.getStore().subscribe( state => console.log('Initial App State: ', state));
   }
 
   ngOnInit() {

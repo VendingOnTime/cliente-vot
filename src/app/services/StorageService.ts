@@ -20,4 +20,8 @@ export class StorageService {
   public getUserReducer() : Observable<UserReducerState> {
     return this.store.select('userReducer');
   }
+
+  public getStore() : Store<ApplicationState> {
+    return this.store;
+  }
 }

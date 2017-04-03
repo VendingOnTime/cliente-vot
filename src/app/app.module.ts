@@ -22,6 +22,8 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { IssuesPanelComponent } from './components/issues-panel/issues-panel.component';
 import { TechniciansPanelComponent } from './components/technicians-panel/technicians-panel.component';
 import { MachinesPanelComponent } from './components/machines-panel/machines-panel.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+
 
 
 const routes : Routes = [
@@ -50,7 +52,9 @@ const routes : Routes = [
     AdminPanelComponent,
     IssuesPanelComponent,
     TechniciansPanelComponent,
-    MachinesPanelComponent
+    MachinesPanelComponent,
+    AddMachineComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
