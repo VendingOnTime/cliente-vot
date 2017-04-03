@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {StorageService} from "./services/StorageService";
+import {DEV_CONFIG} from "./environment/Server.config";
 
 @Component({
   selector: 'app-root',
@@ -6,4 +8,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private store: StorageService) {
+    store.setServerConfig(DEV_CONFIG);
+  }
 }

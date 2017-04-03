@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import {ApplicationActions} from "../redux/actions/ApplicationActions";
 import {Observable} from "rxjs";
 import {UserReducerState} from "../redux/reducers/User.reducer";
+import {ServerConfig} from "../environment/Server.config";
 
 
 @Injectable()
@@ -19,6 +20,16 @@ export class StorageService {
 
   public getUserReducer() : Observable<UserReducerState> {
     return this.store.select('userReducer');
+  }
+
+  public getServerConfig() : ServerConfig {
+    let serverConfig : ServerConfig;
+    this.store.select('serverConfigReducer').subscribe((config: ServerConfig) => {serverConfig = config});
+    return serverConfig;
+  }
+
+  public setServerConfig(config: ServerConfig) : void {
+    this.store.dispatch(ApplicationActions.configureServerData(config));
   }
 
   public getStore() : Store<ApplicationState> {

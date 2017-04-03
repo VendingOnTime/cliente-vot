@@ -23,6 +23,7 @@ import { IssuesPanelComponent } from './components/issues-panel/issues-panel.com
 import { TechniciansPanelComponent } from './components/technicians-panel/technicians-panel.component';
 import { MachinesPanelComponent } from './components/machines-panel/machines-panel.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import {MachineService} from "./services/MachineService";
 
 
 
@@ -66,7 +67,7 @@ const routes : Routes = [
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [FormBuilder, UserService, StorageService, AuthGuard],
+  providers: [FormBuilder, UserService, StorageService, AuthGuard, MachineService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
