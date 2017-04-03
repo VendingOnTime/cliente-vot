@@ -1,5 +1,6 @@
 import {Component, OnInit, ElementRef, Directive, Input, Output, EventEmitter} from '@angular/core';
-import {AutocompleteList} from "../../models/autocompleteListRoutes";
+import {AutocompleteService} from "../../services/AutocompleteService";
+import {StorageService} from "../../services/StorageService";
 
 @Component({
   selector: 'autocomplete',
@@ -11,12 +12,9 @@ import {AutocompleteList} from "../../models/autocompleteListRoutes";
 })
 
 // TODO Mejorar
-@Directive({
-  selector: '[idList]'
-})
+@Directive({})
 export class AutocompleteComponent implements OnInit {
 
-    @Input() idList: string;
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
 
@@ -25,13 +23,13 @@ export class AutocompleteComponent implements OnInit {
     public filteredList = [];
     public elementRef;
 
-    constructor(myElement: ElementRef) {
+    constructor(myElement: ElementRef, private autocompleteService: AutocompleteService, private storageService: StorageService) {
       this.elementRef = myElement;
     }
 
   ngOnInit() {
       // Recupera la lista de elementos donde se buscara al escribir
-      this.elements = AutocompleteList.getList(this.idList);
+    this.elements = this.autocompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());
   }
 
   filter() {

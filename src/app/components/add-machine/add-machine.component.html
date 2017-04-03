@@ -23,7 +23,7 @@
   </div>
 
   <div class="form-group">
-    <autocomplete [idList]="0" (notify)='onNotify($event)'></autocomplete>
+    <autocomplete (notify)='onNotify($event)'></autocomplete>
     <div class="alert alert-danger" *ngIf="technicianError" [hidden]="technicianErrorHidden">Es requerido que la administre alguien</div>
   </div>
 

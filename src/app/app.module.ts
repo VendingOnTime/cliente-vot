@@ -24,6 +24,7 @@ import { TechniciansPanelComponent } from './components/technicians-panel/techni
 import { MachinesPanelComponent } from './components/machines-panel/machines-panel.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import {MachineService} from "./services/MachineService";
+import {AutocompleteService} from "./services/AutocompleteService";
 
 
 
@@ -67,7 +68,7 @@ const routes : Routes = [
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [FormBuilder, UserService, StorageService, AuthGuard, MachineService],
+  providers: [FormBuilder, UserService, StorageService, AuthGuard, MachineService, AutocompleteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,6 +22,12 @@ export class StorageService {
     return this.store.select('userReducer');
   }
 
+  public getLoggedUser() : User {
+    let loggedUser : User;
+    this.getUserReducer().subscribe((userReducer : UserReducerState) => {loggedUser = userReducer.user});
+    return loggedUser;
+  }
+
   public getServerConfig() : ServerConfig {
     let serverConfig : ServerConfig;
     this.store.select('serverConfigReducer').subscribe((config: ServerConfig) => {serverConfig = config});
