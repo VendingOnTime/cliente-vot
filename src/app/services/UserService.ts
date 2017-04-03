@@ -8,18 +8,22 @@ export class UserService {
 
   public constructor(private http: Http, private storage: StorageService) { }
 
+  //FIXME: Include real directions
   private registerUserRoute = '';
   private loginUserRoute = '';
 
   public doLogin(username: string, password: string) : boolean {
-    let loginOK = true;
+    let loginOK = false;
     let data = {};
 
-    this.http.post(this.loginUserRoute, {username, password})
-      .map((response: Response) => {
+    this.http.post(this.loginUserRoute, {username, password}).subscribe(
+      (response: Response) => {
         loginOK = response.ok;
         data = response.json();
-      });
+      },
+      (err) => {},
+      () => {}
+    );
 
     if (loginOK) {
       this.storage.saveUserFromLogIn(this.buildUser(data));
@@ -28,6 +32,7 @@ export class UserService {
     return false;
   }
 
+  //FIXME: Build real user
   private buildUser(data : any) : User {
     let user = new User();
     user.name = "Prueba";

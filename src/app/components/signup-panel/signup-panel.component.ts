@@ -7,6 +7,9 @@ import {PasswordValidator} from "../../validators/PasswordValidator";
 import {RepeatPasswordValidator} from "../../validators/RepeatPasswordValidator";
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 import {Overlay} from "angular2-modal";
+import {Router} from "@angular/router";
+import {StorageService} from "../../services/StorageService";
+import {User} from "../../models/User";
 
 
 @Component({
@@ -30,12 +33,20 @@ export class SignupPanelComponent implements OnInit {
   private repeatPasswordInput: AbstractControl;
   private repeatPassword: string = '';
 
-
   private modal_errorTitle = 'Error en el servidor';
   private modal_errorBody = `Ha ocurrido un error al realizar el registro. 
   Inténtelo de nuevo en un momento.`;
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public formBuilder: FormBuilder, public userService: UserService, public modal: Modal) {
+
+  constructor(
+    private overlay: Overlay,
+    private vcRef: ViewContainerRef,
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private storeService: StorageService,
+    private modal: Modal,
+    private router: Router
+  ) {
 
     overlay.defaultViewContainer = vcRef;
 
@@ -57,15 +68,26 @@ export class SignupPanelComponent implements OnInit {
 
   public onSubmitRegister() : any {
     let registerResult : boolean = this.userService.registerUser(this.userInput.value, this.passwordInput.value, this.emailInput.value);
-    this.manageRegister(registerResult);
+
+    //FIXME: Update with model
+    this.manageRegister(registerResult, this.userInput.value);
   }
 
-  public manageRegister(registerResultOK: boolean) : any {
+  public manageRegister(registerResultOK: boolean, username: string) : any {
     if (registerResultOK) {
-      //TODO: Manage register
+      this.storeService.saveUserFromLogIn(this.buildUser(username));
+      this.router.navigate(['home']);
     }
-    else {
+    else
       this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
-    }
+  }
+
+  private buildUser(username: string) : User {
+    let user : User = new User();
+    user.name = username;
+
+    //FIXME: Update with model
+
+    return user;
   }
 }
