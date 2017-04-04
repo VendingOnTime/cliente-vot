@@ -26,6 +26,7 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
 import {MachineService} from "./services/MachineService";
 import {AutocompleteService} from "./services/AutocompleteService";
 
+import { ListMachineComponent } from './components/list-machine/list-machine.component';
 
 
 const routes : Routes = [
@@ -56,7 +57,8 @@ const routes : Routes = [
     TechniciansPanelComponent,
     MachinesPanelComponent,
     AddMachineComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    ListMachineComponent
   ],
   imports: [
     BrowserModule,

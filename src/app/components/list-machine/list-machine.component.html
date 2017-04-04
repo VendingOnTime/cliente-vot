@@ -1,0 +1,72 @@
+
+<h1>Mis Máquinas</h1>
+
+<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse navbar-menubuilder">
+      <div class="navbar-text" *ngIf="numSelections == 1">{{numSelections}} ha sido seleccionada</div>
+      <div class="navbar-text" *ngIf="numSelections != 1">{{numSelections}} han sido seleccionadas</div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="btn" (click)="update()">Modificar</a>
+        </li>
+        <li><a class="btn" (click)="setTecnician()">Asignar Técnico</a>
+        </li>
+        <li><a class="btn" (click)="addIssue()">Crear incidencia</a>
+        </li>
+        <li><a class="btn" (click)="delete()">Eliminar</a>
+        </li>
+        <li><a class="btn" (click)="addMachine()">Añadir maquina</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<table class="table table-bordered table-hover table-condensed table-responsive">
+  <thead>
+  <tr>
+    <th>
+
+    </th>
+    <th>
+      ID
+    </th>
+    <th>
+      Estado
+    </th>
+    <th>
+      Ubicación
+    </th>
+    <th>
+      Última actualización
+    </th>
+    <th>
+      Técnico responsable
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let machine of machines; let i = index" [attr.data-index]="i">
+        <td>
+          <input id="{{machine.id}}" class="form-control" type="checkbox" value="{{selections[i]}}" (change)="selectFile(i)">
+        </td>
+        <td>
+          {{machine.id}}
+        </td>
+        <td>
+          {{machine.machineState}}
+        </td>
+        <td>
+          {{machine.position.address}}
+        </td>
+        <td>
+          {{machine.lastModified}}
+        </td>
+        <td>
+          {{machine.technician.name}}
+        </td>
+      </tr>
+  </tbody>
+</table>
