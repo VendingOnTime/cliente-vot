@@ -1,5 +1,12 @@
 export class User {
 
+  public id : string;
   public name : string;
-  //FIXME: Improve model
+  public surnames : string;
+  public dni : string;
+  public username : string;
+  public email : string;
+  public password : string;
+  public role : string;
+
 }

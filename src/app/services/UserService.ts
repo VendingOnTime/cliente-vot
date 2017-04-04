@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {StorageService} from "./StorageService";
 import {User} from "../models/User";
 import {ServerConfig} from "../environment/Server.config";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
@@ -37,24 +38,17 @@ export class UserService {
     );
 
     if (OK) {
-      this.storage.saveUserFromLogIn(this.buildUser(data));
+      this.storage.saveUserFromLogIn(this.buildUser(data.data));
       return true;
     }
     return false;
   }
 
-  public registerUser(username: string, password: string, email: string) : boolean {
+  public signUpSupervisor(username: string, password: string, email: string) : Observable<Response> {
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.REGISTER_USER_DIRECTION}`;
     let body = {username, password, email};
-    let OK : boolean;
 
-    this.http.post(serverUrl, body).subscribe(
-      (userOK : Response) => {OK = true},
-      (err) => {OK = false},
-      () => {}
-    );
-
-    return OK;
+    return this.http.post(serverUrl, body);
   }
 
   public updateUser(email: string, newPassword: string) : boolean {
@@ -70,7 +64,7 @@ export class UserService {
     );
 
     if (OK) {
-      let newUser = this.buildUser(data);
+      let newUser = this.buildUser(data.data);
       this.storage.saveUserFromLogIn(newUser);
     }
 
@@ -80,10 +74,17 @@ export class UserService {
 
   /** Utility */
 
-  //FIXME: Build real user
   private buildUser(data : any) : User {
+    let userData = data;
     let user = new User();
-    user.name = "Prueba";
+    user.name = userData.name;
+    user.surnames = userData.surnames;
+    user.dni = userData.dni;
+    user.email = userData.email;
+    user.id = userData.id;
+    user.role = userData.role;
+    user.username = userData.username;
+
     return user;
   }
 }

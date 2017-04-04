@@ -10,6 +10,7 @@ import {Overlay} from "angular2-modal";
 import {Router} from "@angular/router";
 import {StorageService} from "../../services/StorageService";
 import {User} from "../../models/User";
+import {Response} from "@angular/http";
 
 
 @Component({
@@ -67,19 +68,24 @@ export class SignupPanelComponent implements OnInit {
   }
 
   public onSubmitRegister() : any {
-    let registerResult : boolean = this.userService.registerUser(this.userInput.value, this.passwordInput.value, this.emailInput.value);
 
-    //FIXME: Update with model
-    this.manageRegister(registerResult, this.userInput.value);
-  }
+    this.userService.signUpSupervisor(this.userInput.value, this.passwordInput.value, this.emailInput.value).subscribe(
+      (userOK : Response) => {
+        let data = userOK.json();
+        let OK = data.success;
 
-  public manageRegister(registerResultOK: boolean, username: string) : any {
-    if (registerResultOK) {
-      this.storeService.saveUserFromLogIn(this.buildUser(username));
-      this.router.navigate(['home']);
-    }
-    else
-      this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
+        if (OK) {
+          this.storeService.saveUserFromLogIn(this.buildUser(data.data));
+          this.router.navigate(['home']);
+        }
+        else
+          this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
+
+      },
+      (err) => {
+        this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
+      }
+    );
   }
 
   private buildUser(username: string) : User {

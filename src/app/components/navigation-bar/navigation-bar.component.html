@@ -31,7 +31,7 @@
       </ul>
 
       <button class="btn btn-primary dropdown-toggle navbar-right button-group-actions" style="margin-left: 4vw" data-toggle="loggedActions">
-        Hola, {{getUser().name}}<span class="caret"></span>
+        Hola, {{getLoggedUsername() | async}}<span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
 
