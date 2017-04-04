@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Machine} from "../../models/Machine";
+import {Machine2} from "../../models/Machine";
 import {MachineType} from "../../models/MachineType";
 import {MachineState} from "../../models/MachineState";
 
@@ -10,7 +10,7 @@ import {MachineState} from "../../models/MachineState";
 })
 export class ListMachineComponent implements OnInit {
 
-  private machines : [Machine];
+  private machines : [Machine2];
   private selections : boolean[];
   private numSelections: number = 0;
 
@@ -27,17 +27,17 @@ export class ListMachineComponent implements OnInit {
   ngOnInit() {
   }
 
-  getList() : [Machine] {
+  getList() : [Machine2] {
 
     // TODO Inicializar lista de maquians
 
-    let mac1 : Machine = new Machine();
+    let mac1 : Machine2 = new Machine2();
 
     mac1.id = "prueba";
     mac1.machineState = MachineState.ok;
     mac1.machineType = MachineType.Right;
 
-    let mac2 : Machine = new Machine();
+    let mac2 : Machine2 = new Machine2();
 
     mac2.id = "prueba2";
     mac2.machineState = MachineState.ok;
@@ -93,8 +93,8 @@ export class ListMachineComponent implements OnInit {
     // TODO Completar
   }
 
-  private getSelectedMachines() : Machine[]{
-    var machinesSelected : Machine[] = [];
+  private getSelectedMachines() : Machine2[]{
+    var machinesSelected : Machine2[] = [];
 
     for (let i = 0 ; i < this.machines.length ; i++){
       if(this.selections[i]){

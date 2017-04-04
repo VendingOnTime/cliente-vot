@@ -14,7 +14,7 @@ export interface Machine {
 import {Technician} from "./Technician";
 import {Position} from "./Position";
 
-export class Machine {
+export class Machine2 {
 
   public id : string;
   public position : Position = new Position();
