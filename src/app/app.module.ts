@@ -27,6 +27,7 @@ import {MachineService} from "./services/MachineService";
 import {AutocompleteService} from "./services/AutocompleteService";
 
 import { ListMachineComponent } from './components/list-machine/list-machine.component';
+import {LocalesService} from "./services/LocalesService";
 
 
 const routes : Routes = [
@@ -70,7 +71,7 @@ const routes : Routes = [
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [FormBuilder, UserService, StorageService, AuthGuard, MachineService, AutocompleteService],
+  providers: [FormBuilder, UserService, StorageService, AuthGuard, MachineService, AutocompleteService, LocalesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

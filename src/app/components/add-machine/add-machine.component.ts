@@ -7,6 +7,9 @@ import {DescriptionValidator} from "../../validators/DescriptionValidator";
 import {PositionAddressValidator} from "../../validators/PositionAddressValidator";
 import {Machine} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";
+import {LocalesService} from "../../services/LocalesService";
+import {AutocompleteService} from "../../services/AutocompleteService";
+import {StorageService} from "../../services/StorageService";
 
 @Component({
   selector: 'add-machine',
@@ -15,31 +18,37 @@ import {MachineService} from "../../services/MachineService";
 })
 export class AddMachineComponent {
 
+  // Form components
   private form : FormGroup;
-
   private positionAddressInput: AbstractControl;
-  private positionAddress: string;
-  private positionAddressError : string = "El campo es requerido";
-
   private machineTypeInput: AbstractControl;
-  private machineType: string = MachineType[0];
-  private machineTypeError: string = "Se ha de seleccionar un tipo";
-
   private machineStateInput: AbstractControl;
-  private machineState: string = MachineState[0];
-  private machineStateError: string = "Error";
+  private descriptionInput: AbstractControl;
 
+  // Data binding
+  private positionAddress: string;
+  private machineType: string = MachineType[0];
+  private machineState: string = MachineState[0];
+  private descriptionText: string;
   private technician: string = "";
+
+  // Errors management
   private technicianError: boolean = false;
   private technicianErrorHidden: boolean = true;
 
-  private descriptionInput: AbstractControl;
-  private descriptionText: string;
-  private descriptionError: string = " Error ";
-
+  // Component data management
+  public autoCompleteList = this.autocompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());
   public enumEx = EnumEx;
 
-  constructor(public formBuilder: FormBuilder, private machineService: MachineService) {
+
+  public constructor(
+    public formBuilder: FormBuilder,
+    private machineService: MachineService,
+    public localesService: LocalesService,
+    public autocompleteService : AutocompleteService,
+    public storageService : StorageService
+  ) {
+
     this.form = this.formBuilder.group({
       positionAddress: new FormControl('', Validators.compose([Validators.required, PositionAddressValidator])),
       machineType: new FormControl('', Validators.compose([Validators.required])),
@@ -77,8 +86,10 @@ export class AddMachineComponent {
     }
   }
 
-  // Con este metodo se recupera el resultado de la lista de busqueda
-  onNotify(event: string, list: {}) {
+
+  /** Autocomplete management */
+
+  public onNotify(event: string, list: {}) {
     this.technician = event;
 
     // Maneja la validacion del error

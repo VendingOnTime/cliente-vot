@@ -5,7 +5,8 @@ import {Injectable} from "@angular/core";
 import {ApplicationActions} from "../redux/actions/ApplicationActions";
 import {Observable} from "rxjs";
 import {UserReducerState} from "../redux/reducers/User.reducer";
-import {ServerConfig} from "../environment/Server.config";
+import {ServerConfig} from "../config/Server.config";
+import {Languages} from "../config/locales/Languages";
 
 
 @Injectable()
@@ -40,5 +41,11 @@ export class StorageService {
 
   public getStore() : Store<ApplicationState> {
     return this.store;
+  }
+
+  public getLanguage() : Languages {
+    let language : Languages;
+    this.store.select('languageReducer').subscribe((config: Languages) => {language = config});
+    return language;
   }
 }

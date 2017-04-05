@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {StorageService} from "./services/StorageService";
-import {DEV_CONFIG} from "./environment/Server.config";
+import {DEV_CONFIG} from "./config/Server.config";
 
 @Component({
   selector: 'app-root',

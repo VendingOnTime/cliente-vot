@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import {Machine} from "../models/Machine";
 import {StorageService} from "./StorageService";
-import {ServerConfig} from "../environment/Server.config";
+import {ServerConfig} from "../config/Server.config";
 import {User} from "../models/User";
 
 @Injectable()
