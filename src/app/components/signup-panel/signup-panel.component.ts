@@ -75,7 +75,7 @@ export class SignupPanelComponent implements OnInit {
         let OK = data.success;
 
         if (OK) {
-          this.storeService.saveUserFromLogIn(this.buildUser(data.data));
+          this.storeService.saveUserFromLogIn(this.userService.buildUser(data.data));
           this.router.navigate(['home']);
         }
         else
@@ -86,14 +86,5 @@ export class SignupPanelComponent implements OnInit {
         this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
       }
     );
-  }
-
-  private buildUser(username: string) : User {
-    let user : User = new User();
-    user.name = username;
-
-    //FIXME: Update with model
-
-    return user;
   }
 }

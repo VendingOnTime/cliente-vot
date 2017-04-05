@@ -35,6 +35,11 @@ export class MachineService {
     return OK;
   }
 
+  //TODO: Finish
+  public updateMachine(changedMachine : Machine) {
+
+  }
+
   public getMachines(loggedUser : User) : Machine[] {
     //TODO: Test against the server
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.GET_MACHINES_DIRECTION}`;

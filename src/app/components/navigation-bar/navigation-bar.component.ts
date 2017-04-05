@@ -35,6 +35,7 @@ export class NavigationBarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  //TODO: Finish dropdown button
   public goToProfile() {
 
   }
@@ -60,7 +61,7 @@ export class NavigationBarComponent implements OnInit {
   }
 
   public getLoggedUsername() : Observable<string> {
-    return this.getUser().map((user : any) => user.name.username);
+    return this.getUser().map((user : User) => user.username);
   }
 
   public getLogged() : boolean {

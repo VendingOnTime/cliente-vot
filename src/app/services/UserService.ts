@@ -11,7 +11,7 @@ export class UserService {
   private serverConfig : ServerConfig;
   //FIXME: Include real directions
   private REGISTER_USER_DIRECTION = '/api-v1/signup/supervisor';
-  private LOGIN_USER_DIRECTION = '';
+  private LOGIN_USER_DIRECTION = '/api-v1/login';
   private UPDATE_USER_DIRECTION ='';
 
 
@@ -22,6 +22,7 @@ export class UserService {
 
   /** Actions */
 
+  //TODO: Finish
   public doLogin(username: string, password: string) : boolean {
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.LOGIN_USER_DIRECTION}`;
     let body = {username, password};
@@ -51,6 +52,7 @@ export class UserService {
     return this.http.post(serverUrl, body);
   }
 
+  //TODO: Finish
   public updateUser(email: string, newPassword: string) : boolean {
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.UPDATE_USER_DIRECTION}`;
     let body = {email, newPassword};
@@ -74,7 +76,8 @@ export class UserService {
 
   /** Utility */
 
-  private buildUser(data : any) : User {
+  public buildUser(data : any) : User {
+    console.log(data);
     let userData = data;
     let user = new User();
     user.name = userData.name;
@@ -85,6 +88,7 @@ export class UserService {
     user.role = userData.role;
     user.username = userData.username;
 
+    console.log(user);
     return user;
   }
 }

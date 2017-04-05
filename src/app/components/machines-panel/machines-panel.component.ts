@@ -68,14 +68,13 @@ export class MachinesPanelComponent {
         associatedTechnician : this.technician,
         description : this.descriptionText
       };
-      // TODO crear metodo de update
 
-      //if (this.machineService.updateMachine(introducedMachine)) {
-      //  this.cleanForm();
-      //  this.machineUpdatedOK();
-      //}
-      //else
-      //  this.manageExternalError();
+      if (this.machineService.updateMachine(introducedMachine)) {
+        this.cleanForm();
+        this.machineUpdatedOK();
+      }
+      else
+        this.manageExternalError();
     }
   }
 

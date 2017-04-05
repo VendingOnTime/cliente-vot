@@ -17,6 +17,8 @@ export class AutocompleteComponent implements OnInit {
 
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
+    //TODO: Incluir esto al usar el componente
+    @Input() elementsList;
 
     public query = '';
     public elements = {};
@@ -27,6 +29,7 @@ export class AutocompleteComponent implements OnInit {
       this.elementRef = myElement;
     }
 
+    //TODO: Pasar la lista devuelta por el servicio a este componente como un Input y asignarla aquí
   ngOnInit() {
       // Recupera la lista de elementos donde se buscara al escribir
     this.elements = this.autocompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());

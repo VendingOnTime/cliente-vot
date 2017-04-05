@@ -114,6 +114,6 @@ export class AddMachineComponent {
   }
 
   private machineCreatedOK() {
-    //TODO: Crear método para notificar al usuario que la máquina se ha añadido
+    //TODO: Crear método para notificar al usuario que la máquina se ha añadido (recargar vista de máquinas)
   }
 }
