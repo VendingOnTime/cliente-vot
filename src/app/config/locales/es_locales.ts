@@ -27,6 +27,19 @@ export const es_locales = {
       last_update : "Última actualización",
       assigned_technician : "Técnico responsable"
     }
+  },
+
+  model : {
+    machineState : {
+      ok : "OK",
+      retirada : "Retirada"
+    },
+    machineType : {
+      up : "Up",
+      down : "Down",
+      left : "Left",
+      right : "Right"
+    }
   }
 
 };

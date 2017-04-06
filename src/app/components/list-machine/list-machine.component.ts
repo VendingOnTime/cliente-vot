@@ -84,6 +84,9 @@ export class ListMachineComponent {
     // TODO Completar
   }
 
+
+  /** Utility */
+
   private getSelectedMachines() : Machine[]{
     var machinesSelected : Machine[] = [];
 
@@ -92,5 +95,21 @@ export class ListMachineComponent {
         machinesSelected[machinesSelected.length] = this.machines[i];
 
     return machinesSelected;
+  }
+
+  public getMachineState(machineState : MachineState) : string {
+
+    let OK = MachineState.ok;
+    let retirada = MachineState.retirada;
+
+    switch (machineState) {
+
+      case OK:
+        return this.localesService.get_MachineStateModel_Locales().ok;
+
+      case retirada:
+        return this.localesService.get_MachineStateModel_Locales().retirada;
+    }
+
   }
 }

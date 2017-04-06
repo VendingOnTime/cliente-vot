@@ -31,4 +31,13 @@ export class LocalesService {
     }
   }
 
+  public get_MachineStateModel_Locales() {
+
+    switch (this.storageService.getLanguage()) {
+
+      case Languages.ES:
+        return es_locales.model.machineState;
+    }
+  }
+
 }

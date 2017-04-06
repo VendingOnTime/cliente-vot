@@ -70,7 +70,7 @@ export class MachineService {
     let mac2 : Machine = new Machine(
       new Position("Mock position 2"),
       MachineType.Left,
-      MachineState.ok,
+      MachineState.retirada,
       new Technician("WOLOLO"),
       "Mock"
     );
