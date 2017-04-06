@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "@angular/forms";
 import {UserService} from "../../services/UserService";
 import {Router} from "@angular/router";
+import {LocalesService} from "../../services/LocalesService";
 
 
 @Component({
@@ -9,25 +10,27 @@ import {Router} from "@angular/router";
   templateUrl: './login-panel.component.html',
   styleUrls: ['./login-panel.component.css']
 })
-export class LoginPanelComponent implements OnInit {
+export class LoginPanelComponent {
 
+  // Elements
   private form : FormGroup;
-
   private userInput: AbstractControl;
-  private user: string = '';
-  private errorUser: string = 'Ha de introducirse un nombre de usuario o email';
-
   private passwordInput: AbstractControl;
+
+  // Model binding
+  private user: string = '';
   private password: string = '';
 
+  // Management
   private loginError: boolean = false;
-  private loginErrorMessage: string = 'La combinación de usuario y contraseña introducida es incorrecta';
 
-  private initSessionMessage: string = 'Iniciar sesión';
-  private registerMessage: string = '¿Aun no eres cliente?';
-  private registerLink: string = 'Registrarse';
 
-  constructor(public formBuilder: FormBuilder, public userService: UserService, public router: Router) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public userService: UserService,
+    public router: Router,
+    public localesService: LocalesService
+  ) {
 
     this.form = this.formBuilder.group({
       user: new FormControl('', Validators.compose([Validators.required])),
@@ -38,8 +41,8 @@ export class LoginPanelComponent implements OnInit {
     this.passwordInput = this.form.controls['password'];
   }
 
-  ngOnInit() {
-  }
+
+  /** Actions */
 
   public onSubmitLogin() : void {
     if (this.form.valid) {

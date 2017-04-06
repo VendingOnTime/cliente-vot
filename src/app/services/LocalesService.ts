@@ -40,4 +40,13 @@ export class LocalesService {
     }
   }
 
+  public get_LoginPanelComponent_Locales() {
+
+    switch (this.storageService.getLanguage()) {
+
+      case Languages.ES:
+        return es_locales.component.login_panel;
+    }
+  }
+
 }

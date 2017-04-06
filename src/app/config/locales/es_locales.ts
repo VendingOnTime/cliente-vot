@@ -26,6 +26,16 @@ export const es_locales = {
       location : "Ubicación",
       last_update : "Última actualización",
       assigned_technician : "Técnico responsable"
+    },
+
+    login_panel : {
+      title : "Iniciar sesión",
+      username_input_placeholder : "Usuario/Email",
+      required_user : "Ha de introducirse un nombre de usuario o email",
+      password : "Contraseña",
+      login_error : "La combinación de usuario y contraseña introducida es incorrecta",
+      registerMessage : "¿Aun no eres cliente?",
+      registerLink : "Registrarse"
     }
   },
 
