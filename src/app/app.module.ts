@@ -21,7 +21,7 @@ import {rootReducer} from "./redux/reducers/Application.Reducer";
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { IssuesPanelComponent } from './components/issues-panel/issues-panel.component';
 import { TechniciansPanelComponent } from './components/technicians-panel/technicians-panel.component';
-import { MachinesPanelComponent } from './components/machines-panel/machines-panel.component';
+import { UpdateMachineComponent } from './components/update-machine/update-machine.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import {MachineService} from "./services/MachineService";
 import {AutocompleteService} from "./services/AutocompleteService";
@@ -39,7 +39,7 @@ const routes : Routes = [
   {path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard]},
   {path: 'issues', component: IssuesPanelComponent, canActivate: [AuthGuard]},
   {path: 'technicians', component: TechniciansPanelComponent, canActivate: [AuthGuard]},
-  {path: 'machines', component: MachinesPanelComponent, canActivate: [AuthGuard]}
+  {path: 'machines', component: UpdateMachineComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -56,7 +56,7 @@ const routes : Routes = [
     AdminPanelComponent,
     IssuesPanelComponent,
     TechniciansPanelComponent,
-    MachinesPanelComponent,
+    UpdateMachineComponent,
     AddMachineComponent,
     AutocompleteComponent,
     ListMachineComponent

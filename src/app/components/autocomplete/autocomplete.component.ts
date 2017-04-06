@@ -1,6 +1,7 @@
 import {Component, OnInit, ElementRef, Directive, Input, Output, EventEmitter} from '@angular/core';
 import {AutocompleteService} from "../../services/AutocompleteService";
 import {StorageService} from "../../services/StorageService";
+import {LocalesService} from "../../services/LocalesService";
 
 @Component({
   selector: 'autocomplete',
@@ -26,9 +27,8 @@ export class AutocompleteComponent implements OnInit {
 
 
   constructor(
-    myElement: ElementRef,
-    private autocompleteService: AutocompleteService,
-    private storageService: StorageService
+    public myElement: ElementRef,
+    public localesService: LocalesService
   ) {
     this.elementRef = myElement;
   }
@@ -78,6 +78,7 @@ export class AutocompleteComponent implements OnInit {
       }
       clickedComponent = clickedComponent.parentNode;
     } while (clickedComponent);
+
     if(!inside && this.touched){
       this.filteredList = [];
 
@@ -88,7 +89,7 @@ export class AutocompleteComponent implements OnInit {
         if (this.query == this.elements[key])
           exist = true;
 
-      if (!exist){
+      if (!exist) {
         // Si no existe en la lista envia que se borre en el padre
         this.notify.emit("");
         this.query = "";

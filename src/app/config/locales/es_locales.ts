@@ -36,6 +36,23 @@ export const es_locales = {
       login_error : "La combinación de usuario y contraseña introducida es incorrecta",
       registerMessage : "¿Aun no eres cliente?",
       registerLink : "Registrarse"
+    },
+
+    update_machine : {
+      title : "Actualizar máquina",
+      position_placeholder : "Ubicación",
+      required : "Se requiere el campo",
+      incorrectPositionLength : "La localización no puede tener más de 140 carácteres",
+      incorrectPositionFormat : "La localización no puede contener carácteres especiales",
+      incorrectDescriptionMinLength : "La localización debe tener más de 2 carácteres",
+      technicianError : "Se requiere que la administre alguien",
+      description_placeholder : "Descripción",
+      incorrectDescriptionLength : "La descripción es demasiado larga",
+      incorrectDescriptionFormat : "La descripción no puede contener carácteres especiales"
+    },
+
+    autocomplete : {
+      placeholder : "Técnico"
     }
   },
 
