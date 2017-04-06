@@ -1,15 +1,18 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MachineState} from "../../models/MachineState";
 import {EnumEx} from "../../utils/EnumEx";
 import {MachineType} from "../../models/MachineType";
 import {DescriptionValidator} from "../../validators/DescriptionValidator";
 import {PositionAddressValidator} from "../../validators/PositionAddressValidator";
-import {Machine} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";
 import {LocalesService} from "../../services/LocalesService";
 import {AutocompleteService} from "../../services/AutocompleteService";
 import {StorageService} from "../../services/StorageService";
+import {Technician} from "../../models/Technician";
+import {Machine} from "../../models/Machine";
+import {Position} from "../../models/Position";
+
 
 @Component({
   selector: 'add-machine',
@@ -69,13 +72,14 @@ export class AddMachineComponent {
 
     if (!this.technicianError) {
 
-      let introducedMachine : Machine = {
-        location : this.positionAddress,
-        type : MachineType[this.machineType],
-        state : MachineState[this.machineState],
-        associatedTechnician : this.technician,
-        description : this.descriptionText
-      };
+      let introducedMachine : Machine =
+        new Machine(
+          new Position(this.positionAddress),
+          MachineType[this.machineType],
+          MachineState[this.machineState],
+          new Technician(this.technician),
+          this.descriptionText
+        );
 
       if (this.machineService.createMachine(introducedMachine)) {
         this.cleanForm();
@@ -89,7 +93,7 @@ export class AddMachineComponent {
 
   /** Autocomplete management */
 
-  public onNotify(event: string, list: {}) {
+  public onNotify(event: string) {
     this.technician = event;
 
     // Maneja la validacion del error

@@ -22,4 +22,13 @@ export class LocalesService {
 
   }
 
+  public get_ListMachineComponent_Locales() {
+
+    switch (this.storageService.getLanguage()) {
+
+      case Languages.ES:
+        return es_locales.component.list_machine;
+    }
+  }
+
 }

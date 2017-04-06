@@ -1,21 +1,21 @@
 
-<h1>Mis Máquinas</h1>
+<h1>{{localesService.get_ListMachineComponent_Locales().title}}</h1>
 
 <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
   <div class="container-fluid">
     <div class="collapse navbar-collapse navbar-menubuilder">
-      <div class="navbar-text" *ngIf="numSelections == 1">{{numSelections}} ha sido seleccionada</div>
-      <div class="navbar-text" *ngIf="numSelections != 1">{{numSelections}} han sido seleccionadas</div>
+      <div class="navbar-text" *ngIf="numSelections == 1">{{numSelections}}{{localesService.get_ListMachineComponent_Locales().numSelections_1}}</div>
+      <div class="navbar-text" *ngIf="numSelections != 1">{{numSelections}}{{localesService.get_ListMachineComponent_Locales().numSelections_more_than_1}}</div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="btn" (click)="update()">Modificar</a>
+        <li><a class="btn" (click)="update()">{{localesService.get_ListMachineComponent_Locales().modify}}</a>
         </li>
-        <li><a class="btn" (click)="setTecnician()">Asignar Técnico</a>
+        <li><a class="btn" (click)="setTecnician()">{{localesService.get_ListMachineComponent_Locales().setTechnician}}</a>
         </li>
-        <li><a class="btn" (click)="addIssue()">Crear incidencia</a>
+        <li><a class="btn" (click)="addIssue()">{{localesService.get_ListMachineComponent_Locales().createIssue}}</a>
         </li>
-        <li><a class="btn" (click)="delete()">Eliminar</a>
+        <li><a class="btn" (click)="deleteMachine()">{{localesService.get_ListMachineComponent_Locales().delete_machine}}</a>
         </li>
-        <li><a class="btn" (click)="addMachine()">Añadir maquina</a>
+        <li><a class="btn" (click)="addMachine()">{{localesService.get_ListMachineComponent_Locales().add_machine}}</a>
         </li>
       </ul>
     </div>
@@ -34,23 +34,23 @@
       ID
     </th>
     <th>
-      Estado
+      {{localesService.get_ListMachineComponent_Locales().state}}
     </th>
     <th>
-      Ubicación
+      {{localesService.get_ListMachineComponent_Locales().location}}
     </th>
     <th>
-      Última actualización
+      {{localesService.get_ListMachineComponent_Locales().last_update}}
     </th>
     <th>
-      Técnico responsable
+      {{localesService.get_ListMachineComponent_Locales().assigned_technician}}
     </th>
   </tr>
   </thead>
   <tbody>
       <tr *ngFor="let machine of machines; let i = index" [attr.data-index]="i">
         <td>
-          <input id="{{machine.id}}" class="form-control" type="checkbox" value="{{selections[i]}}" (change)="selectFile(i)">
+          <input id="{{machine.id}}" class="form-control" type="checkbox" value="{{selections[i]}}" (change)="selectMachine(i)">
         </td>
         <td>
           {{machine.id}}

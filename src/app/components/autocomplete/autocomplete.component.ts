@@ -15,40 +15,51 @@ import {StorageService} from "../../services/StorageService";
 @Directive({})
 export class AutocompleteComponent implements OnInit {
 
-    @Output() notify: EventEmitter<string> = new EventEmitter<string>();
-    @Input() elementsList;
+  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+  @Input() elementsList;
 
-    public query = '';
-    public elements = {};
-    public filteredList = [];
-    public elementRef;
+  public query = '';
+  public elements = {};
+  public filteredList = [];
+  public elementRef;
+  public touched = false;
 
-    constructor(myElement: ElementRef, private autocompleteService: AutocompleteService, private storageService: StorageService) {
-      this.elementRef = myElement;
-    }
 
-    //TODO: Pasar la lista devuelta por el servicio a este componente como un Input y asignarla aquí
+  constructor(
+    myElement: ElementRef,
+    private autocompleteService: AutocompleteService,
+    private storageService: StorageService
+  ) {
+    this.elementRef = myElement;
+  }
+
+
   ngOnInit() {
-      // Recupera la lista de elementos donde se buscara al escribir
+      // Recupera la lista de elementos donde se buscará al escribir
     this.elements = this.elementsList;
   }
 
-  filter() {
-    if (this.query !== ""){
+
+  /** Component data management */
+
+  public filter() {
+    if (this.query !== "") {
+
       this.filteredList = [];
-      for (let key in this.elements){
+
+      for (let key in this.elements) {
         let value = this.elements[key];
 
-        if (value.toLowerCase().indexOf(this.query.toLowerCase()) > -1){
+        if (value.toLowerCase().indexOf(this.query.toLowerCase()) > -1)
           this.filteredList.push(key);
-        }
       }
-    }else{
-      this.filteredList = [];
+
     }
+    else
+      this.filteredList = [];
   }
 
-  select(key){
+  public selectElement(key) {
     this.query = this.elements[key];
     this.filteredList = [];
 
@@ -56,9 +67,7 @@ export class AutocompleteComponent implements OnInit {
     this.notify.emit(key);
   }
 
-  touched = false;
-
-  handleClick(event){
+  public handleClick(event) {
     var clickedComponent = event.target;
     var inside = false;
 
@@ -75,16 +84,16 @@ export class AutocompleteComponent implements OnInit {
       var exist = false;
 
       // Comprueba que exista
-      for(let key in this.elements) {
-        if (this.query == this.elements[key]){
+      for(let key in this.elements)
+        if (this.query == this.elements[key])
           exist = true;
-        }
-      }
+
       if (!exist){
         // Si no existe en la lista envia que se borre en el padre
         this.notify.emit("");
         this.query = "";
-      }else{
+      }
+      else {
         // Si si que existe envia la confirmacion de que existe
         this.notify.emit(this.query);
       }

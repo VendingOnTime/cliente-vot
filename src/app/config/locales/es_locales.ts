@@ -13,6 +13,20 @@ export const es_locales = {
       incorrectDescriptionFormat : "Descripción no puede contener carácteres especiales"
     },
 
+    list_machine : {
+      title : "Mis Máquinas",
+      numSelections_1 : " ha sido seleccionada",
+      numSelections_more_than_1 : " han sido seleccionadas",
+      modify : "Modificar",
+      setTechnician : "Asignar Técnico",
+      createIssue : "Crear incidencia",
+      delete_machine : "Eliminar",
+      add_machine : "Añadir maquina",
+      state : "Estado",
+      location : "Ubicación",
+      last_update : "Última actualización",
+      assigned_technician : "Técnico responsable"
+    }
   }
 
 };

@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MachineState} from "../../models/MachineState";
 import {EnumEx} from "../../utils/EnumEx";
@@ -7,6 +7,8 @@ import {DescriptionValidator} from "../../validators/DescriptionValidator";
 import {PositionAddressValidator} from "../../validators/PositionAddressValidator";
 import {Machine} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";
+import {Technician} from "../../models/Technician";
+import {Position} from "../../models/Position";
 
 @Component({
   selector: 'machines-panel',
@@ -61,13 +63,14 @@ export class MachinesPanelComponent {
 
     if (!this.technicianError) {
 
-      let introducedMachine : Machine = {
-        location : this.positionAddress,
-        type : MachineType[this.machineType],
-        state : MachineState[this.machineState],
-        associatedTechnician : this.technician,
-        description : this.descriptionText
-      };
+      let introducedMachine : Machine =
+        new Machine(
+          new Position(this.positionAddress),
+          MachineType[this.machineType],
+          MachineState[this.machineState],
+          new Technician(this.technician),
+          this.descriptionText
+        );
 
       if (this.machineService.updateMachine(introducedMachine)) {
         this.cleanForm();
