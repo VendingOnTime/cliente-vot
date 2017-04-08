@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Machine2} from "../../models/Machine";
 import {MachineType} from "../../models/MachineType";
 import {MachineState} from "../../models/MachineState";
+import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
+import {overlayConfigFactory} from "angular2-modal";
+import {AddMachineComponent} from "../add-machine/add-machine.component";
 
 @Component({
   selector: 'list-machine',
@@ -14,7 +17,9 @@ export class ListMachineComponent implements OnInit {
   private selections : boolean[];
   private numSelections: number = 0;
 
-  constructor() {
+  constructor(vcRef: ViewContainerRef, public modal: Modal) {
+    modal.overlay.defaultViewContainer = vcRef;
+
     this.machines = this.getList();
 
     this.selections = [];
@@ -66,6 +71,7 @@ export class ListMachineComponent implements OnInit {
         console.log(machinesSelected[i].id);
     }
 
+
     // TODO Completar
 
   }
@@ -88,9 +94,8 @@ export class ListMachineComponent implements OnInit {
 
   }
   addMachine(){
-    let machinesSelected = this.getSelectedMachines();
-
     // TODO Completar
+    this.modal.open(AddMachineComponent, overlayConfigFactory({ isBlocking: false }, BSModalContext));
   }
 
   private getSelectedMachines() : Machine2[]{

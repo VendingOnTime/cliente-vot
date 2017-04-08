@@ -7,6 +7,7 @@ import {DescriptionValidator} from "../../validators/DescriptionValidator";
 import {PositionAddressValidator} from "../../validators/PositionAddressValidator";
 import {Machine} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";
+import {DialogRef} from "angular2-modal";
 
 @Component({
   selector: 'add-machine',
@@ -39,7 +40,7 @@ export class AddMachineComponent {
 
   public enumEx = EnumEx;
 
-  constructor(public formBuilder: FormBuilder, private machineService: MachineService) {
+  constructor(public formBuilder: FormBuilder, private machineService: MachineService, public dialog: DialogRef<any>) {
     this.form = this.formBuilder.group({
       positionAddress: new FormControl('', Validators.compose([Validators.required, PositionAddressValidator])),
       machineType: new FormControl('', Validators.compose([Validators.required])),
@@ -52,7 +53,6 @@ export class AddMachineComponent {
     this.machineStateInput = this.form.controls['machineState'];
     this.descriptionInput = this.form.controls['descriptionText'];
   }
-
 
   /** Form submit */
 
@@ -74,6 +74,8 @@ export class AddMachineComponent {
       }
       else
         this.manageExternalError();
+
+      this.dialog.close();
     }
   }
 
