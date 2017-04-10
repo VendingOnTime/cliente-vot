@@ -6,6 +6,7 @@ import {PasswordValidator} from "../../validators/PasswordValidator";
 import {RepeatPasswordValidator} from "../../validators/RepeatPasswordValidator";
 import {Overlay} from "angular2-modal";
 import { Modal } from 'angular2-modal/plugins/bootstrap';
+import {StorageService} from "../../services/StorageService";
 
 
 @Component({
@@ -29,13 +30,21 @@ export class UpdatePanelComponent implements OnInit {
   private repeatPasswordInput: AbstractControl;
   private repeatPassword: string = '';
 
-
   private modal_errorTitle = 'Error en el servidor';
   private modal_errorBody = `Ha ocurrido un error al actualizar los datos del usuario. 
   Inténtelo de nuevo en un momento.`;
 
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public formBuilder: FormBuilder, public userService: UserService, public modal: Modal) {
+
+
+  public constructor(
+    public overlay: Overlay,
+    public vcRef: ViewContainerRef,
+    public formBuilder: FormBuilder,
+    public userService: UserService,
+    public modal: Modal,
+    public storageService: StorageService
+  ) {
 
     overlay.defaultViewContainer = vcRef;
 

@@ -4,6 +4,7 @@ import {StorageService} from "../../services/StorageService";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {UserReducerState} from "../../redux/reducers/User.reducer";
+import {LocalesService} from "../../services/LocalesService";
 
 
 @Component({
@@ -11,22 +12,23 @@ import {UserReducerState} from "../../redux/reducers/User.reducer";
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.css']
 })
-export class NavigationBarComponent implements OnInit {
+export class NavigationBarComponent {
 
   public isCollapsed: boolean = false;
   public userReducerState: Observable<UserReducerState> = this.storage.getUserReducer();
 
 
-  constructor(public storage: StorageService, private router: Router) {
+  public constructor(
+    public storage: StorageService,
+    private router: Router,
+    public localesService: LocalesService
+  ) {
     this.storage.getStore().subscribe( state => console.log('Initial App State: ', state));
   }
 
-  ngOnInit() {
-  }
 
-  /**
-   * Router methods
-   */
+  /** Router methods */
+
   public goToRegister() {
     this.router.navigate(['signup']);
   }

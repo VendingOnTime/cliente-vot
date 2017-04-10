@@ -53,6 +53,34 @@ export const es_locales = {
 
     autocomplete : {
       placeholder : "Técnico"
+    },
+
+    navigation_bar : {
+      register_button : "Regístrate",
+      login_button : "Inicia sesión",
+      my_machines : "Mis máquinas",
+      technicians : "Técnicos",
+      issues : "Incidencias",
+      administration : "Administración",
+      hello_logged : "Hola, "
+    },
+
+    signUp_panel : {
+      user_placeholder : "Usuario",
+      required_user : "Ha de introducirse un nombre de usuario",
+      short_username : "El nombre de usuario es demasiado corto",
+      large_username : "El nombre de usuario es demasiado largo",
+      format_username : "El nombre de usuario no puede contener caracteres especiales",
+      email_placeholder : "Email",
+      required_email : "Ha de introducirse un email",
+      format_email : "El formato del email no está admitido",
+      password_placeholder : "Contraseña",
+      required_password : "Es necesario introducir una contraseña",
+      format_password : "La contraseña no es lo suficientemente segura",
+      confirm_password_placeholder : "Confirmar contraseña",
+      equal_passwords : "La contraseña introducida es diferente",
+      client_question : "¿Ya eres cliente?",
+      init_session : "Iniciar sesión"
     }
   },
 

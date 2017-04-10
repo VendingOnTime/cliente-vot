@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 import {StorageService} from "../../services/StorageService";
 import {User} from "../../models/User";
 import {Response} from "@angular/http";
+import {LocalesService} from "../../services/LocalesService";
 
 
 @Component({
@@ -18,7 +19,7 @@ import {Response} from "@angular/http";
   templateUrl: './signup-panel.component.html',
   styleUrls: ['./signup-panel.component.css']
 })
-export class SignupPanelComponent implements OnInit {
+export class SignupPanelComponent {
 
   private form : FormGroup;
 
@@ -46,7 +47,8 @@ export class SignupPanelComponent implements OnInit {
     private userService: UserService,
     private storeService: StorageService,
     private modal: Modal,
-    private router: Router
+    private router: Router,
+    public localesService : LocalesService
   ) {
 
     overlay.defaultViewContainer = vcRef;
@@ -64,8 +66,8 @@ export class SignupPanelComponent implements OnInit {
     this.repeatPasswordInput = this.form.controls['repeatPassword'];
   }
 
-  ngOnInit() {
-  }
+
+  /** Actions */
 
   public onSubmitRegister() : any {
 

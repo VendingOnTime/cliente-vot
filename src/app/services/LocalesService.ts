@@ -55,4 +55,18 @@ export class LocalesService {
     }
   }
 
+  public get_NavigationBarComponent_Locales() {
+    switch (this.storageService.getLanguage()) {
+      case Languages.ES:
+        return es_locales.component.navigation_bar;
+    }
+  }
+
+  public get_SignUpPanel_Locales() {
+    switch (this.storageService.getLanguage()) {
+      case Languages.ES:
+        return es_locales.component.signUp_panel;
+    }
+  }
+
 }
