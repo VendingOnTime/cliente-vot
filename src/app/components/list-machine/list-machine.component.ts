@@ -74,7 +74,7 @@ export class ListMachineComponent {
   public setTecnician() {
     let machinesSelected = this.getSelectedMachines();
 
-    // TODO Completar
+    // TODO Elimnar esta opcion (Se hace desde modificar maquina)
 
   }
 
@@ -96,20 +96,18 @@ export class ListMachineComponent {
       .open()
       .then((resultPromise) => {
         resultPromise.result.then((result) => {
-          this.prueba();
+          this.prueba(machinesSelected); // TODO Colocar servicio de borrado de maquina
         }, () => {} );
       });
-
-
-
-    // TODO Completar
   }
-  public prueba(){
-    console.log("Funcaaaaaaaaaaaa");
+
+  // TODO quitar cuando se implemente el bueno
+  public prueba(machinesSelected : Machine[]){
+    for (let i = 0 ; i<machinesSelected.length;i++) {
+      console.log(machinesSelected[i].id);
+    }
   }
   public addMachine() {
-    let machinesSelected = this.getSelectedMachines();
-    // TODO Completar
     this.modal.open(AddMachineComponent, overlayConfigFactory({ isBlocking: false }, BSModalContext));
   }
 
