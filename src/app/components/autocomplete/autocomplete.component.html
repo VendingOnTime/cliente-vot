@@ -1,10 +1,10 @@
 <div class="input-field">
-  <input id="country" autocomplete="off" type="text" placeholder="Técnico" class="validate filter-input form-control" [(ngModel)]=query (keyup)=filter()>
+  <input id="country" autocomplete="off" type="text" [placeholder]="localesService.get_AutoCompleteComponent_Locales().placeholder" class="validate filter-input form-control" [(ngModel)]=query (keyup)=filter()>
 </div>
 <div *ngIf="filteredList.length > 0">
   <div class="list-group">
     <div *ngFor="let key of filteredList">
-      <a class="list-group-item" (click)="select(key)">{{elements[key]}}</a>
+      <a class="list-group-item" (click)="selectElement(key)">{{elements[key]}}</a>
     </div>
   </div>
 </div>

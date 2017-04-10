@@ -2,8 +2,13 @@ import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import {Machine} from "../models/Machine";
 import {StorageService} from "./StorageService";
-import {ServerConfig} from "../environment/Server.config";
+import {ServerConfig} from "../config/Server.config";
 import {User} from "../models/User";
+import {MachineState} from "../models/MachineState";
+import {MachineType} from "../models/MachineType";
+import {Position} from "../models/Position";
+import {Technician} from "../models/Technician";
+
 
 @Injectable()
 export class MachineService {
@@ -52,13 +57,27 @@ export class MachineService {
       () => {}
     );
 
-    if (OK) {
-      //FIXME: Build machines array
-      return data;
-    }
+    //FIXME: Mock data
 
-    return [];
+    let mac1 : Machine = new Machine(
+      new Position("Mock position 1"),
+      MachineType.Down,
+      MachineState.ok,
+      new Technician("WOLOLO"),
+      "Mock"
+    );
+
+    let mac2 : Machine = new Machine(
+      new Position("Mock position 2"),
+      MachineType.Left,
+      MachineState.retirada,
+      new Technician("WOLOLO"),
+      "Mock"
+    );
+
+    return [mac1,mac2];
   }
+
   //TODO: Complete methods
 
 }

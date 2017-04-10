@@ -1,26 +1,22 @@
 import {MachineType} from "./MachineType";
 import {MachineState} from "./MachineState";
-
-export interface Machine {
-
-  location : string,
-  type : MachineType,
-  state : MachineState,
-  associatedTechnician : string,
-  description : string
-
-}
-
 import {Technician} from "./Technician";
 import {Position} from "./Position";
+import * as uuid from 'uuid/v4';
 
-export class Machine2 {
 
-  public id : string;
-  public position : Position = new Position();
-  public machineType : MachineType;
-  public machineState : MachineState;
-  public technician : Technician = new Technician();
-  public lastUpdate : string;
+export class Machine {
+
+  public id : string = uuid();
+
+  public constructor(
+    public position : Position,
+    public machineType : MachineType,
+    public machineState : MachineState,
+    public technician : Technician,
+    public lastUpdate : string
+  ) {
+
+  }
 
 }

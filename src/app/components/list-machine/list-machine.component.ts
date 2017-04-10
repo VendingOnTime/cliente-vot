@@ -1,107 +1,115 @@
 import { Component, OnInit } from '@angular/core';
-import {Machine2} from "../../models/Machine";
+import {Machine} from "../../models/Machine";
 import {MachineType} from "../../models/MachineType";
 import {MachineState} from "../../models/MachineState";
+import {LocalesService} from "../../services/LocalesService";
+import {MachineService} from "../../services/MachineService";
+import {StorageService} from "../../services/StorageService";
 
 @Component({
   selector: 'list-machine',
   templateUrl: './list-machine.component.html',
   styleUrls: ['./list-machine.component.css']
 })
-export class ListMachineComponent implements OnInit {
+export class ListMachineComponent {
 
-  private machines : [Machine2];
+  // Component interaction data
+  private machines : Machine[];
   private selections : boolean[];
   private numSelections: number = 0;
 
-  constructor() {
-    this.machines = this.getList();
+
+  constructor(
+    public localesService: LocalesService,
+    public machineService: MachineService,
+    public store: StorageService
+  ) {
+    this.machines = this.machineService.getMachines(this.store.getLoggedUser());
 
     this.selections = [];
 
-    for (let i = 0; i < this.machines.length; i++){
+    for (let i = 0; i < this.machines.length; i++)
       this.selections[i] = false;
-    }
   }
 
-  ngOnInit() {
-  }
 
-  getList() : [Machine2] {
+  /** Actions */
 
-    // TODO Inicializar lista de maquians
+  public selectMachine(index: number) {
 
-    let mac1 : Machine2 = new Machine2();
-
-    mac1.id = "prueba";
-    mac1.machineState = MachineState.ok;
-    mac1.machineType = MachineType.Right;
-
-    let mac2 : Machine2 = new Machine2();
-
-    mac2.id = "prueba2";
-    mac2.machineState = MachineState.ok;
-    mac2.machineType = MachineType.Right;
-
-    return [mac1,mac2];
-
-  }
-
-  selectFile(index: number){
-
-    if (this.selections[index] == false){
+    if (this.selections[index] == false)
       this.numSelections += 1;
-    } else {
+
+    else
       this.numSelections -= 1;
-    }
+
 
     this.selections[index] = !this.selections[index];
-    console.log("El indece es   "+ this.selections[index]);
   }
 
-  update(){
+  public update() {
     let machinesSelected = this.getSelectedMachines();
 
-    for (let i = 0 ; i<machinesSelected.length;i++){
+    for (let i = 0 ; i<machinesSelected.length;i++)
         console.log(machinesSelected[i].id);
-    }
+
 
     // TODO Completar
 
   }
-  setTecnician(){
+
+  public setTecnician() {
     let machinesSelected = this.getSelectedMachines();
 
     // TODO Completar
 
   }
-  addIssue(){
+
+  public addIssue() {
     let machinesSelected = this.getSelectedMachines();
 
 
     // TODO Completar
   }
-  delete(){
-    let machinesSelected = this.getSelectedMachines();
 
-    // TODO Completar
-
-  }
-  addMachine(){
+  public deleteMachine() {
     let machinesSelected = this.getSelectedMachines();
 
     // TODO Completar
   }
 
-  private getSelectedMachines() : Machine2[]{
-    var machinesSelected : Machine2[] = [];
+  public addMachine() {
+    let machinesSelected = this.getSelectedMachines();
 
-    for (let i = 0 ; i < this.machines.length ; i++){
-      if(this.selections[i]){
+    // TODO Completar
+  }
+
+
+  /** Utility */
+
+  private getSelectedMachines() : Machine[]{
+    var machinesSelected : Machine[] = [];
+
+    for (let i = 0 ; i < this.machines.length ; i++)
+      if(this.selections[i])
         machinesSelected[machinesSelected.length] = this.machines[i];
-      }
-    }
 
     return machinesSelected;
+  }
+
+  public getMachineState(machineState : MachineState) : string {
+
+    let OK = MachineState.ok;
+    let retirada = MachineState.retirada;
+
+    switch (machineState) {
+
+      case OK:
+        return this.localesService.get_MachineStateModel_Locales().ok;
+
+      case retirada:
+        return this.localesService.get_MachineStateModel_Locales().retirada;
+    }
+
   }
 }

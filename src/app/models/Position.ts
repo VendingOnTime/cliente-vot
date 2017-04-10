@@ -1,4 +1,8 @@
 export class Position {
 
-  public address : string;
+  constructor(
+    public address : string
+  ) {
+
+  }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit, ElementRef, Directive, Input, Output, EventEmitter} from '@angular/core';
 import {AutocompleteService} from "../../services/AutocompleteService";
 import {StorageService} from "../../services/StorageService";
+import {LocalesService} from "../../services/LocalesService";
 
 @Component({
   selector: 'autocomplete',
@@ -15,42 +16,50 @@ import {StorageService} from "../../services/StorageService";
 @Directive({})
 export class AutocompleteComponent implements OnInit {
 
-    @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+  @Input() elementsList;
 
-    //TODO: Incluir esto al usar el componente
-    @Input() elementsList;
+  public query = '';
+  public elements = {};
+  public filteredList = [];
+  public elementRef;
+  public touched = false;
 
-    public query = '';
-    public elements = {};
-    public filteredList = [];
-    public elementRef;
 
-    constructor(myElement: ElementRef, private autocompleteService: AutocompleteService, private storageService: StorageService) {
-      this.elementRef = myElement;
-    }
-
-    //TODO: Pasar la lista devuelta por el servicio a este componente como un Input y asignarla aquí
-  ngOnInit() {
-      // Recupera la lista de elementos donde se buscara al escribir
-    this.elements = this.autocompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());
+  constructor(
+    public myElement: ElementRef,
+    public localesService: LocalesService
+  ) {
+    this.elementRef = myElement;
   }
 
-  filter() {
-    if (this.query !== ""){
+
+  ngOnInit() {
+      // Recupera la lista de elementos donde se buscará al escribir
+    this.elements = this.elementsList;
+  }
+
+
+  /** Component data management */
+
+  public filter() {
+    if (this.query !== "") {
+
       this.filteredList = [];
-      for (let key in this.elements){
+
+      for (let key in this.elements) {
         let value = this.elements[key];
 
-        if (value.toLowerCase().indexOf(this.query.toLowerCase()) > -1){
+        if (value.toLowerCase().indexOf(this.query.toLowerCase()) > -1)
           this.filteredList.push(key);
-        }
       }
-    }else{
-      this.filteredList = [];
+
     }
+    else
+      this.filteredList = [];
   }
 
-  select(key){
+  public selectElement(key) {
     this.query = this.elements[key];
     this.filteredList = [];
 
@@ -58,9 +67,7 @@ export class AutocompleteComponent implements OnInit {
     this.notify.emit(key);
   }
 
-  touched = false;
-
-  handleClick(event){
+  public handleClick(event) {
     var clickedComponent = event.target;
     var inside = false;
 
@@ -71,22 +78,23 @@ export class AutocompleteComponent implements OnInit {
       }
       clickedComponent = clickedComponent.parentNode;
     } while (clickedComponent);
+
     if(!inside && this.touched){
       this.filteredList = [];
 
       var exist = false;
 
       // Comprueba que exista
-      for(let key in this.elements) {
-        if (this.query == this.elements[key]){
+      for(let key in this.elements)
+        if (this.query == this.elements[key])
           exist = true;
-        }
-      }
-      if (!exist){
+
+      if (!exist) {
         // Si no existe en la lista envia que se borre en el padre
         this.notify.emit("");
         this.query = "";
-      }else{
+      }
+      else {
         // Si si que existe envia la confirmacion de que existe
         this.notify.emit(this.query);
       }

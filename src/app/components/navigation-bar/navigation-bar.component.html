@@ -13,8 +13,8 @@
 
     <div *ngIf="!getLogged()" [collapse]="!isCollapsed" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right" (click)="isCollapsed = !isCollapsed">
-        <li><button class="btn btn-danger register-button" data-toggle="collapse" (click)="goToRegister()">Regístrate</button></li>
-        <li><button class="btn btn-default login-button" data-toggle="collapse" (click)="goToLogin()">Inicia sesión</button></li>
+        <li><button class="btn btn-danger register-button" data-toggle="collapse" (click)="goToRegister()">{{localesService.get_NavigationBarComponent_Locales().register_button}}</button></li>
+        <li><button class="btn btn-default login-button" data-toggle="collapse" (click)="goToLogin()">{{localesService.get_NavigationBarComponent_Locales().login_button}}</button></li>
       </ul>
     </div>
 
@@ -22,16 +22,16 @@
       <ul class="nav navbar-nav">
         <li>
           <div class="btn-group btn-group-justified" style="max-width: 60vw; margin-left: 1vw">
-            <label class="btn btn-primary" (click)="goToMachinesPanel()">Mis máquinas</label>
-            <label class="btn btn-primary" (click)="goToTechniciansPanel()">Técnicos</label>
-            <label class="btn btn-primary" (click)="goToIssuesPanel()">Incidencias</label>
-            <label class="btn btn-primary" (click)="goToAdminSection()">Administración</label>
+            <label class="btn btn-primary" (click)="goToMachinesPanel()">{{localesService.get_NavigationBarComponent_Locales().my_machines}}</label>
+            <label class="btn btn-primary" (click)="goToTechniciansPanel()">{{localesService.get_NavigationBarComponent_Locales().technicians}}</label>
+            <label class="btn btn-primary" (click)="goToIssuesPanel()">{{localesService.get_NavigationBarComponent_Locales().issues}}</label>
+            <label class="btn btn-primary" (click)="goToAdminSection()">{{localesService.get_NavigationBarComponent_Locales().administration}}</label>
           </div>
         </li>
       </ul>
 
       <button class="btn btn-primary dropdown-toggle navbar-right button-group-actions" style="margin-left: 4vw" data-toggle="loggedActions">
-        Hola, {{getLoggedUsername() | async}}<span class="caret"></span>
+        {{localesService.get_NavigationBarComponent_Locales().hello_logged}}{{getLoggedUsername() | async}}<span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
 

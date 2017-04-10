@@ -2,7 +2,7 @@ import {Http, Response} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {StorageService} from "./StorageService";
 import {User} from "../models/User";
-import {ServerConfig} from "../environment/Server.config";
+import {ServerConfig} from "../config/Server.config";
 import {Observable} from "rxjs";
 
 @Injectable()

@@ -1,11 +1,11 @@
 <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitCreate()">
-  <h2 class="text-center">{{initSessionMessage}}</h2>
+  <h2 class="text-center">{{localesService.get_AddMachineComponent_Locales().title}}</h2>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Ubicacion" [formControl]="positionAddressInput" [(ngModel)]="positionAddress">
-    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('required')" [hidden]="positionAddressInput.untouched">{{positionAddressError}}</div>
-    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionLength')" [hidden]="positionAddressInput.untouched">Localización solo puede tener más 140 carácteres</div>
-    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionFormat')" [hidden]="positionAddressInput.untouched">Localización no puede contener carácteres especiales</div>
-    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectDescriptionMinLength')" [hidden]="positionAddressInput.untouched">Localización debe tener más 2 carácteres</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('required')" [hidden]="positionAddressInput.untouched">{{localesService.get_AddMachineComponent_Locales().required}}</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionLength')" [hidden]="positionAddressInput.untouched">{{localesService.get_AddMachineComponent_Locales().incorrectPositionLength}}</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionFormat')" [hidden]="positionAddressInput.untouched">{{localesService.get_AddMachineComponent_Locales().incorrectPositionFormat}}</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectDescriptionMinLength')" [hidden]="positionAddressInput.untouched">{{localesService.get_AddMachineComponent_Locales().incorrectDescriptionMinLength}}</div>
   </div>
   <div class="form-group">
     <select class="form-control" #select [formControl]="machineTypeInput" [(ngModel)]="machineType">
@@ -23,14 +23,14 @@
   </div>
 
   <div class="form-group">
-    <autocomplete (notify)='onNotify($event)'></autocomplete>
-    <div class="alert alert-danger" *ngIf="technicianError" [hidden]="technicianErrorHidden">Es requerido que la administre alguien</div>
+    <autocomplete [elementsList]="autoCompleteList" (notify)='onNotify($event)'></autocomplete>
+    <div class="alert alert-danger" *ngIf="technicianError" [hidden]="technicianErrorHidden">{{localesService.get_AddMachineComponent_Locales().technicianError}}</div>
   </div>
 
   <div class="form-group">
     <textarea type="text" placeholder="Descripción" rows="6" maxlength="300" class="form-control" id="comment" [formControl]="descriptionInput" [(ngModel)]="descriptionText"></textarea>
-    <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionLength')" [hidden]="descriptionInput.untouched">Descripción es demasiado largo</div>
-    <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionFormat')" [hidden]="descriptionInput.untouched">Descripción no puede contener carácteres especiales</div>
+    <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionLength')" [hidden]="descriptionInput.untouched">{{localesService.get_AddMachineComponent_Locales().incorrectDescriptionLength}}</div>
+    <div class="alert alert-danger" *ngIf="descriptionInput.hasError('incorrectDescriptionFormat')" [hidden]="descriptionInput.untouched">{{localesService.get_AddMachineComponent_Locales().incorrectDescriptionFormat}}</div>
   </div>
   <div class="form-group">
     <input type="submit" class="btn btn-block btn-lg btn-primary" value="Crear máquina" [disabled]="form.status !== 'VALID' || technicianError">

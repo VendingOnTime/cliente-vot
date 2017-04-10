@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MachineState} from "../../models/MachineState";
 import {EnumEx} from "../../utils/EnumEx";
@@ -7,40 +7,49 @@ import {DescriptionValidator} from "../../validators/DescriptionValidator";
 import {PositionAddressValidator} from "../../validators/PositionAddressValidator";
 import {Machine} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";
+import {Technician} from "../../models/Technician";
+import {Position} from "../../models/Position";
+import {LocalesService} from "../../services/LocalesService";
+import {AutocompleteService} from "../../services/AutocompleteService";
+import {StorageService} from "../../services/StorageService";
 
 @Component({
   selector: 'machines-panel',
-  templateUrl: './machines-panel.component.html',
-  styleUrls: ['./machines-panel.component.css']
+  templateUrl: 'update-machine.component.html',
+  styleUrls: ['update-machine.component.css']
 })
-export class MachinesPanelComponent {
+export class UpdateMachineComponent {
 
-
+  // Form components
   private form : FormGroup;
-
   private positionAddressInput: AbstractControl;
-  private positionAddress: string;
-  private positionAddressError : string = "El campo es requerido";
-
   private machineTypeInput: AbstractControl;
-  private machineType: string = MachineType[0];
-  private machineTypeError: string = "Se ha de seleccionar un tipo";
-
   private machineStateInput: AbstractControl;
-  private machineState: string = MachineState[0];
-  private machineStateError: string = "Error";
+  private descriptionInput: AbstractControl;
 
+  // Data binding
+  private positionAddress: string;
+  private machineType: string = MachineType[0];
+  private machineState: string = MachineState[0];
+  private descriptionText: string;
   private technician: string = "";
+
+  // Errors management
   private technicianError: boolean = false;
   private technicianErrorHidden: boolean = true;
 
-  private descriptionInput: AbstractControl;
-  private descriptionText: string;
-  private descriptionError: string = " Error ";
-
+  // Component data management
+  public autoCompleteList = this.autoCompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());
   public enumEx = EnumEx;
 
-  constructor(public formBuilder: FormBuilder, private machineService: MachineService) {
+
+  public constructor(
+    public formBuilder: FormBuilder,
+    public machineService: MachineService,
+    public localesService : LocalesService,
+    public autoCompleteService: AutocompleteService,
+    public storageService: StorageService
+  ) {
     this.form = this.formBuilder.group({
       positionAddress: new FormControl('', Validators.compose([Validators.required, PositionAddressValidator])),
       machineType: new FormControl('', Validators.compose([Validators.required])),
@@ -61,13 +70,14 @@ export class MachinesPanelComponent {
 
     if (!this.technicianError) {
 
-      let introducedMachine : Machine = {
-        location : this.positionAddress,
-        type : MachineType[this.machineType],
-        state : MachineState[this.machineState],
-        associatedTechnician : this.technician,
-        description : this.descriptionText
-      };
+      let introducedMachine : Machine =
+        new Machine(
+          new Position(this.positionAddress),
+          MachineType[this.machineType],
+          MachineState[this.machineState],
+          new Technician(this.technician),
+          this.descriptionText
+        );
 
       if (this.machineService.updateMachine(introducedMachine)) {
         this.cleanForm();
@@ -78,8 +88,10 @@ export class MachinesPanelComponent {
     }
   }
 
-  // Con este metodo se recupera el resultado de la lista de busqueda
-  onNotify(event: string, list: {}) {
+
+  /** Autocomplete management */
+
+  public onNotify(event: string) {
     this.technician = event;
 
     // Maneja la validacion del error
@@ -87,7 +99,8 @@ export class MachinesPanelComponent {
     if (this.technician == "") {
       this.technicianError = true;
       this.technicianErrorHidden = false;
-    } else {
+    }
+    else {
       this.technicianError = false;
       this.technicianErrorHidden = true;
     }
@@ -99,6 +112,7 @@ export class MachinesPanelComponent {
   public getAllMachineTypes() : string[] {
     return this.enumEx.getNames(MachineType);
   }
+
   public getAllMachineStates() : {} {
     return this.enumEx.getNames(MachineState);
   }

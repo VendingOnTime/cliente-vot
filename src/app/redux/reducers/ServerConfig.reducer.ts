@@ -1,4 +1,4 @@
-import {ServerConfig, DEV_CONFIG} from "../../environment/Server.config";
+import {ServerConfig, DEV_CONFIG} from "../../config/Server.config";
 import {Action} from "ngrx/@ngrx/store";
 import {ApplicationActions} from "../actions/ApplicationActions";
 
