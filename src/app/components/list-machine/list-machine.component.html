@@ -50,7 +50,7 @@
   <tbody>
       <tr *ngFor="let machine of machines; let i = index" [attr.data-index]="i">
         <td>
-          <input id="{{machine.id}}" class="form-control" type="checkbox" value="{{selections[i]}}" (change)="selectFile(i)">
+          <input id="{{machine.id}}" class="form-control checkbox" type="checkbox" value="{{selections[i]}}" (change)="selectFile(i)">
         </td>
         <td>
           {{machine.id}}

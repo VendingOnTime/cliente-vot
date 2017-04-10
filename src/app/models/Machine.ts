@@ -22,5 +22,6 @@ export class Machine2 {
   public machineState : MachineState;
   public technician : Technician = new Technician();
   public lastUpdate : string;
+  public description : string;
 
 }

@@ -72,6 +72,6 @@ const routes : Routes = [
   ],
   providers: [FormBuilder, UserService, StorageService, AuthGuard, MachineService, AutocompleteService],
   bootstrap: [AppComponent],
-  entryComponents: [AddMachineComponent]
+  entryComponents: [AddMachineComponent, MachinesPanelComponent]
 })
 export class AppModule { }

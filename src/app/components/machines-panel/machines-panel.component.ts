@@ -5,15 +5,21 @@ import {EnumEx} from "../../utils/EnumEx";
 import {MachineType} from "../../models/MachineType";
 import {DescriptionValidator} from "../../validators/DescriptionValidator";
 import {PositionAddressValidator} from "../../validators/PositionAddressValidator";
-import {Machine} from "../../models/Machine";
+import {Machine, Machine2} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";
+import {DialogRef, ModalComponent, CloseGuard} from "angular2-modal";
+import {BSModalContext} from "angular2-modal/plugins/bootstrap";
+
+export class AdditionMachinePanelData extends BSModalContext {
+  public machine: Machine2;
+}
 
 @Component({
   selector: 'machines-panel',
   templateUrl: './machines-panel.component.html',
   styleUrls: ['./machines-panel.component.css']
 })
-export class MachinesPanelComponent {
+export class MachinesPanelComponent implements CloseGuard, ModalComponent<AdditionMachinePanelData>{
 
 
   private form : FormGroup;
@@ -40,7 +46,18 @@ export class MachinesPanelComponent {
 
   public enumEx = EnumEx;
 
-  constructor(public formBuilder: FormBuilder, private machineService: MachineService) {
+  constructor(public dialog: DialogRef<AdditionMachinePanelData>,public formBuilder: FormBuilder, private machineService: MachineService) {
+
+    let machine = dialog.context.machine;
+
+    if (machine) {
+      this.positionAddress = machine.position.address;
+      this.descriptionText = machine.description;
+      this.machineType = MachineType[machine.machineType];
+      this.machineState = MachineState[machine.machineState];
+      this.technician = machine.technician.name
+    }
+
     this.form = this.formBuilder.group({
       positionAddress: new FormControl('', Validators.compose([Validators.required, PositionAddressValidator])),
       machineType: new FormControl('', Validators.compose([Validators.required])),

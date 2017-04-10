@@ -3,8 +3,10 @@ import {Machine2} from "../../models/Machine";
 import {MachineType} from "../../models/MachineType";
 import {MachineState} from "../../models/MachineState";
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {overlayConfigFactory} from "angular2-modal";
+import {overlayConfigFactory, Overlay} from "angular2-modal";
 import {AddMachineComponent} from "../add-machine/add-machine.component";
+import {MachinesPanelComponent, AdditionMachinePanelData} from "../machines-panel/machines-panel.component";
+import {Position} from "../../models/Position";
 
 @Component({
   selector: 'list-machine',
@@ -18,7 +20,7 @@ export class ListMachineComponent implements OnInit {
   private numSelections: number = 0;
 
   constructor(vcRef: ViewContainerRef, public modal: Modal) {
-    modal.overlay.defaultViewContainer = vcRef;
+    this.modal.overlay.defaultViewContainer = vcRef;
 
     this.machines = this.getList();
 
@@ -40,7 +42,11 @@ export class ListMachineComponent implements OnInit {
 
     mac1.id = "prueba";
     mac1.machineState = MachineState.ok;
-    mac1.machineType = MachineType.Right;
+    mac1.machineType = MachineType.Down;
+    mac1.description = "Descripcion";
+    mac1.position = new Position();
+    mac1.position.address = "Direccion";
+    mac1.technician.name = "Bartolomeo";
 
     let mac2 : Machine2 = new Machine2();
 
@@ -61,18 +67,27 @@ export class ListMachineComponent implements OnInit {
     }
 
     this.selections[index] = !this.selections[index];
-    console.log("El indece es   "+ this.selections[index]);
+    //console.log("El indece es   "+ this.selections[index]);
   }
 
   update(){
     let machinesSelected = this.getSelectedMachines();
 
-    for (let i = 0 ; i<machinesSelected.length;i++){
-        console.log(machinesSelected[i].id);
+    // TODO Completar
+
+    for (let i = 0 ; i<machinesSelected.length;i++) {
+      //console.log(machinesSelected[i].id);
+    }
+    if (machinesSelected.length == 1){
+      // FIXME Arreglar que el tecnico de la maquina no se añade automaticamente en el formulario
+      this.modal.open(MachinesPanelComponent, overlayConfigFactory({ isBlocking: false,  machine: machinesSelected[0] }, BSModalContext));
+    } else if (machinesSelected.length == 0) {
+      this.modal.alert().body("Debes seleccionar una máquina").open();
+    } else {
+      this.modal.alert().body("Debes seleccionar una sola máquina").open();
     }
 
 
-    // TODO Completar
 
   }
   setTecnician(){
