@@ -11,7 +11,7 @@ import {CollapseDirective} from "ng2-bootstrap";
 import {Routes, RouterModule} from "@angular/router";
 import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
-import { UpdatePanelComponent } from './components/update-panel/update-panel.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { AddMachineComponent } from './components/add-machine/add-machine.component';
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
@@ -35,7 +35,7 @@ const routes : Routes = [
   {path: 'home', component: HomeSectionComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginPanelComponent},
   {path: 'signup', component: SignupPanelComponent},
-  {path: 'update', component: UpdatePanelComponent},
+  {path: 'update', component: UpdateUserComponent},
   {path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard]},
   {path: 'issues', component: IssuesPanelComponent, canActivate: [AuthGuard]},
   {path: 'technicians', component: TechniciansPanelComponent, canActivate: [AuthGuard]},
@@ -47,10 +47,10 @@ const routes : Routes = [
     AppComponent,
     SignupPanelComponent,
     LoginPanelComponent,
-    UpdatePanelComponent,
+    UpdateUserComponent,
     NavigationBarComponent,
     CollapseDirective,
-    UpdatePanelComponent,
+    UpdateUserComponent,
     AddMachineComponent,
     HomeSectionComponent,
     AdminPanelComponent,

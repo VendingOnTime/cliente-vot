@@ -62,10 +62,17 @@ export class LocalesService {
     }
   }
 
-  public get_SignUpPanel_Locales() {
+  public get_SignUpComponent_Locales() {
     switch (this.storageService.getLanguage()) {
       case Languages.ES:
         return es_locales.component.signUp_panel;
+    }
+  }
+
+  public get_UpdateUserComponent_Locales() {
+    switch (this.storageService.getLanguage()) {
+      case Languages.ES:
+        return es_locales.component.update_user;
     }
   }
 

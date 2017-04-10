@@ -21,26 +21,21 @@ import {LocalesService} from "../../services/LocalesService";
 })
 export class SignupPanelComponent {
 
+  // Component references
   private form : FormGroup;
-
   private userInput: AbstractControl;
-  private username: string = '';
-
   private emailInput: AbstractControl;
-  private email: string = '';
-
   private passwordInput: AbstractControl;
-  private password: string = '';
-
   private repeatPasswordInput: AbstractControl;
+
+  // Data binding
+  private username: string = '';
+  private email: string = '';
+  private password: string = '';
   private repeatPassword: string = '';
 
-  private modal_errorTitle = 'Error en el servidor';
-  private modal_errorBody = `Ha ocurrido un error al realizar el registro. 
-  Inténtelo de nuevo en un momento.`;
 
-
-  constructor(
+  public constructor(
     private overlay: Overlay,
     private vcRef: ViewContainerRef,
     private formBuilder: FormBuilder,
@@ -81,11 +76,11 @@ export class SignupPanelComponent {
           this.router.navigate(['home']);
         }
         else
-          this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
+          this.modal.alert().showClose(true).title(this.localesService.get_SignUpComponent_Locales().modal_errorTitle).body(this.localesService.get_SignUpComponent_Locales().modal_errorBody).open();
 
       },
       (err) => {
-        this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
+        this.modal.alert().showClose(true).title(this.localesService.get_SignUpComponent_Locales().modal_errorTitle).body(this.localesService.get_SignUpComponent_Locales().modal_errorBody).open();
       }
     );
   }

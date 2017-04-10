@@ -80,7 +80,26 @@ export const es_locales = {
       confirm_password_placeholder : "Confirmar contraseña",
       equal_passwords : "La contraseña introducida es diferente",
       client_question : "¿Ya eres cliente?",
-      init_session : "Iniciar sesión"
+      init_session : "Iniciar sesión",
+      modal_errorTitle : "Error en el servidor",
+      modal_errorBody : "Ha ocurrido un error al realizar el registro. Inténtelo de nuevo en un momento."
+    },
+
+    update_user : {
+      title : "Modificar perfil",
+      email_placeholder : "Cambiar email",
+      required_email : "Ha de introducirse un email",
+      incorrect_email : "El formato del email no está admitido",
+      password_placeholder : "Contraseña",
+      required_password : "Es necesario introducir una contraseña",
+      incorrect_password : "La contraseña no es lo suficientemente segura",
+      modal_errorTitle : "Error en el servidor",
+      modal_errorBody : "Ha ocurrido un error al actualizar los datos del usuario. Inténtelo de nuevo en un momento.",
+      new_password_placeholder : "Nueva contraseña",
+      new_password_required : "Es necesario introducir una contraseña",
+      new_password_incorrect : "La contraseña no es lo suficientemente segura",
+      confirm_password_placeholder : "Confirmar contraseña",
+      equal_password_error : "La contraseña introducida es diferente"
     }
   },
 

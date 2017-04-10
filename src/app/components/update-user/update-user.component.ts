@@ -7,34 +7,28 @@ import {RepeatPasswordValidator} from "../../validators/RepeatPasswordValidator"
 import {Overlay} from "angular2-modal";
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 import {StorageService} from "../../services/StorageService";
+import {LocalesService} from "../../services/LocalesService";
 
 
 @Component({
-  selector: 'update-panel',
-  templateUrl: './update-panel.component.html',
-  styleUrls: ['./update-panel.component.css']
+  selector: 'update-user',
+  templateUrl: './update-user.component.html',
+  styleUrls: ['./update-user.component.css']
 })
-export class UpdatePanelComponent implements OnInit {
+export class UpdateUserComponent {
 
+  // Component references
   private form : FormGroup;
-
   private emailInput: AbstractControl;
-  private email: string = '';
-
   private oldPasswordInput: AbstractControl;
-  private oldPassword: string = '';
-
   private passwordInput: AbstractControl;
-  private password: string = '';
-
   private repeatPasswordInput: AbstractControl;
+
+  // Data binding
+  private email: string = '';
+  private oldPassword: string = '';
+  private password: string = '';
   private repeatPassword: string = '';
-
-  private modal_errorTitle = 'Error en el servidor';
-  private modal_errorBody = `Ha ocurrido un error al actualizar los datos del usuario. 
-  Inténtelo de nuevo en un momento.`;
-
-
 
 
   public constructor(
@@ -43,7 +37,7 @@ export class UpdatePanelComponent implements OnInit {
     public formBuilder: FormBuilder,
     public userService: UserService,
     public modal: Modal,
-    public storageService: StorageService
+    public localesService: LocalesService
   ) {
 
     overlay.defaultViewContainer = vcRef;
@@ -62,20 +56,23 @@ export class UpdatePanelComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-  }
+
+  /** Actions */
 
   public onSubmitUpdate() {
     let resultOK = this.userService.updateUser(this.emailInput.value, this.passwordInput.value);
     this.manageUpdate(resultOK);
   }
 
+
+  /** Utility */
+
   public manageUpdate(resultOK : boolean) : void {
     if (resultOK) {
       //TODO: Manage update
     }
-    else {
-      this.modal.alert().showClose(true).title(this.modal_errorTitle).body(this.modal_errorBody).open();
-    }
+    else
+      this.modal.alert().showClose(true).title(this.localesService.get_UpdateUserComponent_Locales().modal_errorTitle).body(this.localesService.get_UpdateUserComponent_Locales().modal_errorBody).open();
+
   }
 }

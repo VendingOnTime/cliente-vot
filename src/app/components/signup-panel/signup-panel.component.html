@@ -1,30 +1,30 @@
 <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitRegister()">
   <h2 class="text-center">Registrarse</h2>
   <div class="form-group">
-      <input type="text" class="form-control" [placeholder]="localesService.get_SignUpPanel_Locales().user_placeholder" [formControl]="userInput" [(ngModel)]="username">
-      <div class="alert alert-danger" *ngIf="userInput.hasError('required')" [hidden]="userInput.untouched">{{localesService.get_SignUpPanel_Locales().required_user}}</div>
-      <div class="alert alert-danger" *ngIf="userInput.hasError('short_username')" [hidden]="userInput.untouched">{{localesService.get_SignUpPanel_Locales().short_username}}</div>
-      <div class="alert alert-danger" *ngIf="userInput.hasError('large_username')" [hidden]="userInput.untouched">{{localesService.get_SignUpPanel_Locales().large_username}}</div>
-      <div class="alert alert-danger" *ngIf="userInput.hasError('format_username')" [hidden]="userInput.untouched">{{localesService.get_SignUpPanel_Locales().format_username}}</div>
+      <input type="text" class="form-control" [placeholder]="localesService.get_SignUpComponent_Locales().user_placeholder" [formControl]="userInput" [(ngModel)]="username">
+      <div class="alert alert-danger" *ngIf="userInput.hasError('required')" [hidden]="userInput.untouched">{{localesService.get_SignUpComponent_Locales().required_user}}</div>
+      <div class="alert alert-danger" *ngIf="userInput.hasError('short_username')" [hidden]="userInput.untouched">{{localesService.get_SignUpComponent_Locales().short_username}}</div>
+      <div class="alert alert-danger" *ngIf="userInput.hasError('large_username')" [hidden]="userInput.untouched">{{localesService.get_SignUpComponent_Locales().large_username}}</div>
+      <div class="alert alert-danger" *ngIf="userInput.hasError('format_username')" [hidden]="userInput.untouched">{{localesService.get_SignUpComponent_Locales().format_username}}</div>
   </div>
   <div class="form-group">
-      <input type="email" class="form-control" [placeholder]="localesService.get_SignUpPanel_Locales().email_placeholder" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
-      <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">{{localesService.get_SignUpPanel_Locales().required_email}}</div>
-      <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">{{localesService.get_SignUpPanel_Locales().format_email}}</div>
+      <input type="email" class="form-control" [placeholder]="localesService.get_SignUpComponent_Locales().email_placeholder" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
+      <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">{{localesService.get_SignUpComponent_Locales().required_email}}</div>
+      <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">{{localesService.get_SignUpComponent_Locales().format_email}}</div>
   </div>
   <div class="form-group">
-      <input type="password" class="form-control" id="inputPassword" [placeholder]="localesService.get_SignUpPanel_Locales().password_placeholder" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
-      <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpPanel_Locales().required_password}}</div>
-      <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpPanel_Locales().format_password}}</div>
+      <input type="password" class="form-control" id="inputPassword" [placeholder]="localesService.get_SignUpComponent_Locales().password_placeholder" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
+      <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpComponent_Locales().required_password}}</div>
+      <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpComponent_Locales().format_password}}</div>
   </div>
   <div class="form-group">
-      <input type="password" class="form-control" [placeholder]="localesService.get_SignUpPanel_Locales().confirm_password_placeholder" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
-      <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpPanel_Locales().equal_passwords}}</div>
+      <input type="password" class="form-control" [placeholder]="localesService.get_SignUpComponent_Locales().confirm_password_placeholder" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
+      <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpComponent_Locales().equal_passwords}}</div>
   </div>
   <div class="form-group">
       <input type="submit" class="btn btn-block btn-lg btn-primary" value="Enviar" [disabled]="form.status !== 'VALID'">
   </div>
 </form>
 <div class="text-center">
-  {{localesService.get_SignUpPanel_Locales().client_question}} <a [routerLink]="['/login']">{{localesService.get_SignUpPanel_Locales().init_session}}</a>
+  {{localesService.get_SignUpComponent_Locales().client_question}} <a [routerLink]="['/login']">{{localesService.get_SignUpComponent_Locales().init_session}}</a>
 </div>
