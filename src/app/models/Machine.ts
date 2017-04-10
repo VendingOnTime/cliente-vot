@@ -14,9 +14,8 @@ export class Machine {
     public machineType : MachineType,
     public machineState : MachineState,
     public technician : Technician,
-    public lastUpdate : string
+    public lastUpdate : Date,
+    public description : string
   ) {
-
   }
-
 }

@@ -12,6 +12,7 @@ import {StorageService} from "../../services/StorageService";
 import {Technician} from "../../models/Technician";
 import {Machine} from "../../models/Machine";
 import {Position} from "../../models/Position";
+import {DialogRef} from "angular2-modal";
 
 
 @Component({
@@ -49,7 +50,8 @@ export class AddMachineComponent {
     private machineService: MachineService,
     public localesService: LocalesService,
     public autocompleteService : AutocompleteService,
-    public storageService : StorageService
+    public storageService : StorageService,
+    public dialog: DialogRef<any>
   ) {
 
     this.form = this.formBuilder.group({
@@ -65,7 +67,6 @@ export class AddMachineComponent {
     this.descriptionInput = this.form.controls['descriptionText'];
   }
 
-
   /** Form submit */
 
   public onSubmitCreate() : void {
@@ -78,6 +79,7 @@ export class AddMachineComponent {
           MachineType[this.machineType],
           MachineState[this.machineState],
           new Technician(this.technician),
+          new Date(Date.now()),
           this.descriptionText
         );
 
@@ -87,6 +89,8 @@ export class AddMachineComponent {
       }
       else
         this.manageExternalError();
+
+      this.dialog.close();
     }
   }
 

@@ -12,13 +12,21 @@ import {Position} from "../../models/Position";
 import {LocalesService} from "../../services/LocalesService";
 import {AutocompleteService} from "../../services/AutocompleteService";
 import {StorageService} from "../../services/StorageService";
+import {DialogRef, ModalComponent, CloseGuard} from "angular2-modal";
+import {BSModalContext} from "angular2-modal/plugins/bootstrap";
+
+export class AdditionMachinePanelData extends BSModalContext {
+  public machine: Machine;
+}
+
 
 @Component({
-  selector: 'machines-panel',
+  selector: 'update-machine',
   templateUrl: 'update-machine.component.html',
   styleUrls: ['update-machine.component.css']
 })
-export class UpdateMachineComponent {
+
+export class UpdateMachineComponent implements CloseGuard, ModalComponent<AdditionMachinePanelData> {
 
   // Form components
   private form : FormGroup;
@@ -48,8 +56,20 @@ export class UpdateMachineComponent {
     public machineService: MachineService,
     public localesService : LocalesService,
     public autoCompleteService: AutocompleteService,
-    public storageService: StorageService
+    public storageService: StorageService,
+    public dialog: DialogRef<AdditionMachinePanelData>
   ) {
+
+    let machine = dialog.context.machine;
+
+    if (machine) {
+      this.positionAddress = machine.position.address;
+      this.descriptionText = machine.description;
+      this.machineType = MachineType[machine.machineType];
+      this.machineState = MachineState[machine.machineState];
+      this.technician = machine.technician.name
+    }
+
     this.form = this.formBuilder.group({
       positionAddress: new FormControl('', Validators.compose([Validators.required, PositionAddressValidator])),
       machineType: new FormControl('', Validators.compose([Validators.required])),
@@ -76,6 +96,7 @@ export class UpdateMachineComponent {
           MachineType[this.machineType],
           MachineState[this.machineState],
           new Technician(this.technician),
+          new Date(Date.now()),
           this.descriptionText
         );
 

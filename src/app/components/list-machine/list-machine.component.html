@@ -27,7 +27,7 @@
 <table class="table table-bordered table-hover table-condensed table-responsive">
   <thead>
   <tr>
-    <th>
+    <th style="min-width: 30px">
 
     </th>
     <th>
@@ -50,8 +50,9 @@
   <tbody>
       <tr *ngFor="let machine of machines; let i = index" [attr.data-index]="i">
         <td>
-          <input id="{{machine.id}}" class="form-control" type="checkbox" value="{{selections[i]}}" (change)="selectMachine(i)">
+          <input id="{{machine.id}}" class="form-control checkbox" type="checkbox" value="{{selections[i]}}" (change)="selectMachine(i)">
         </td>
+
         <td>
           {{machine.id}}
         </td>

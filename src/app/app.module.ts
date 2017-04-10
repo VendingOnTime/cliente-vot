@@ -71,7 +71,16 @@ const routes : Routes = [
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [FormBuilder, UserService, StorageService, AuthGuard, MachineService, AutocompleteService, LocalesService],
-  bootstrap: [AppComponent]
+  providers: [
+    FormBuilder,
+    UserService,
+    StorageService,
+    AuthGuard,
+    MachineService,
+    AutocompleteService,
+    LocalesService
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [AddMachineComponent, UpdateMachineComponent]
 })
 export class AppModule { }

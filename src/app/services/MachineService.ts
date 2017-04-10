@@ -64,6 +64,7 @@ export class MachineService {
       MachineType.Down,
       MachineState.ok,
       new Technician("WOLOLO"),
+      new Date(Date.now()),
       "Mock"
     );
 
@@ -72,6 +73,7 @@ export class MachineService {
       MachineType.Left,
       MachineState.retirada,
       new Technician("WOLOLO"),
+      new Date(Date.now()),
       "Mock"
     );
 

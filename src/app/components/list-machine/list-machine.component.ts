@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
 import {Machine} from "../../models/Machine";
-import {MachineType} from "../../models/MachineType";
 import {MachineState} from "../../models/MachineState";
 import {LocalesService} from "../../services/LocalesService";
 import {MachineService} from "../../services/MachineService";
 import {StorageService} from "../../services/StorageService";
+import {Component, ViewContainerRef} from '@angular/core';
+import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
+import {overlayConfigFactory} from "angular2-modal";
+import {AddMachineComponent} from "../add-machine/add-machine.component";
+import {UpdateMachineComponent} from "../update-machine/update-machine.component";
+
 
 @Component({
   selector: 'list-machine',
@@ -22,10 +26,12 @@ export class ListMachineComponent {
   constructor(
     public localesService: LocalesService,
     public machineService: MachineService,
-    public store: StorageService
+    public store: StorageService,
+    public vcRef: ViewContainerRef,
+    public modal: Modal
   ) {
     this.machines = this.machineService.getMachines(this.store.getLoggedUser());
-
+    this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
 
     for (let i = 0; i < this.machines.length; i++)
@@ -50,12 +56,19 @@ export class ListMachineComponent {
   public update() {
     let machinesSelected = this.getSelectedMachines();
 
-    for (let i = 0 ; i<machinesSelected.length;i++)
-        console.log(machinesSelected[i].id);
-
-
     // TODO Completar
 
+    for (let i = 0 ; i<machinesSelected.length;i++) {
+      //console.log(machinesSelected[i].id);
+    }
+    if (machinesSelected.length == 1){
+      // FIXME Arreglar que el tecnico de la maquina no se añade automaticamente en el formulario
+      this.modal.open(UpdateMachineComponent, overlayConfigFactory({ isBlocking: false,  machine: machinesSelected[0] }, BSModalContext));
+    } else if (machinesSelected.length == 0) {
+      this.modal.alert().body("Debes seleccionar una máquina").open();
+    } else {
+      this.modal.alert().body("Debes seleccionar una sola máquina").open();
+    }
   }
 
   public setTecnician() {
@@ -80,8 +93,8 @@ export class ListMachineComponent {
 
   public addMachine() {
     let machinesSelected = this.getSelectedMachines();
-
     // TODO Completar
+    this.modal.open(AddMachineComponent, overlayConfigFactory({ isBlocking: false }, BSModalContext));
   }
 
 
