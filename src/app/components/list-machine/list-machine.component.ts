@@ -88,9 +88,25 @@ export class ListMachineComponent {
   public deleteMachine() {
     let machinesSelected = this.getSelectedMachines();
 
+    this.modal.confirm()
+      .title("Precaución")
+      .body("¿Se encuentra seguro de que desea eliminar la máquina seleccionada")
+      .okBtn('Save')
+      .cancelBtn('Cancel')
+      .open()
+      .then((resultPromise) => {
+        resultPromise.result.then((result) => {
+          this.prueba();
+        }, () => {} );
+      });
+
+
+
     // TODO Completar
   }
-
+  public prueba(){
+    console.log("Funcaaaaaaaaaaaa");
+  }
   public addMachine() {
     let machinesSelected = this.getSelectedMachines();
     // TODO Completar
