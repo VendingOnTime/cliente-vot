@@ -18,8 +18,9 @@ export class AutocompleteComponent implements OnInit {
 
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
   @Input() elementsList;
+  @Input() asignedDefaultValue;
 
-  public query = '';
+  public query = "";
   public elements = {};
   public filteredList = [];
   public elementRef;
@@ -37,6 +38,10 @@ export class AutocompleteComponent implements OnInit {
   ngOnInit() {
       // Recupera la lista de elementos donde se buscará al escribir
     this.elements = this.elementsList;
+
+    // Recupera el valor por defecto si existe
+    if (this.asignedDefaultValue)
+      this.query = this.asignedDefaultValue;
   }
 
 

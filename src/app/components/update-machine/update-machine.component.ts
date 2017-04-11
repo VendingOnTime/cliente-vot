@@ -40,6 +40,8 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
   private machineType: string = MachineType[0];
   private machineState: string = MachineState[0];
   private descriptionText: string;
+
+  // Data var
   private technician: string = "";
 
   // Errors management
@@ -83,6 +85,9 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
     this.descriptionInput = this.form.controls['descriptionText'];
   }
 
+  public getTechnicianName() : string{
+    return this.technician;
+  }
 
   /** Form submit */
 

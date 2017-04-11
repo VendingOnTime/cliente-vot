@@ -16,12 +16,12 @@ import {UpdateMachineComponent} from "../update-machine/update-machine.component
   styleUrls: ['./list-machine.component.css']
 })
 export class ListMachineComponent {
+  private localesServiceList;
 
-  // Component interaction data
+    // Component interaction data
   private machines : Machine[];
   private selections : boolean[];
   private numSelections: number = 0;
-
 
   constructor(
     public localesService: LocalesService,
@@ -33,6 +33,8 @@ export class ListMachineComponent {
     this.machines = this.machineService.getMachines(this.store.getLoggedUser());
     this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
+
+    this.localesServiceList = localesService.get_ListMachineComponent_Locales();
 
     for (let i = 0; i < this.machines.length; i++)
       this.selections[i] = false;
@@ -56,26 +58,20 @@ export class ListMachineComponent {
   public update() {
     let machinesSelected = this.getSelectedMachines();
 
-    // TODO Completar
-
-    for (let i = 0 ; i<machinesSelected.length;i++) {
-      //console.log(machinesSelected[i].id);
-    }
     if (machinesSelected.length == 1){
       // FIXME Arreglar que el tecnico de la maquina no se añade automaticamente en el formulario
-      this.modal.open(UpdateMachineComponent, overlayConfigFactory({ isBlocking: false,  machine: machinesSelected[0] }, BSModalContext));
+      this.modal.open(
+        UpdateMachineComponent,
+        overlayConfigFactory({
+          isBlocking: false,
+          machine: machinesSelected[0]
+        }, BSModalContext ));
+
     } else if (machinesSelected.length == 0) {
-      this.modal.alert().body("Debes seleccionar una máquina").open();
+      this.modal.alert().body(this.localesServiceList.no_selected_machine).open();
     } else {
-      this.modal.alert().body("Debes seleccionar una sola máquina").open();
+      this.modal.alert().body(this.localesServiceList.update_machines).open();
     }
-  }
-
-  public setTecnician() {
-    let machinesSelected = this.getSelectedMachines();
-
-    // TODO Completar
-
   }
 
   public addIssue() {
@@ -88,12 +84,45 @@ export class ListMachineComponent {
   public deleteMachine() {
     let machinesSelected = this.getSelectedMachines();
 
-    // TODO Completar
+    // Si no se han seleccionado maquinas avisa y sal
+    if (machinesSelected.length == 0){
+      this.modal.alert().body(this.localesServiceList.no_selected_machine).open();
+      return;
+    }
+
+    // Pone el texto correspondiente al aviso de borrado de maquinas
+    let bodyext= "";
+
+    if (machinesSelected.length == 1){
+      bodyext = this.localesServiceList.delete_a_machine;
+    } else {
+      bodyext = this.localesServiceList.delete_machines;
+    }
+
+    // Muestra el aviso de confirmacion
+    this.modal.confirm()
+      .title(this.localesServiceList.delete_confirm_title)
+      .body(bodyext)
+      .okBtn(this.localesServiceList.delete_confirm_confirm_button)
+      .cancelBtn(this.localesServiceList.delete_confirm_cancel_button)
+      .open()
+      .then((resultPromise) => {
+        resultPromise.result.then((result) => {
+          // Aqui llega cuando el usuario pulsa el boton ok
+          this.prueba(machinesSelected); // TODO Colocar servicio de borrado de maquina
+        },
+          () => {} // Aqui llega cuando pulsa cancel
+        );
+      });
   }
 
+  // TODO quitar cuando se implemente el bueno
+  public prueba(machinesSelected : Machine[]){
+    for (let i = 0 ; i<machinesSelected.length;i++) {
+      console.log(machinesSelected[i].id);
+    }
+  }
   public addMachine() {
-    let machinesSelected = this.getSelectedMachines();
-    // TODO Completar
     this.modal.open(AddMachineComponent, overlayConfigFactory({ isBlocking: false }, BSModalContext));
   }
 

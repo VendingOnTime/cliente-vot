@@ -63,7 +63,7 @@ export class MachineService {
       new Position("Mock position 1"),
       MachineType.Down,
       MachineState.ok,
-      new Technician("WOLOLO"),
+      new Technician("Bartolomeo"),
       new Date(Date.now()),
       "Mock"
     );
@@ -72,7 +72,7 @@ export class MachineService {
       new Position("Mock position 2"),
       MachineType.Left,
       MachineState.retirada,
-      new Technician("WOLOLO"),
+      new Technician("Burriana"),
       new Date(Date.now()),
       "Mock"
     );
