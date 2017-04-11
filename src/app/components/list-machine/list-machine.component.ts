@@ -56,11 +56,6 @@ export class ListMachineComponent {
   public update() {
     let machinesSelected = this.getSelectedMachines();
 
-    // TODO Completar
-
-    for (let i = 0 ; i<machinesSelected.length;i++) {
-      //console.log(machinesSelected[i].id);
-    }
     if (machinesSelected.length == 1){
       // FIXME Arreglar que el tecnico de la maquina no se añade automaticamente en el formulario
       this.modal.open(UpdateMachineComponent, overlayConfigFactory({ isBlocking: false,  machine: machinesSelected[0] }, BSModalContext));
@@ -69,13 +64,6 @@ export class ListMachineComponent {
     } else {
       this.modal.alert().body("Debes seleccionar una sola máquina").open();
     }
-  }
-
-  public setTecnician() {
-    let machinesSelected = this.getSelectedMachines();
-
-    // TODO Elimnar esta opcion (Se hace desde modificar maquina)
-
   }
 
   public addIssue() {

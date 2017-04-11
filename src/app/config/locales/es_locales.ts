@@ -18,7 +18,6 @@ export const es_locales = {
       numSelections_1 : " ha sido seleccionada",
       numSelections_more_than_1 : " han sido seleccionadas",
       modify : "Modificar",
-      setTechnician : "Asignar Técnico",
       createIssue : "Crear incidencia",
       delete_machine : "Eliminar",
       add_machine : "Añadir maquina",
