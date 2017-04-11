@@ -24,7 +24,14 @@ export const es_locales = {
       state : "Estado",
       location : "Ubicación",
       last_update : "Última actualización",
-      assigned_technician : "Técnico responsable"
+      assigned_technician : "Técnico responsable",
+      no_selected_machine : "Debe seleccionar al menos una máquina",
+      delete_a_machine : "¿Se encuentra seguro de que desea eliminar la máquina seleccionada?",
+      delete_machines : "¿Se encuentra seguro de que desea eliminar las máquinas seleccionadas?",
+      delete_confirm_title : "Precaución",
+      delete_confirm_confirm_button : "Confirmar borrado",
+      delete_confirm_cancel_button : "Cancelar",
+      update_machines : "Debes seleccionar una sola máquina"
     },
 
     login_panel : {
