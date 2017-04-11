@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
     "sourceMap": true,
+    "mapRoot": "./",
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es2016",
+      "es6",
       "dom"
     ],
-    "outDir": "../out-tsc/app",
+    "outDir": "../dist/out-tsc",
+    "module": "es6",
     "target": "es5",
-    "module": "es2015",
     "baseUrl": "",
-    "types": []
+    "types": [
+      "node"
+    ],
+    "typeRoots": ["../node_modules/@types"]
   },
   "exclude": [
     "test.ts",
