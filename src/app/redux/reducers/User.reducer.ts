@@ -1,5 +1,5 @@
 import {User} from "../../models/User";
-import {Action} from "ngrx/@ngrx/store";
+import {Action} from "@ngrx/store";
 import {ApplicationActions} from "../actions/ApplicationActions";
 
 

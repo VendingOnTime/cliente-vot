@@ -15,11 +15,16 @@ module.exports = function(config) {
 
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-remap-istanbul'),
+      require('karma-phantomjs-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
       require('karma-mocha-reporter'),
       require('@angular/cli/plugins/karma')
     ],
+
+    client:{
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
+    },
 
     // list of files / patterns to load in the browser
     files: [
@@ -40,15 +45,11 @@ module.exports = function(config) {
       'text/x-typescript': ['ts','tsx']
     },
 
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true
     },
-
     angularCli: {
-      config: './angular-cli.json',
       environment: 'dev'
     },
 
@@ -56,8 +57,8 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: config.angularCli && config.angularCli.codeCoverage
-      ? ['mocha', 'karma-remap-istanbul']
-      : ['mocha'],
+      ? ['mocha', 'coverage-istanbul']
+      : ['mocha', 'kjhtml'],
 
     // web server port
     port: 9876,
@@ -74,7 +75,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

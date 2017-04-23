@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "@angular/forms";
 import {UserService} from "../../services/UserService";
-import {UsernameValidator} from "../../validators/UsernameValidator";
+import {UsernameValidator} from "../../validators/username/UsernameValidator";
 import {EmailValidator} from "../../validators/EmailValidator";
-import {PasswordValidator} from "../../validators/PasswordValidator";
-import {RepeatPasswordValidator} from "../../validators/RepeatPasswordValidator";
+import {PasswordValidator} from "../../validators/password/PasswordValidator";
+import {RepeatPasswordValidator} from "../../validators/repeat-password/RepeatPasswordValidator";
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 import {Overlay} from "angular2-modal";
 import {Router} from "@angular/router";

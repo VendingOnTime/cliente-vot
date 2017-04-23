@@ -9,7 +9,6 @@ import { LoginPanelComponent } from './components/login-panel/login-panel.compon
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import {CollapseDirective} from "ng2-bootstrap";
 import {Routes, RouterModule} from "@angular/router";
-import {StoreModule} from "@ngrx/store";
 import {StorageService} from "./services/StorageService";
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { AddMachineComponent } from './components/add-machine/add-machine.component';
@@ -17,7 +16,6 @@ import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import { HomeSectionComponent } from './components/home-section/home-section.component';
 import {AuthGuard} from "./guards/AuthGuard.service";
-import {rootReducer} from "./redux/reducers/Application.Reducer";
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { IssuesPanelComponent } from './components/issues-panel/issues-panel.component';
 import { TechniciansPanelComponent } from './components/technicians-panel/technicians-panel.component';
@@ -25,9 +23,12 @@ import { UpdateMachineComponent } from './components/update-machine/update-machi
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import {MachineService} from "./services/MachineService";
 import {AutocompleteService} from "./services/AutocompleteService";
-
 import { ListMachineComponent } from './components/list-machine/list-machine.component';
 import {LocalesService} from "./services/LocalesService";
+import {LanguageReducer} from "./redux/reducers/Language.reducer";
+import {ServerConfigReducer} from "./redux/reducers/ServerConfig.reducer";
+import {UserReducer} from "./redux/reducers/User.reducer";
+import {StoreModule} from "@ngrx/store";
 
 
 const routes : Routes = [
@@ -67,7 +68,7 @@ const routes : Routes = [
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    StoreModule.provideStore(rootReducer),
+    StoreModule.provideStore({userReducer: UserReducer, serverConfigReducer: ServerConfigReducer, languageReducer: LanguageReducer}),
     ModalModule.forRoot(),
     BootstrapModalModule
   ],

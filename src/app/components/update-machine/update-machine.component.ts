@@ -3,7 +3,7 @@ import {FormGroup, AbstractControl, FormBuilder, FormControl, Validators} from "
 import {MachineState} from "../../models/MachineState";
 import {EnumEx} from "../../utils/EnumEx";
 import {MachineType} from "../../models/MachineType";
-import {DescriptionValidator} from "../../validators/DescriptionValidator";
+import {DescriptionValidator} from "../../validators/description/DescriptionValidator";
 import {PositionAddressValidator} from "../../validators/PositionAddressValidator";
 import {Machine} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";

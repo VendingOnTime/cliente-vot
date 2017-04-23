@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListMachineComponent } from './list-machine.component';
-
+/**
 describe('ListMachineComponent', () => {
   let component: ListMachineComponent;
   let fixture: ComponentFixture<ListMachineComponent>;
@@ -23,3 +23,4 @@ describe('ListMachineComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+**/

@@ -1,5 +1,5 @@
 import {FormGroup, FormControl} from "@angular/forms";
-import {RepeatPasswordValidator} from "../../app/validators/RepeatPasswordValidator";
+import {RepeatPasswordValidator} from "./RepeatPasswordValidator";
 
 describe('A password validation in the system', function () {
 

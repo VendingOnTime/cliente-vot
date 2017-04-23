@@ -1,5 +1,5 @@
 import {Languages} from "../../config/locales/Languages";
-import {Action} from "ngrx/@ngrx/store";
+import {Action} from "@ngrx/store";
 import {ApplicationActions} from "../actions/ApplicationActions";
 
 const INITIAL_STATE = Languages.ES;

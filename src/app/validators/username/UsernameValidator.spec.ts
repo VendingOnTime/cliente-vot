@@ -1,5 +1,5 @@
 import {FormControl, FormGroup} from "@angular/forms";
-import {UsernameValidator} from "../../app/validators/UsernameValidator";
+import {UsernameValidator} from "./UsernameValidator";
 
 describe('A username in the system', function () {
 

@@ -1,5 +1,5 @@
 import {ServerConfig, DEV_CONFIG} from "../../config/Server.config";
-import {Action} from "ngrx/@ngrx/store";
+import {Action} from "@ngrx/store";
 import {ApplicationActions} from "../actions/ApplicationActions";
 
 const INITIAL_STATE = DEV_CONFIG;

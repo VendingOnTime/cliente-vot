@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginPanelComponent } from './login-panel.component';
-
+/**
 describe('LoginPanelComponent', () => {
   let component: LoginPanelComponent;
   let fixture: ComponentFixture<LoginPanelComponent>;
@@ -23,3 +23,4 @@ describe('LoginPanelComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+**/
