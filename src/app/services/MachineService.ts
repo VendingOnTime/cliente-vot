@@ -8,6 +8,7 @@ import {MachineState} from "../models/MachineState";
 import {MachineType} from "../models/MachineType";
 import {Position} from "../models/Position";
 import {Technician} from "../models/Technician";
+import {Observable} from "rxjs";
 
 
 @Injectable()
@@ -15,7 +16,7 @@ export class MachineService {
 
   private serverConfig : ServerConfig;
   //FIXME: Use real direction
-  private CREATE_MACHINE_DIRECTION : string = '';
+  private CREATE_MACHINE_DIRECTION : string = '/api-v1/machines';
   private GET_MACHINES_DIRECTION : string = '';
 
   constructor(private http: Http, private storageService: StorageService) {
@@ -25,19 +26,12 @@ export class MachineService {
 
   /** Action methods */
 
-  public createMachine(newMachine : Machine) : boolean {
+  public createMachine(newMachine : Machine) : Observable<Response> {
     //TODO: Test against the server
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.CREATE_MACHINE_DIRECTION}`;
     let body : string = JSON.stringify(newMachine);
-    let OK : boolean;
 
-    this.http.post(serverUrl, body).subscribe(
-      (response : Response) => {OK = true},
-      (error) => {OK = false},
-      () => {}
-    );
-
-    return OK;
+    return this.http.post(serverUrl, body);
   }
 
   //TODO: Finish

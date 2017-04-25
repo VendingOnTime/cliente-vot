@@ -14,7 +14,7 @@ export const DEV_CONFIG : ServerConfig = {
 
 //TODO: Define production server
 export const PROD_CONFIG : ServerConfig = {
-  host : '',
-  port : 0,
+  host : 'vot-app-staging.herokuapp.com',
+  port : 8080,
   secure : true
 };

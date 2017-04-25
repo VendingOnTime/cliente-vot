@@ -1,4 +1,4 @@
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {StorageService} from "./StorageService";
 import {User} from "../models/User";
@@ -13,6 +13,7 @@ export class UserService {
   private REGISTER_USER_DIRECTION = '/api-v1/signup/supervisor';
   private LOGIN_USER_DIRECTION = '/api-v1/login';
   private UPDATE_USER_DIRECTION ='';
+  private RETRIEVE_USER_DATA_DIRECTION = '/api-v1/users/profile';
 
 
   public constructor(private http: Http, private storage: StorageService) {
@@ -22,27 +23,11 @@ export class UserService {
 
   /** Actions */
 
-  //TODO: Finish
-  public doLogin(username: string, password: string) : boolean {
+  public doLogin(email: string, password: string) : Observable<Response> {
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.LOGIN_USER_DIRECTION}`;
-    let body = {username, password};
-    let OK : boolean;
-    let data;
+    let body = {email, password};
 
-    this.http.post(serverUrl, body).subscribe(
-      (response: Response) => {
-        OK = response.ok;
-        data = response.json();
-      },
-      (err) => {OK = false},
-      () => {}
-    );
-
-    if (OK) {
-      this.storage.saveUserFromLogIn(this.buildUser(data.data));
-      return true;
-    }
-    return false;
+    return this.http.post(serverUrl, body);
   }
 
   public signUpSupervisor(username: string, password: string, email: string) : Observable<Response> {
@@ -73,6 +58,15 @@ export class UserService {
     return OK;
   }
 
+  public retrieveUser(token: string) : Observable<Response> {
+    let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.RETRIEVE_USER_DATA_DIRECTION}`;
+    let jwtToken = `JWT ${token}`;
+    let headers: Headers = new Headers({
+      'Authorization': jwtToken
+    });
+
+    return this.http.get(serverUrl, {headers: headers});
+  }
 
   /** Utility */
 

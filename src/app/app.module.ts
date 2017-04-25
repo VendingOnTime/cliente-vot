@@ -12,7 +12,6 @@ import {Routes, RouterModule} from "@angular/router";
 import {StorageService} from "./services/StorageService";
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { AddMachineComponent } from './components/add-machine/add-machine.component';
-import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import { HomeSectionComponent } from './components/home-section/home-section.component';
 import {AuthGuard} from "./guards/AuthGuard.service";
@@ -29,6 +28,7 @@ import {LanguageReducer} from "./redux/reducers/Language.reducer";
 import {ServerConfigReducer} from "./redux/reducers/ServerConfig.reducer";
 import {UserReducer} from "./redux/reducers/User.reducer";
 import {StoreModule} from "@ngrx/store";
+import {DialogRef, ModalModule} from "angular2-modal";
 
 
 const routes : Routes = [

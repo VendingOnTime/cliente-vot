@@ -3,6 +3,9 @@ import {FormBuilder, FormControl, Validators, FormGroup, AbstractControl} from "
 import {UserService} from "../../services/UserService";
 import {Router} from "@angular/router";
 import {LocalesService} from "../../services/LocalesService";
+import {Response} from "@angular/http";
+import {Observable} from "rxjs";
+import {StorageService} from "../../services/StorageService";
 
 
 @Component({
@@ -29,7 +32,8 @@ export class LoginPanelComponent {
     public formBuilder: FormBuilder,
     public userService: UserService,
     public router: Router,
-    public localesService: LocalesService
+    public localesService: LocalesService,
+    public storageService: StorageService
   ) {
 
     this.form = this.formBuilder.group({
@@ -48,17 +52,59 @@ export class LoginPanelComponent {
     if (this.form.valid) {
       let introducedUsername = this.userInput.value;
       let introducedPassword = this.passwordInput.value;
-      let correctLogin = this.userService.doLogin(introducedUsername, introducedPassword);
 
-      if (correctLogin)
-        this.manageLogin();
-      else
-        this.loginError = true;
+      this.manageLogin(this.userService.doLogin(introducedUsername, introducedPassword));
     }
   }
 
-  private manageLogin() {
-    this.router.navigate(['/home']);
-  }
+  private manageLogin(result: Observable<Response>) {
 
+    let success : boolean = false;
+
+    result.subscribe(
+      (response: Response) => {
+        if (response.ok) {
+          let data = response.json();
+          success = data.success;
+
+          if (success) {
+            this.storageService.saveTokenFromLogIn(data.data);
+
+            this.userService.retrieveUser(data.data).subscribe(
+              (userData: Response) => {
+                console.log(userData);
+                if (userData.ok) {
+                  let responseData = userData.json();
+
+                  console.log(responseData);
+
+                  if (responseData.success)
+                    this.storageService.saveUserFromLogIn(this.userService.buildUser(responseData.data));
+                  else
+                    this.loginError = true;
+                }
+                else
+                  this.loginError = true;
+              },
+              //TODO: Manage error messages
+              (err) => {},
+              () => {}
+            );
+          }
+          else
+            this.loginError = true;
+        }
+        else
+          this.loginError = true;
+      },
+      //TODO: Manage error messages
+      (err) => {
+        this.loginError = true;
+      },
+      () => {
+        if (success && !this.loginError)
+          this.router.navigate(['/home']);
+      }
+    );
+  }
 }

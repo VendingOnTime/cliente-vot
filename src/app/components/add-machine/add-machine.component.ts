@@ -13,6 +13,7 @@ import {Technician} from "../../models/Technician";
 import {Machine} from "../../models/Machine";
 import {Position} from "../../models/Position";
 import {DialogRef} from "angular2-modal";
+import {Response} from "@angular/http";
 
 
 @Component({
@@ -69,6 +70,7 @@ export class AddMachineComponent {
 
   /** Form submit */
 
+  //TODO: Finish
   public onSubmitCreate() : void {
 
     if (!this.technicianError) {
@@ -83,14 +85,21 @@ export class AddMachineComponent {
           this.descriptionText
         );
 
-      if (this.machineService.createMachine(introducedMachine)) {
-        this.cleanForm();
-        this.machineCreatedOK();
-      }
-      else
-        this.manageExternalError();
+      this.machineService.createMachine(introducedMachine).subscribe(
+        (response: Response) => {
 
-      this.dialog.close();
+          console.log(response);
+
+          this.machineCreatedOK();
+        },
+        (err) => {
+          this.manageExternalError();
+        },
+        () => {
+          this.dialog.close();
+        }
+      );
+
     }
   }
 

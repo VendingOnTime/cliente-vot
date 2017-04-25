@@ -16,7 +16,11 @@ export class StorageService {
 
 
   public saveUserFromLogIn(user: User) : void {
-    this.store.dispatch(ApplicationActions.logIn(user));
+    this.store.dispatch(ApplicationActions.saveLogInUser(user));
+  }
+
+  public saveTokenFromLogIn(token: String) : void {
+    this.store.dispatch(ApplicationActions.saveLogInToken(token));
   }
 
   public getUserReducer() : Observable<UserReducerState> {

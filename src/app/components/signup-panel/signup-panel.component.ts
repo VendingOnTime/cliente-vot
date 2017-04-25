@@ -9,7 +9,6 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
 import {Overlay} from "angular2-modal";
 import {Router} from "@angular/router";
 import {StorageService} from "../../services/StorageService";
-import {User} from "../../models/User";
 import {Response} from "@angular/http";
 import {LocalesService} from "../../services/LocalesService";
 
@@ -72,12 +71,11 @@ export class SignupPanelComponent {
         let OK = data.success;
 
         if (OK) {
-          this.storeService.saveUserFromLogIn(this.userService.buildUser(data.data));
-          this.router.navigate(['home']);
+          //FIXME
+          this.modal.alert().showClose(true).title('Registro satisfactorio').open();
         }
         else
           this.modal.alert().showClose(true).title(this.localesService.get_SignUpComponent_Locales().modal_errorTitle).body(this.localesService.get_SignUpComponent_Locales().modal_errorBody).open();
-
       },
       (err) => {
         this.modal.alert().showClose(true).title(this.localesService.get_SignUpComponent_Locales().modal_errorTitle).body(this.localesService.get_SignUpComponent_Locales().modal_errorBody).open();
