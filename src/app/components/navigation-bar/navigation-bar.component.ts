@@ -7,28 +7,30 @@ import {UserReducerState} from "../../redux/reducers/User.reducer";
 import {LocalesService} from "../../services/LocalesService";
 import {UpdateUserComponent} from "../update-user/update-user.component";
 import {BSModalContext} from "angular2-modal/plugins/bootstrap";
-import {overlayConfigFactory, Modal} from "angular2-modal";
+import {overlayConfigFactory, Modal, ModalComponent, Overlay} from "angular2-modal";
 
 
 @Component({
   selector: 'navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.css']
+  styleUrls: ['./navigation-bar.component.css'],
+  providers : [Overlay]
 })
 export class NavigationBarComponent {
 
   public isCollapsed: boolean = false;
   public userReducerState: Observable<UserReducerState> = this.storage.getUserReducer();
 
-
   public constructor(
     public storage: StorageService,
     private router: Router,
     public localesService: LocalesService,
     public vcRef: ViewContainerRef,
-    public modal: Modal
+    public modal: Modal,
+    public overlay: Overlay
   ) {
     this.storage.getStore().subscribe( state => console.log('Initial App State: ', state));
+    this.modal.overlay = overlay;
     this.modal.overlay.defaultViewContainer = vcRef;
   }
 

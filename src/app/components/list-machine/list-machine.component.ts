@@ -5,7 +5,7 @@ import {MachineService} from "../../services/MachineService";
 import {StorageService} from "../../services/StorageService";
 import {Component, ViewContainerRef} from '@angular/core';
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {overlayConfigFactory} from "angular2-modal";
+import {overlayConfigFactory, Overlay} from "angular2-modal";
 import {AddMachineComponent} from "../add-machine/add-machine.component";
 import {UpdateMachineComponent} from "../update-machine/update-machine.component";
 
@@ -13,7 +13,8 @@ import {UpdateMachineComponent} from "../update-machine/update-machine.component
 @Component({
   selector: 'list-machine',
   templateUrl: './list-machine.component.html',
-  styleUrls: ['./list-machine.component.css']
+  styleUrls: ['./list-machine.component.css'],
+  providers : [Overlay]
 })
 export class ListMachineComponent {
   private localesServiceList;
@@ -28,13 +29,18 @@ export class ListMachineComponent {
     public machineService: MachineService,
     public store: StorageService,
     public vcRef: ViewContainerRef,
-    public modal: Modal
+    public modal: Modal,
+    public overlay: Overlay
   ) {
     this.machines = this.machineService.getMachines(this.store.getLoggedUser());
+
+    this.modal.overlay = overlay;
     this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
 
     this.localesServiceList = localesService.get_ListMachineComponent_Locales();
+
+
 
     for (let i = 0; i < this.machines.length; i++)
       this.selections[i] = false;
