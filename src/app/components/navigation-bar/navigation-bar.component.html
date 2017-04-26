@@ -1,5 +1,5 @@
 <nav class="navbar black-navbar">
-  <div class="container-fluid">
+
     <div class="navbar-header">
 
       <a [routerLink]="['']"><img class="logo" src="assets/votReduced.jpg" alt="VOT Logo"/></a>
@@ -26,17 +26,10 @@
             <label class="btn btn-primary" (click)="goToTechniciansPanel()">{{localesService.get_NavigationBarComponent_Locales().technicians}}</label>
             <label class="btn btn-primary" (click)="goToIssuesPanel()">{{localesService.get_NavigationBarComponent_Locales().issues}}</label>
             <label class="btn btn-primary" (click)="goToAdminSection()">{{localesService.get_NavigationBarComponent_Locales().administration}}</label>
+            <label class="btn btn-primary" (click)="userData()">User data</label>
           </div>
         </li>
       </ul>
-
-      <button class="btn btn-primary dropdown-toggle navbar-right button-group-actions" style="margin-left: 4vw" data-toggle="loggedActions">
-        {{localesService.get_NavigationBarComponent_Locales().hello_logged}}<span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-
-      </ul>
     </div>
 
-  </div>
 </nav>

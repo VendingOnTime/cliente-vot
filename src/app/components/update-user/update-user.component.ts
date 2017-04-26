@@ -8,6 +8,7 @@ import {Overlay} from "angular2-modal";
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 import {StorageService} from "../../services/StorageService";
 import {LocalesService} from "../../services/LocalesService";
+import {User} from "../../models/User";
 
 
 @Component({
@@ -37,7 +38,8 @@ export class UpdateUserComponent {
     public formBuilder: FormBuilder,
     public userService: UserService,
     public modal: Modal,
-    public localesService: LocalesService
+    public localesService: LocalesService,
+    public storageService: StorageService
   ) {
 
     overlay.defaultViewContainer = vcRef;
@@ -54,6 +56,9 @@ export class UpdateUserComponent {
     this.passwordInput = this.form.controls['password'];
     this.repeatPasswordInput = this.form.controls['repeatPassword'];
 
+    let user = this.storageService.getLoggedUser();
+
+    this.email = user.email;
   }
 
 
