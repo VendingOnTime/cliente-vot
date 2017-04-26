@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers} from "@angular/http";
 import {Machine} from "../models/Machine";
 import {StorageService} from "./StorageService";
 import {ServerConfig} from "../config/Server.config";
@@ -9,6 +9,7 @@ import {MachineType} from "../models/MachineType";
 import {Position} from "../models/Position";
 import {Technician} from "../models/Technician";
 import {Observable} from "rxjs";
+import {UserReducerState} from "../redux/reducers/User.reducer";
 
 
 @Injectable()
@@ -31,7 +32,17 @@ export class MachineService {
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.CREATE_MACHINE_DIRECTION}`;
     let body : string = JSON.stringify(newMachine);
 
-    return this.http.post(serverUrl, body);
+    let token = '';
+
+    this.storageService.getUserReducer().subscribe((userReducer) => {
+      token = userReducer.token;
+    });
+
+    let headers: Headers = new Headers({
+      'Authorization': `JWT ${token}`
+    });
+
+    return this.http.post(serverUrl, {headers, body});
   }
 
   //TODO: Finish

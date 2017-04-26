@@ -62,16 +62,16 @@ export class UserService {
     let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.RETRIEVE_USER_DATA_DIRECTION}`;
     let jwtToken = `JWT ${token}`;
     let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
       'Authorization': jwtToken
     });
 
-    return this.http.get(serverUrl, {headers: headers});
+    return this.http.get(serverUrl, {headers});
   }
 
   /** Utility */
 
   public buildUser(data : any) : User {
-    console.log(data);
     let userData = data;
     let user = new User();
     user.name = userData.name;
@@ -81,8 +81,6 @@ export class UserService {
     user.id = userData.id;
     user.role = userData.role;
     user.username = userData.username;
-
-    console.log(user);
     return user;
   }
 }
