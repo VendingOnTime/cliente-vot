@@ -11,7 +11,7 @@ import {AutocompleteService} from "../../services/AutocompleteService";
 import {StorageService} from "../../services/StorageService";
 import {Technician} from "../../models/Technician";
 import {Machine} from "../../models/Machine";
-import {Position} from "../../models/Position";
+import {Location} from "../../models/Location";
 import {DialogRef} from "angular2-modal";
 import {Response} from "@angular/http";
 
@@ -70,25 +70,23 @@ export class AddMachineComponent {
 
   /** Form submit */
 
-  //TODO: Finish
   public onSubmitCreate() : void {
 
     if (!this.technicianError) {
 
       let introducedMachine : Machine =
         new Machine(
-          new Position(this.positionAddress),
+          new Location(this.positionAddress),
           MachineType[this.machineType],
           MachineState[this.machineState],
           new Technician(this.technician),
-          new Date(Date.now()),
           this.descriptionText
         );
 
       this.machineService.createMachine(introducedMachine).subscribe(
         (response: Response) => {
 
-          console.log(response);
+          //TODO: Finish
 
           this.machineCreatedOK();
         },

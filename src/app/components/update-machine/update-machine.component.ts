@@ -8,7 +8,7 @@ import {PositionAddressValidator} from "../../validators/PositionAddressValidato
 import {Machine} from "../../models/Machine";
 import {MachineService} from "../../services/MachineService";
 import {Technician} from "../../models/Technician";
-import {Position} from "../../models/Position";
+import {Location} from "../../models/Location";
 import {LocalesService} from "../../services/LocalesService";
 import {AutocompleteService} from "../../services/AutocompleteService";
 import {StorageService} from "../../services/StorageService";
@@ -65,7 +65,7 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
     let machine = dialog.context.machine;
 
     if (machine) {
-      this.positionAddress = machine.position.address;
+      this.positionAddress = machine.location.name;
       this.descriptionText = machine.description;
       this.machineType = MachineType[machine.machineType];
       this.machineState = MachineState[machine.machineState];
@@ -97,11 +97,10 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
 
       let introducedMachine : Machine =
         new Machine(
-          new Position(this.positionAddress),
+          new Location(this.positionAddress),
           MachineType[this.machineType],
           MachineState[this.machineState],
           new Technician(this.technician),
-          new Date(Date.now()),
           this.descriptionText
         );
 

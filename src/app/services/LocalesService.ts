@@ -17,7 +17,6 @@ export class LocalesService {
       case Languages.ES:
         return es_locales.component.add_machine;
     }
-
   }
 
   public get_ListMachineComponent_Locales() {

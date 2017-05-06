@@ -6,10 +6,9 @@ import {ServerConfig} from "../config/Server.config";
 import {User} from "../models/User";
 import {MachineState} from "../models/MachineState";
 import {MachineType} from "../models/MachineType";
-import {Position} from "../models/Position";
+import {Location} from "../models/Location";
 import {Technician} from "../models/Technician";
 import {Observable} from "rxjs";
-import {UserReducerState} from "../redux/reducers/User.reducer";
 
 
 @Injectable()
@@ -42,7 +41,7 @@ export class MachineService {
       'Authorization': `JWT ${token}`
     });
 
-    return this.http.post(serverUrl, {headers, body});
+    return this.http.post(serverUrl, body, {headers});
   }
 
   //TODO: Finish
@@ -65,20 +64,18 @@ export class MachineService {
     //FIXME: Mock data
 
     let mac1 : Machine = new Machine(
-      new Position("Mock position 1"),
+      new Location("Mock location 1"),
       MachineType.Down,
       MachineState.ok,
       new Technician("Bartolomeo"),
-      new Date(Date.now()),
       "Mock"
     );
 
     let mac2 : Machine = new Machine(
-      new Position("Mock position 2"),
+      new Location("Mock location 2"),
       MachineType.Left,
       MachineState.retirada,
       new Technician("Burriana"),
-      new Date(Date.now()),
       "Mock"
     );
 
