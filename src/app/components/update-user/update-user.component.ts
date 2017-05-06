@@ -9,6 +9,7 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
 import {StorageService} from "../../services/StorageService";
 import {LocalesService} from "../../services/LocalesService";
 import {User} from "../../models/User";
+import {Response} from "@angular/http";
 
 
 @Component({
@@ -65,19 +66,39 @@ export class UpdateUserComponent {
   /** Actions */
 
   public onSubmitUpdate() {
-    let resultOK = this.userService.updateUser(this.emailInput.value, this.passwordInput.value);
-    this.manageUpdate(resultOK);
+
+    this.userService.updateUser(this.email, this.password).subscribe(
+      (response: Response) => {
+
+        if (response.ok) {
+          this.cleanForm();
+          this.userUpdatedOK();
+        }
+
+        else
+          this.manageExternalError();
+      },
+      (err) => {
+        this.manageExternalError();
+      },
+      () => {}
+    );
+
   }
 
 
   /** Utility */
 
-  public manageUpdate(resultOK : boolean) : void {
-    if (resultOK) {
-      //TODO: Manage update
-    }
-    else
-      this.modal.alert().showClose(true).title(this.localesService.get_UpdateUserComponent_Locales().modal_errorTitle).body(this.localesService.get_UpdateUserComponent_Locales().modal_errorBody).open();
+  public cleanForm() : void {
+    //TODO: Make form cleaning
+  }
 
+  public userUpdatedOK() : void {
+    //TODO: Manage update
+
+  }
+
+  public manageExternalError() {
+    this.modal.alert().showClose(true).title(this.localesService.get_UpdateUserComponent_Locales().modal_errorTitle).body(this.localesService.get_UpdateUserComponent_Locales().modal_errorBody).open();
   }
 }

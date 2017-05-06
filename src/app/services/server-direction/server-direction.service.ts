@@ -14,7 +14,7 @@ export class ServerDirectionService {
     private storageService: StorageService
   ) {
     this.serverConfig = this.storageService.getServerConfig();
-    this.serverUrl = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.secure ? '': this.serverConfig.port}`;
+    this.serverUrl = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}${this.serverConfig.secure ? '' : ':' + this.serverConfig.port}`;
   }
 
 
@@ -26,18 +26,25 @@ export class ServerDirectionService {
   /** UserService */
 
   public getLoginDirection() : string {
-    return `${this.getServerBaseUrl()}/${directions["api-v1"].login.root}`;
+    return `${this.getServerBaseUrl()}${directions["api-v1"].login.root}`;
   }
 
   public getSignUpSupervisor() : string {
-    return `${this.getServerBaseUrl()}/${directions["api-v1"].signup.supervisor}`;
+    return `${this.getServerBaseUrl()}${directions["api-v1"].signup.supervisor}`;
   }
 
   public getUpdateUserDirection() : string {
-    return `${this.getServerBaseUrl()}/${directions["api-v1"].users.root}`;
+    return `${this.getServerBaseUrl()}${directions["api-v1"].users.root}`;
   }
 
   public getRetrieveUserDirection() : string {
-    return `${this.getServerBaseUrl()}/${directions["api-v1"].users.profile}`;
+    return `${this.getServerBaseUrl()}${directions["api-v1"].users.profile}`;
+  }
+
+
+  /** MachineService */
+
+  public getMachinesDirection() : string {
+    return `${this.getServerBaseUrl()}${directions["api-v1"].machines.root}`;
   }
 }

@@ -86,12 +86,13 @@ export class AddMachineComponent {
       this.machineService.createMachine(introducedMachine).subscribe(
         (response: Response) => {
 
-          //TODO: Finish
-
-          this.machineCreatedOK();
+          if (response.ok)
+            this.machineCreatedOK();
+          else
+            this.manageExternalError(response.statusText);
         },
         (err) => {
-          this.manageExternalError();
+          this.manageExternalError(err);
         },
         () => {
           this.dialog.close();
@@ -135,7 +136,7 @@ export class AddMachineComponent {
     //TODO: Restart form
   }
 
-  private manageExternalError() {
+  private manageExternalError(err) {
     //TODO: Crear método para notificar al usuario que la inserción ha fallado
   }
 

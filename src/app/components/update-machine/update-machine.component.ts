@@ -14,6 +14,7 @@ import {AutocompleteService} from "../../services/AutocompleteService";
 import {StorageService} from "../../services/StorageService";
 import {DialogRef, ModalComponent, CloseGuard} from "angular2-modal";
 import {BSModalContext} from "angular2-modal/plugins/bootstrap";
+import {Response} from "@angular/http";
 
 export class AdditionMachinePanelData extends BSModalContext {
   public machine: Machine;
@@ -104,12 +105,21 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
           this.descriptionText
         );
 
-      if (this.machineService.updateMachine(introducedMachine)) {
-        this.cleanForm();
-        this.machineUpdatedOK();
-      }
-      else
-        this.manageExternalError();
+      this.machineService.updateMachine(introducedMachine).subscribe(
+        (response: Response) => {
+          if (response.ok) {
+            this.cleanForm();
+            this.machineUpdatedOK();
+          }
+          else
+            this.manageExternalError(response.statusText);
+
+        },
+        (err) => {
+          this.manageExternalError(err);
+        },
+        () => {}
+      );
     }
   }
 
@@ -149,7 +159,7 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
     //TODO: Restart form
   }
 
-  private manageExternalError() {
+  private manageExternalError(err) {
     //TODO: Crear método para notificar al usuario que la inserción ha fallado
   }
 

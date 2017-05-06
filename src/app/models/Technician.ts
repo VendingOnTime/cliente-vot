@@ -1,8 +1,6 @@
-import * as uuid from 'uuid/v4';
-
 export class Technician {
 
-  public id : string = uuid();
+  public id : string = '';
 
   public constructor(
     public name : string

@@ -9,79 +9,71 @@ import {MachineType} from "../models/MachineType";
 import {Location} from "../models/Location";
 import {Technician} from "../models/Technician";
 import {Observable} from "rxjs";
+import {ServerDirectionService} from "./server-direction/server-direction.service";
 
 
 @Injectable()
 export class MachineService {
 
-  private serverConfig : ServerConfig;
-  //FIXME: Use real direction
-  private CREATE_MACHINE_DIRECTION : string = '/api-v1/machines';
-  private GET_MACHINES_DIRECTION : string = '';
-
-  constructor(private http: Http, private storageService: StorageService) {
-    this.serverConfig = storageService.getServerConfig();
-  }
+  //TODO: TEST
+  constructor(
+    private http: Http,
+    private serverDirection: ServerDirectionService,
+    private storageService: StorageService
+  ) { }
 
 
   /** Action methods */
 
   public createMachine(newMachine : Machine) : Observable<Response> {
-    //TODO: Test against the server
-    let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.CREATE_MACHINE_DIRECTION}`;
+    let serverUrl : string = this.serverDirection.getMachinesDirection();
     let body : string = JSON.stringify(newMachine);
 
-    let token = '';
-
-    this.storageService.getUserReducer().subscribe((userReducer) => {
-      token = userReducer.token;
-    });
-
-    let headers: Headers = new Headers({
-      'Authorization': `JWT ${token}`
-    });
+    let headers = this.applyToken();
 
     return this.http.post(serverUrl, body, {headers});
   }
 
-  //TODO: Finish
-  public updateMachine(changedMachine : Machine) {
+  public updateMachine(changedMachine : Machine) : Observable<Response> {
+    let serverUrl : string = this.serverDirection.getMachinesDirection();
+    let body : string = JSON.stringify(changedMachine);
 
+    let headers = this.applyToken();
+
+    return this.http.put(serverUrl, body, {headers});
   }
 
-  public getMachines(loggedUser : User) : Machine[] {
-    //TODO: Test against the server
-    let serverUrl : string = `${this.serverConfig.secure ? 'https://' : 'http://'}${this.serverConfig.host}:${this.serverConfig.port}${this.GET_MACHINES_DIRECTION}`;
-    let OK : boolean;
-    let data : any;
+  public listMachines() : Observable<Response> {
+    let serverUrl : string = this.serverDirection.getMachinesDirection();
 
-    this.http.get(serverUrl).subscribe(
-      (response: Response) => {OK = true; data = response.json()},
-      (error) => {OK = false},
-      () => {}
-    );
+    let headers = this.applyToken();
 
-    //FIXME: Mock data
-
-    let mac1 : Machine = new Machine(
-      new Location("Mock location 1"),
-      MachineType.Down,
-      MachineState.ok,
-      new Technician("Bartolomeo"),
-      "Mock"
-    );
-
-    let mac2 : Machine = new Machine(
-      new Location("Mock location 2"),
-      MachineType.Left,
-      MachineState.retirada,
-      new Technician("Burriana"),
-      "Mock"
-    );
-
-    return [mac1,mac2];
+    return this.http.get(serverUrl, {headers});
   }
 
-  //TODO: Complete methods
+  public getMachine(machineID: string) : Observable<Response> {
+    let serverUrl : string = `${this.serverDirection.getMachinesDirection()}/${machineID}`;
 
+    let headers = this.applyToken();
+
+    return this.http.get(serverUrl, {headers});
+  }
+
+
+  /** Utility */
+
+  private applyToken() : Headers {
+    let token = '';
+    let headers: Headers;
+
+    this.storageService.getUserReducer().subscribe((userReducer) => {
+      token = userReducer.token;
+
+      headers = new Headers({
+        'Authorization': `JWT ${token}`
+      });
+    });
+
+    return headers;
+  }
 }

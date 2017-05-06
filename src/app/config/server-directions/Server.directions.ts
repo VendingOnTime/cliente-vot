@@ -3,7 +3,7 @@ export const directions = {
 
     "signup": {
       "root": "/api-v1/signup",
-        "supervisor": "/api-v1/signup/supervisor"
+      "supervisor": "/api-v1/signup/supervisor"
     },
 
     "login": {
@@ -12,7 +12,11 @@ export const directions = {
 
     "users": {
       "root": "/api-v1/users",
-        "profile": "/api-v1/users/profile"
+      "profile": "/api-v1/users/profile"
+    },
+
+    "machines": {
+      "root": "/api-v1/machines"
     }
   }
 };

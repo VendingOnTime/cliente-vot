@@ -29,6 +29,7 @@ import {ServerConfigReducer} from "./redux/reducers/ServerConfig.reducer";
 import {UserReducer} from "./redux/reducers/User.reducer";
 import {StoreModule} from "@ngrx/store";
 import {DialogRef, ModalModule} from "angular2-modal";
+import {ServerDirectionService} from "./services/server-direction/server-direction.service";
 
 
 const routes : Routes = [
@@ -79,7 +80,8 @@ const routes : Routes = [
     AuthGuard,
     MachineService,
     AutocompleteService,
-    LocalesService
+    LocalesService,
+    ServerDirectionService
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddMachineComponent, UpdateMachineComponent]

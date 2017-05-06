@@ -8,6 +8,9 @@ import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {overlayConfigFactory, Overlay} from "angular2-modal";
 import {AddMachineComponent} from "../add-machine/add-machine.component";
 import {UpdateMachineComponent} from "../update-machine/update-machine.component";
+import {Response} from "@angular/http";
+import {Technician} from "../../models/Technician";
+import {Location} from "../../models/Location";
 
 
 @Component({
@@ -32,18 +35,44 @@ export class ListMachineComponent {
     public modal: Modal,
     public overlay: Overlay
   ) {
-    this.machines = this.machineService.getMachines(this.store.getLoggedUser());
 
-    this.modal.overlay = overlay;
-    this.modal.overlay.defaultViewContainer = vcRef;
-    this.selections = [];
+    this.machineService.listMachines().subscribe(
+      (response: Response) => {
+        if (response.ok && response.json().success) {
+          let data = response.json().data;
 
-    this.localesServiceList = localesService.get_ListMachineComponent_Locales();
+          for (let i = 0; i < data.length; i++) {
+            let machine =
+              new Machine(
+                new Location(data[i].location.name),
+                data[i].type,
+                data[i].state,
+                new Technician(''),
+                data[i].description
+              );
 
+            this.machines.push(machine);
+          }
+        }
 
+        else {
+          //FIXME: Manage error
+        }
+      },
+      (err) => {
+        //FIXME: Manage error
+      },
+      () => {
+        this.modal.overlay = overlay;
+        this.modal.overlay.defaultViewContainer = vcRef;
+        this.selections = [];
 
-    for (let i = 0; i < this.machines.length; i++)
-      this.selections[i] = false;
+        this.localesServiceList = localesService.get_ListMachineComponent_Locales();
+
+        for (let i = 0; i < this.machines.length; i++)
+          this.selections[i] = false;
+      }
+    );
   }
 
 
@@ -57,14 +86,13 @@ export class ListMachineComponent {
     else
       this.numSelections -= 1;
 
-
     this.selections[index] = !this.selections[index];
   }
 
   public update() {
     let machinesSelected = this.getSelectedMachines();
 
-    if (machinesSelected.length == 1){
+    if (machinesSelected.length == 1) {
       // FIXME Arreglar que el tecnico de la maquina no se añade automaticamente en el formulario
       this.modal.open(
         UpdateMachineComponent,
@@ -73,9 +101,11 @@ export class ListMachineComponent {
           machine: machinesSelected[0]
         }, BSModalContext ));
 
-    } else if (machinesSelected.length == 0) {
+    }
+    else if (machinesSelected.length == 0) {
       this.modal.alert().body(this.localesServiceList.no_selected_machine).open();
-    } else {
+    }
+    else {
       this.modal.alert().body(this.localesServiceList.update_machines).open();
     }
   }
@@ -135,7 +165,7 @@ export class ListMachineComponent {
 
   /** Utility */
 
-  private getSelectedMachines() : Machine[]{
+  private getSelectedMachines() : Machine[] {
     var machinesSelected : Machine[] = [];
 
     for (let i = 0 ; i < this.machines.length ; i++)
@@ -146,18 +176,15 @@ export class ListMachineComponent {
   }
 
   public getMachineState(machineState : MachineState) : string {
-
     let OK = MachineState.ok;
     let retirada = MachineState.retirada;
 
     switch (machineState) {
-
       case OK:
         return this.localesService.get_MachineStateModel_Locales().ok;
 
       case retirada:
         return this.localesService.get_MachineStateModel_Locales().retirada;
     }
-
   }
 }
