@@ -74,5 +74,10 @@ export class LocalesService {
         return es_locales.component.update_user;
     }
   }
-
+  public get_TechniciansPanelComponent_Locales() {
+    switch (this.storageService.getLanguage()) {
+      case Languages.ES:
+        return es_locales.technicians_panel;
+    }
+  }
 }

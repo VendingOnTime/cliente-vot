@@ -1,6 +1,7 @@
 export const es_locales = {
 
   component : {
+    // TODO Hacer seccion para errores de formularios (Los campos se repiten en muchos formularios)
 
     add_machine : {
       title : "Añadir máquina",
@@ -107,6 +108,18 @@ export const es_locales = {
       confirm_password_placeholder : "Confirmar contraseña",
       equal_password_error : "La contraseña introducida es diferente"
     }
+  },
+  technicians_panel : {
+    required_email : "Ha de introducirse un email",
+    incorrect_email: "El formato del email no está admitido",
+    required_username: "Ha de introducirse un numbre de usuario",
+    required_dni: "Ha de introducirse un dni",
+    required_name: "Ha de introducirse un nombre",
+    required_surname: "Ha de introducirse un apellido",
+    short_username : "El nombre de usuario es demasiado corto",
+    large_username : "El nombre de usuario es demasiado largo",
+    format_username : "El nombre de usuario no puede contener caracteres especiales",
+    format_email : "El formato del email no está admitido"
   },
 
   model : {
