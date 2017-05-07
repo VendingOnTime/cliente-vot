@@ -75,10 +75,25 @@ export class NavigationBarComponent {
   }
 
   public getLogged() : boolean {
-    let logged: boolean;
-    this.userReducerState.subscribe((data: UserReducerState) => logged = data.logged);
-    return logged;
+    if (localStorage.getItem('token') && this.validWebToken(localStorage.getItem('token')))
+     return true;
+
+    else
+      return false;
   }
+
+  private validWebToken(token: string) {
+    //FIXME: validate token
+    return true;
+  }
+
+  public logout() {
+    if (localStorage.getItem('token')) {
+      localStorage.removeItem('token');
+      this.router.navigate(['login']);
+    }
+  }
+
   public userData() {
     this.modal.open(UpdateUserComponent, overlayConfigFactory({ isBlocking: false }, BSModalContext));
   }

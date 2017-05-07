@@ -68,7 +68,8 @@ export const es_locales = {
       technicians : "Técnicos",
       issues : "Incidencias",
       administration : "Administración",
-      hello_logged : "Hola, "
+      hello_logged : "Hola, ",
+      logout : "Cerrar sesión"
     },
 
     signUp_panel : {

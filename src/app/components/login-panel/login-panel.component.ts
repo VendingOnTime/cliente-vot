@@ -69,14 +69,13 @@ export class LoginPanelComponent {
 
           if (success) {
             this.storageService.saveTokenFromLogIn(data.data);
+            localStorage.setItem('token', data.data);
 
             this.userService.retrieveUser(data.data).subscribe(
               (userData: Response) => {
-                console.log(userData);
+
                 if (userData.ok) {
                   let responseData = userData.json();
-
-                  console.log(responseData);
 
                   if (responseData.success)
                     this.storageService.saveUserFromLogIn(this.userService.buildUser(responseData.data));

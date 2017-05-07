@@ -16,14 +16,13 @@ export class AuthGuard implements CanActivate {
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let result : boolean;
 
-    this.storageService.getUserReducer().subscribe((userReducerData: UserReducerState) => {
-      if (userReducerData.logged)
-        result = true;
-      else {
-        this.router.navigate(['/login']);
-        result = false;
-      }
-    });
+    if (localStorage.getItem('token'))
+      result = true;
+
+    else {
+      this.router.navigate(['/login']);
+      result = false;
+    }
 
     return result;
   }

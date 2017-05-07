@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, Headers} from "@angular/http";
+import {Http, Response, Headers, RequestOptionsArgs} from "@angular/http";
 import {Machine} from "../models/Machine";
 import {StorageService} from "./StorageService";
 import {ServerConfig} from "../config/Server.config";
