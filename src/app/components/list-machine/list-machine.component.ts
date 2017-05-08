@@ -5,7 +5,7 @@ import {MachineService} from "../../services/MachineService";
 import {StorageService} from "../../services/StorageService";
 import {Component, ViewContainerRef} from '@angular/core';
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {overlayConfigFactory, Overlay} from "angular2-modal";
+import {overlayConfigFactory, Overlay, DialogRef} from "angular2-modal";
 import {AddMachineComponent} from "../add-machine/add-machine.component";
 import {UpdateMachineComponent} from "../update-machine/update-machine.component";
 import {Response} from "@angular/http";
@@ -36,6 +36,16 @@ export class ListMachineComponent {
     public overlay: Overlay
   ) {
 
+    this.modal.overlay = overlay;
+    this.modal.overlay.defaultViewContainer = vcRef;
+    this.selections = [];
+    this.machines = [];
+
+    this.localesServiceList = localesService.get_ListMachineComponent_Locales();
+
+    for (let i = 0; i < this.machines.length; i++)
+      this.selections[i] = false;
+
     this.machineService.listMachines().subscribe(
       (response: Response) => {
         if (response.ok && response.json().success) {
@@ -62,16 +72,7 @@ export class ListMachineComponent {
       (err) => {
         //FIXME: Manage error
       },
-      () => {
-        this.modal.overlay = overlay;
-        this.modal.overlay.defaultViewContainer = vcRef;
-        this.selections = [];
-
-        this.localesServiceList = localesService.get_ListMachineComponent_Locales();
-
-        for (let i = 0; i < this.machines.length; i++)
-          this.selections[i] = false;
-      }
+      () => {}
     );
   }
 
@@ -144,7 +145,7 @@ export class ListMachineComponent {
       .open()
       .then((resultPromise) => {
         resultPromise.result.then((result) => {
-          // Aqui llega cuando el usuario pulsa el boton ok
+          // Aqui llega cuando el usuario pulsa el boton OPERATIVE
           this.prueba(machinesSelected); // TODO Colocar servicio de borrado de maquina
         },
           () => {} // Aqui llega cuando pulsa cancel
@@ -176,8 +177,8 @@ export class ListMachineComponent {
   }
 
   public getMachineState(machineState : MachineState) : string {
-    let OK = MachineState.ok;
-    let retirada = MachineState.retirada;
+    let OK = MachineState.OPERATIVE;
+    let retirada = MachineState.WAREHOUSE;
 
     switch (machineState) {
       case OK:

@@ -129,9 +129,9 @@ export const es_locales = {
       retirada : "Retirada"
     },
     machineType : {
-      up : "Up",
-      down : "Down",
-      left : "Left",
+      up : "COFFEE",
+      down : "SNACKS",
+      left : "DRINKS",
       right : "Right"
     }
   }

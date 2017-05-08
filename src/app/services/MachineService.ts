@@ -27,11 +27,12 @@ export class MachineService {
 
   public createMachine(newMachine : Machine) : Observable<Response> {
     let serverUrl : string = this.serverDirection.getMachinesDirection();
-    let body : string = JSON.stringify(newMachine);
+
+    let machineJson = {location: newMachine.location.name, type: MachineType[newMachine.machineType], state: MachineState[newMachine.machineState], description: newMachine.description};
 
     let headers = this.applyToken();
 
-    return this.http.post(serverUrl, body, {headers});
+    return this.http.post(serverUrl, machineJson, {headers});
   }
 
   public updateMachine(changedMachine : Machine) : Observable<Response> {
@@ -67,9 +68,10 @@ export class MachineService {
     let headers: Headers;
 
     this.storageService.getUserReducer().subscribe((userReducer) => {
-      token = userReducer.token;
+      token = localStorage.getItem('token');
 
       headers = new Headers({
+        'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
       });
     });

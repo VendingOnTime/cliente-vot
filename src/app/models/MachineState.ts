@@ -1,4 +1,5 @@
 export enum MachineState {
-  ok = 0,
-  retirada = 1
+  OPERATIVE = 0,
+  WAREHOUSE = 1,
+  OUT_OF_SERVICE = 2
 }
