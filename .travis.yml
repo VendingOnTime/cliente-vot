@@ -23,4 +23,6 @@ before_script:
   - npm install
   - ng build
 
-script: npm run-script test-code-coverage-update
+script:
+  - npm run-script test-code-coverage-update
+  - npm start
