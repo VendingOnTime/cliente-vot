@@ -12,6 +12,13 @@ export class LocalesService {
 
   /** Component strings */
 
+  public get_Forms_Locales() {
+    switch (this.storageService.getLanguage()) {
+      case Languages.ES:
+        return es_locales.forms;
+    }
+  }
+
   public get_AddMachineComponent_Locales() {
     switch (this.storageService.getLanguage()) {
       case Languages.ES:

@@ -45,6 +45,9 @@ export class AddMachineComponent {
   public autoCompleteList = this.autocompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());
   public enumEx = EnumEx;
 
+  // Locales
+  public addMachineLocales;
+  public formLocales;
 
   public constructor(
     public formBuilder: FormBuilder,
@@ -66,6 +69,9 @@ export class AddMachineComponent {
     this.machineTypeInput = this.form.controls['machineType'];
     this.machineStateInput = this.form.controls['machineState'];
     this.descriptionInput = this.form.controls['descriptionText'];
+
+    this.addMachineLocales = this.localesService.get_AddMachineComponent_Locales();
+    this.formLocales = this.localesService.get_Forms_Locales();
   }
 
   /** Form submit */

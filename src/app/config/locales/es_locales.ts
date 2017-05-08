@@ -1,17 +1,26 @@
 export const es_locales = {
+  forms : {
+    placeholder : {
 
+    },
+    error: {
+      required : "Se requiere el campo",
+
+      incorrectPositionLength : "Localización solo puede tener más 140 carácteres",
+      incorrectPositionFormat : "Localización no puede contener carácteres especiales",
+
+      incorrectDescriptionMinLength : "Localización debe tener más 2 carácteres",
+      incorrectDescriptionLength : "La descripción es demasiado larga",
+      incorrectDescriptionFormat : "Descripción no puede contener carácteres especiales",
+
+      technicianError : "Es requerido que la administre alguien",
+    }
+  },
   component : {
     // TODO Hacer seccion para errores de formularios (Los campos se repiten en muchos formularios)
 
     add_machine : {
-      title : "Añadir máquina",
-      required : "Se requiere el campo",
-      incorrectPositionLength : "Localización solo puede tener más 140 carácteres",
-      incorrectPositionFormat : "Localización no puede contener carácteres especiales",
-      incorrectDescriptionMinLength : "Localización debe tener más 2 carácteres",
-      technicianError : "Es requerido que la administre alguien",
-      incorrectDescriptionLength : "La descripción es demasiado larga",
-      incorrectDescriptionFormat : "Descripción no puede contener carácteres especiales"
+      title : "Añadir máquina"
     },
 
     list_machine : {
