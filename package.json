@@ -12,7 +12,12 @@
     "test-code-coverage-update": "ng test --sr --cc ; codecov --token=6609ce72-0cc2-4b65-bab0-692e735d2bc3",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "tscompile": "node_modules/.bin/tsc"
+    "tscompile": "node_modules/.bin/tsc",
+    "postinstall": "ng build --aot -prod",
+    "engines": {
+      "node": "6.9.2",
+      "npm": "3.10.9"
+    }
   },
   "private": true,
   "dependencies": {
