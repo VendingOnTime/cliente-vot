@@ -2,7 +2,7 @@
   <h2 class="text-center">{{addMachineLocales.title}}</h2>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="{{formLocales.placeholder.location}}" [formControl]="positionAddressInput" [(ngModel)]="positionAddress">
-    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('required')" [hidden]="positionAddressInput.untouched">{{formLocales.error.required}}</div>
+    <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('required')" [hidden]="positionAddressInput.untouched">{{formLocales.error.isRequired}}</div>
     <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionLength')" [hidden]="positionAddressInput.untouched">{{formLocales.error.incorrectPositionLength}}</div>
     <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectPositionFormat')" [hidden]="positionAddressInput.untouched">{{formLocales.error.incorrectPositionFormat}}</div>
     <div class="alert alert-danger" *ngIf="positionAddressInput.hasError('incorrectDescriptionMinLength')" [hidden]="positionAddressInput.untouched">{{formLocales.error.incorrectDescriptionMinLength}}</div>

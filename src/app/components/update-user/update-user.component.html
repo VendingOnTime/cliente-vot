@@ -12,7 +12,7 @@
   </div>
   <div class="form-group">
       <input type="password" class="form-control" id="inputPassword" [placeholder]="formLocales.placeholder.new_password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
-      <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{formLocales.error.new_password_required}}</div>
+      <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{formLocales.error.isRequired}}</div>
       <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">{{formLocales.error.format_password}}</div>
   </div>
   <div class="form-group">
