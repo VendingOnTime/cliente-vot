@@ -20,8 +20,7 @@ import {Location} from "../../models/Location";
   providers : [Overlay]
 })
 export class ListMachineComponent {
-  private localesServiceList;
-
+  private listMachineLocales;
     // Component interaction data
   private machines : Machine[];
   private selections : boolean[];
@@ -41,7 +40,7 @@ export class ListMachineComponent {
     this.selections = [];
     this.machines = [];
 
-    this.localesServiceList = localesService.get_ListMachineComponent_Locales();
+    this.listMachineLocales = localesService.get_ListMachineComponent_Locales();
 
     for (let i = 0; i < this.machines.length; i++)
       this.selections[i] = false;
@@ -104,10 +103,10 @@ export class ListMachineComponent {
 
     }
     else if (machinesSelected.length == 0) {
-      this.modal.alert().body(this.localesServiceList.no_selected_machine).open();
+      this.modal.alert().body(this.listMachineLocales.no_selected_machine).open();
     }
     else {
-      this.modal.alert().body(this.localesServiceList.update_machines).open();
+      this.modal.alert().body(this.listMachineLocales.update_machines).open();
     }
   }
 
@@ -123,7 +122,7 @@ export class ListMachineComponent {
 
     // Si no se han seleccionado maquinas avisa y sal
     if (machinesSelected.length == 0){
-      this.modal.alert().body(this.localesServiceList.no_selected_machine).open();
+      this.modal.alert().body(this.listMachineLocales.no_selected_machine).open();
       return;
     }
 
@@ -131,17 +130,17 @@ export class ListMachineComponent {
     let bodyext= "";
 
     if (machinesSelected.length == 1){
-      bodyext = this.localesServiceList.delete_a_machine;
+      bodyext = this.listMachineLocales.delete_a_machine;
     } else {
-      bodyext = this.localesServiceList.delete_machines;
+      bodyext = this.listMachineLocales.delete_machines;
     }
 
     // Muestra el aviso de confirmacion
     this.modal.confirm()
-      .title(this.localesServiceList.delete_confirm_title)
+      .title(this.listMachineLocales.delete_confirm_title)
       .body(bodyext)
-      .okBtn(this.localesServiceList.delete_confirm_confirm_button)
-      .cancelBtn(this.localesServiceList.delete_confirm_cancel_button)
+      .okBtn(this.listMachineLocales.delete_confirm_confirm_button)
+      .cancelBtn(this.listMachineLocales.delete_confirm_cancel_button)
       .open()
       .then((resultPromise) => {
         resultPromise.result.then((result) => {
