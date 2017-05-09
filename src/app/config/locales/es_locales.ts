@@ -9,7 +9,8 @@ export const es_locales = {
       email: "Email",
       dni: "DNI",
       name: "Nombre",
-      surname: "Apellidos"
+      surname: "Apellidos",
+      new_password: "Introduce nueva contraseña"
     },
     error: {
       isRequired : "Se requiere el campo",
@@ -69,25 +70,12 @@ export const es_locales = {
 
     login_panel : {
       title : "Iniciar sesión",
-      username_input_placeholder : "Usuario/Email",
-      required_user : "Ha de introducirse un nombre de usuario o email",
-      password : "Contraseña",
-      login_error : "La combinación de usuario y contraseña introducida es incorrecta",
       registerMessage : "¿Aun no eres cliente?",
       registerLink : "Registrarse"
     },
 
     update_machine : {
       title : "Actualizar máquina",
-      position_placeholder : "Ubicación",
-      required : "Se requiere el campo",
-      incorrectPositionLength : "La localización no puede tener más de 140 carácteres",
-      incorrectPositionFormat : "La localización no puede contener carácteres especiales",
-      incorrectDescriptionMinLength : "La localización debe tener más de 2 carácteres",
-      technicianError : "Se requiere que la administre alguien",
-      description_placeholder : "Descripción",
-      incorrectDescriptionLength : "La descripción es demasiado larga",
-      incorrectDescriptionFormat : "La descripción no puede contener carácteres especiales",
       submitMessage: "Actualizar"
     },
 
@@ -108,18 +96,6 @@ export const es_locales = {
 
     signUp_panel : {
       user_placeholder : "Usuario",
-      required_user : "Ha de introducirse un nombre de usuario",
-      short_username : "El nombre de usuario es demasiado corto",
-      large_username : "El nombre de usuario es demasiado largo",
-      format_username : "El nombre de usuario no puede contener caracteres especiales",
-      email_placeholder : "Email",
-      required_email : "Ha de introducirse un email",
-      format_email : "El formato del email no está admitido",
-      password_placeholder : "Contraseña",
-      required_password : "Es necesario introducir una contraseña",
-      format_password : "La contraseña no es lo suficientemente segura",
-      confirm_password_placeholder : "Confirmar contraseña",
-      equal_passwords : "La contraseña introducida es diferente",
       client_question : "¿Ya eres cliente?",
       init_session : "Iniciar sesión",
       modal_errorTitle : "Error en el servidor",
@@ -128,19 +104,9 @@ export const es_locales = {
 
     update_user : {
       title : "Modificar perfil",
-      email_placeholder : "Cambiar email",
-      required_email : "Ha de introducirse un email",
-      incorrect_email : "El formato del email no está admitido",
-      password_placeholder : "Contraseña",
-      required_password : "Es necesario introducir una contraseña",
-      incorrect_password : "La contraseña no es lo suficientemente segura",
       modal_errorTitle : "Error en el servidor",
       modal_errorBody : "Ha ocurrido un error al actualizar los datos del usuario. Inténtelo de nuevo en un momento.",
-      new_password_placeholder : "Nueva contraseña",
-      new_password_required : "Es necesario introducir una contraseña",
-      new_password_incorrect : "La contraseña no es lo suficientemente segura",
-      confirm_password_placeholder : "Confirmar contraseña",
-      equal_password_error : "La contraseña introducida es diferente"
+      submitButton: "Modificar"
     }
   },
   technicians_panel : {

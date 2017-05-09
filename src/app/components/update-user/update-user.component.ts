@@ -32,6 +32,9 @@ export class UpdateUserComponent {
   private password: string = '';
   private repeatPassword: string = '';
 
+  // Locals
+  public updateUserLocales;
+  public formLocales;
 
   public constructor(
     public overlay: Overlay,
@@ -60,6 +63,9 @@ export class UpdateUserComponent {
     let user = this.storageService.getLoggedUser();
 
     this.email = user.email;
+
+    this.updateUserLocales = localesService.get_UpdateUserComponent_Locales();
+    this.formLocales = localesService.get_Forms_Locales();
   }
 
 
