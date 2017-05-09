@@ -177,14 +177,15 @@ export class ListMachineComponent {
   }
 
   public getMachineState(machineState : MachineState) : string {
-    let OK = MachineState.OPERATIVE;
-    let retirada = MachineState.WAREHOUSE;
 
-    switch (machineState) {
-      case OK:
+    switch (machineState.toString().toUpperCase()) {
+      case MachineState[MachineState.OPERATIVE]:
         return this.localesService.get_MachineStateModel_Locales().ok;
 
-      case retirada:
+      case MachineState[MachineState.WAREHOUSE]:
+        return this.localesService.get_MachineStateModel_Locales().almacenada;
+
+      case MachineState[MachineState.OUT_OF_SERVICE]:
         return this.localesService.get_MachineStateModel_Locales().retirada;
     }
   }

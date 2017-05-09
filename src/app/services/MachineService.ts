@@ -28,7 +28,7 @@ export class MachineService {
   public createMachine(newMachine : Machine) : Observable<Response> {
     let serverUrl : string = this.serverDirection.getMachinesDirection();
 
-    let machineJson = {location: newMachine.location.name, type: MachineType[newMachine.machineType], state: MachineState[newMachine.machineState], description: newMachine.description};
+    let machineJson = {location: {name: newMachine.location.name}, type: MachineType[newMachine.machineType], state: MachineState[newMachine.machineState], description: newMachine.description};
 
     let headers = this.applyToken();
 

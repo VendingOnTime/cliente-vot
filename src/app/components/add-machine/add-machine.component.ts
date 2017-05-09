@@ -131,7 +131,7 @@ export class AddMachineComponent {
   public getAllMachineTypes() : string[] {
     return this.enumEx.getNames(MachineType);
   }
-  public getAllMachineStates() : {} {
+  public getAllMachineStates() : string[] {
     return this.enumEx.getNames(MachineState);
   }
 

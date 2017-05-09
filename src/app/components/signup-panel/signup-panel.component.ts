@@ -54,7 +54,7 @@ export class SignupPanelComponent {
       repeatPassword: new FormControl('', Validators.required)
     },{validator: RepeatPasswordValidator});
 
-    this.userInput = this.form.controls['username'];
+    this.userInput = this.form.controls['user'];
     this.emailInput = this.form.controls['email'];
     this.passwordInput = this.form.controls['password'];
     this.repeatPasswordInput = this.form.controls['repeatPassword'];
