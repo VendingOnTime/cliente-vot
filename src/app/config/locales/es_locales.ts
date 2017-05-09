@@ -87,7 +87,8 @@ export const es_locales = {
       technicianError : "Se requiere que la administre alguien",
       description_placeholder : "Descripción",
       incorrectDescriptionLength : "La descripción es demasiado larga",
-      incorrectDescriptionFormat : "La descripción no puede contener carácteres especiales"
+      incorrectDescriptionFormat : "La descripción no puede contener carácteres especiales",
+      submitMessage: "Actualizar"
     },
 
     autocomplete : {

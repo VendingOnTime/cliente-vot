@@ -53,6 +53,9 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
   public autoCompleteList = this.autoCompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());
   public enumEx = EnumEx;
 
+  // Locales
+  public updateMachineLocales;
+  public formLocales;
 
   public constructor(
     public formBuilder: FormBuilder,
@@ -84,6 +87,9 @@ export class UpdateMachineComponent implements CloseGuard, ModalComponent<Additi
     this.machineTypeInput = this.form.controls['machineType'];
     this.machineStateInput = this.form.controls['machineState'];
     this.descriptionInput = this.form.controls['descriptionText'];
+
+    this.updateMachineLocales = localesService.get_UpdateMachineComponent_Locales();
+    this.formLocales = localesService.get_Forms_Locales();
   }
 
   public getTechnicianName() : string{
