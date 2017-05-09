@@ -21,17 +21,17 @@ import {LocalesService} from "../../services/LocalesService";
 export class SignupPanelComponent {
 
   // Component references
-  private form : FormGroup;
-  private userInput: AbstractControl;
-  private emailInput: AbstractControl;
-  private passwordInput: AbstractControl;
-  private repeatPasswordInput: AbstractControl;
+  public form : FormGroup;
+  public userInput: AbstractControl;
+  public emailInput: AbstractControl;
+  public passwordInput: AbstractControl;
+  public repeatPasswordInput: AbstractControl;
 
   // Data binding
-  private username: string = '';
-  private email: string = '';
-  private password: string = '';
-  private repeatPassword: string = '';
+  public username: string = '';
+  public email: string = '';
+  public password: string = '';
+  public repeatPassword: string = '';
 
 
   public constructor(
@@ -54,7 +54,7 @@ export class SignupPanelComponent {
       repeatPassword: new FormControl('', Validators.required)
     },{validator: RepeatPasswordValidator});
 
-    this.userInput = this.form.controls['user'];
+    this.userInput = this.form.controls['username'];
     this.emailInput = this.form.controls['email'];
     this.passwordInput = this.form.controls['password'];
     this.repeatPasswordInput = this.form.controls['repeatPassword'];
