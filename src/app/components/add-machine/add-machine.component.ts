@@ -34,7 +34,7 @@ export class AddMachineComponent {
   private positionAddress: string;
   private machineType: string = MachineType[0];
   private machineState: string = MachineState[0];
-  private descriptionText: string;
+  private descriptionText: string = "";
   private technician: string = "";
 
   // Errors management

@@ -10,7 +10,7 @@ export function DescriptionValidator(control: AbstractControl) : {[key: string] 
     return { "incorrectDescriptionLength": true };
   }
 
-  if (description != null && description != "" &&  !REGEXP.test(description))  {
+  if (description != null && description != "" && !REGEXP.test(description))  {
     return { "incorrectDescriptionFormat": true };
   }
 

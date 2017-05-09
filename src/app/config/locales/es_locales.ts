@@ -1,10 +1,11 @@
 export const es_locales = {
   forms : {
-    placeholder : {
-
+    placeholder: {
+      location: "",
+      description: ""
     },
     error: {
-      required : "Se requiere el campo",
+      isRequired : "Se requiere el campo",
 
       incorrectPositionLength : "Localización solo puede tener más 140 carácteres",
       incorrectPositionFormat : "Localización no puede contener carácteres especiales",
