@@ -114,13 +114,14 @@ export const es_locales = {
 
   model : {
     machineState : {
-      ok : "OK",
-      retirada : "Retirada"
+      ok : "Operativa",
+      retirada : "Fuera de servicio",
+      almacenada: "Almacenada"
     },
     machineType : {
-      up : "COFFEE",
-      down : "SNACKS",
-      left : "DRINKS",
+      coffee : "Café",
+      snacks : "Snacks",
+      bebidas : "Bebidas",
       right : "Right"
     }
   }

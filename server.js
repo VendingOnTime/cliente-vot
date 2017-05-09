@@ -1,8 +1,10 @@
-const path = require('path');
-var express = require('express'),
-  app = express();
+const path = require('path'),
+      express = require('express'),
+      app = express();
 
-app.use(express.static(__dirname + '/dist'));
+app.set('port', process.env.PORT || 5000);
+
+app.use(express.static(path.resolve('dist')));
 
 const forceSSL = function() {
   return function (req, res, next) {
@@ -14,10 +16,10 @@ const forceSSL = function() {
 
 app.use(forceSSL());
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+app.get('*', function(req, res) {
+  res.sendFile(path.resolve('dist', 'index.html'));
 });
 
-app.listen(process.env.PORT || 5000, function () {
-  console.log('Express server listening on port ' + `${app.get('port') ? app.get('port') : 5000}`);
+app.listen(app.get('port'), function () {
+  console.log('Express server listening on port ' + app.get('port'));
 });

@@ -17,23 +17,23 @@ export class AddTechnicianComponent {
 
 
   // Form components
-  private form : FormGroup;
-  private usernameInput: AbstractControl;
-  private passwordInput: AbstractControl;
-  private repeatPasswordInput: AbstractControl;
-  private emailInput: AbstractControl;
-  private dniInput: AbstractControl;
-  private nameInput: AbstractControl;
-  private surnameInput: AbstractControl;
+  public form : FormGroup;
+  public usernameInput: AbstractControl;
+  public passwordInput: AbstractControl;
+  public repeatPasswordInput: AbstractControl;
+  public emailInput: AbstractControl;
+  public dniInput: AbstractControl;
+  public nameInput: AbstractControl;
+  public surnameInput: AbstractControl;
   // Data binding
 
-  private username: string = '';
-  private password: string = '';
-  private repeatPassword: string = '';
-  private email: string = '';
-  private dni: string = '';
-  private name: string = '';
-  private surname: string = '';
+  public username: string = '';
+  public password: string = '';
+  public repeatPassword: string = '';
+  public email: string = '';
+  public dni: string = '';
+  public name: string = '';
+  public surname: string = '';
 
   // Locals
   public techLocales;

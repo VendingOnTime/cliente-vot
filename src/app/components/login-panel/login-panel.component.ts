@@ -16,16 +16,16 @@ import {StorageService} from "../../services/StorageService";
 export class LoginPanelComponent {
 
   // Elements
-  private form : FormGroup;
-  private userInput: AbstractControl;
-  private passwordInput: AbstractControl;
+  public form : FormGroup;
+  public userInput: AbstractControl;
+  public passwordInput: AbstractControl;
 
   // Model binding
-  private user: string = '';
-  private password: string = '';
+  public username: string = '';
+  public password: string = '';
 
   // Management
-  private loginError: boolean = false;
+  public loginError: boolean = false;
 
   // Locales
   public loginPanelLocales;

@@ -38,10 +38,7 @@
       {{listMachineLocales.location}}
     </th>
     <th>
-      {{listMachineLocales.last_update}}
-    </th>
-    <th>
-      {{listMachineLocales.assigned_technician}}
+      {{localesService.get_ListMachineComponent_Locales().assigned_technician}}
     </th>
   </tr>
   </thead>
@@ -50,7 +47,6 @@
         <td>
           <input id="{{machine.id}}" class="form-control checkbox" type="checkbox" value="{{selections[i]}}" (change)="selectMachine(i)">
         </td>
-
         <td>
           {{machine.id}}
         </td>
@@ -58,10 +54,7 @@
           {{getMachineState(machine.machineState)}}
         </td>
         <td>
-          {{machine.position.address}}
-        </td>
-        <td>
-          {{machine.lastUpdate}}
+          {{machine.location.name}}
         </td>
         <td>
           {{machine.technician.name}}

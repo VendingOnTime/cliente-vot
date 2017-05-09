@@ -24,22 +24,22 @@ import {Response} from "@angular/http";
 export class AddMachineComponent {
 
   // Form components
-  private form : FormGroup;
-  private positionAddressInput: AbstractControl;
-  private machineTypeInput: AbstractControl;
-  private machineStateInput: AbstractControl;
-  private descriptionInput: AbstractControl;
+  public form : FormGroup;
+  public positionAddressInput: AbstractControl;
+  public machineTypeInput: AbstractControl;
+  public machineStateInput: AbstractControl;
+  public descriptionInput: AbstractControl;
 
   // Data binding
-  private positionAddress: string;
-  private machineType: string = MachineType[0];
-  private machineState: string = MachineState[0];
-  private descriptionText: string = "";
-  private technician: string = "";
+  public positionAddress: string;
+  public machineType: string = MachineType[0];
+  public machineState: string = MachineState[0];
+  public descriptionText: string;
+  public technician: string = "";
 
   // Errors management
-  private technicianError: boolean = false;
-  private technicianErrorHidden: boolean = true;
+  public technicianError: boolean = false;
+  public technicianErrorHidden: boolean = true;
 
   // Component data management
   public autoCompleteList = this.autocompleteService.getAvailableTechnicians(this.storageService.getLoggedUser());
@@ -51,7 +51,7 @@ export class AddMachineComponent {
 
   public constructor(
     public formBuilder: FormBuilder,
-    private machineService: MachineService,
+    public machineService: MachineService,
     public localesService: LocalesService,
     public autocompleteService : AutocompleteService,
     public storageService : StorageService,
@@ -131,7 +131,7 @@ export class AddMachineComponent {
   public getAllMachineTypes() : string[] {
     return this.enumEx.getNames(MachineType);
   }
-  public getAllMachineStates() : {} {
+  public getAllMachineStates() : string[] {
     return this.enumEx.getNames(MachineState);
   }
 

@@ -2,6 +2,10 @@
   "name": "cliente-vot",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "6.9.2",
+    "npm": "3.10.9"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node ./server.js",
@@ -12,10 +16,13 @@
     "test-code-coverage-update": "ng test --sr --cc ; codecov --token=6609ce72-0cc2-4b65-bab0-692e735d2bc3",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "tscompile": "node_modules/.bin/tsc"
+    "tscompile": "node_modules/.bin/tsc",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^1.0.1",
+    "@angular/compiler-cli": "^4.0.3",
     "@angular/common": "^4.0.3",
     "@angular/compiler": "^4.0.3",
     "@angular/core": "^4.0.3",
@@ -34,15 +41,12 @@
     "core-js": "^2.4.1",
     "express": "^4.15.2",
     "ng2-bootstrap": "^1.6.3",
-    "node": "0.0.0",
     "rxjs": "^5.3.0",
     "typescript": "^2.3.0",
     "uuid": "^3.0.1",
     "zone.js": "^0.8.9"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.1",
-    "@angular/compiler-cli": "^4.0.3",
     "@types/jasmine": "^2.5.47",
     "@types/node": "^6.0.70",
     "codecov": "^2.1.0",

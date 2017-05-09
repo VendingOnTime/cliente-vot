@@ -20,11 +20,13 @@ import {Location} from "../../models/Location";
   providers : [Overlay]
 })
 export class ListMachineComponent {
-  private listMachineLocales;
+
+  public listMachineLocales;
+
     // Component interaction data
-  private machines : Machine[];
-  private selections : boolean[];
-  private numSelections: number = 0;
+  public machines : Machine[];
+  public selections : boolean[];
+  public numSelections: number = 0;
 
   constructor(
     public localesService: LocalesService,
@@ -176,14 +178,15 @@ export class ListMachineComponent {
   }
 
   public getMachineState(machineState : MachineState) : string {
-    let OK = MachineState.OPERATIVE;
-    let retirada = MachineState.WAREHOUSE;
 
-    switch (machineState) {
-      case OK:
+    switch (machineState.toString().toUpperCase()) {
+      case MachineState[MachineState.OPERATIVE]:
         return this.localesService.get_MachineStateModel_Locales().ok;
 
-      case retirada:
+      case MachineState[MachineState.WAREHOUSE]:
+        return this.localesService.get_MachineStateModel_Locales().almacenada;
+
+      case MachineState[MachineState.OUT_OF_SERVICE]:
         return this.localesService.get_MachineStateModel_Locales().retirada;
     }
   }

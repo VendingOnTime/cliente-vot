@@ -20,17 +20,17 @@ import {Response} from "@angular/http";
 export class UpdateUserComponent {
 
   // Component references
-  private form : FormGroup;
-  private emailInput: AbstractControl;
-  private oldPasswordInput: AbstractControl;
-  private passwordInput: AbstractControl;
-  private repeatPasswordInput: AbstractControl;
+  public form : FormGroup;
+  public emailInput: AbstractControl;
+  public oldPasswordInput: AbstractControl;
+  public passwordInput: AbstractControl;
+  public repeatPasswordInput: AbstractControl;
 
   // Data binding
-  private email: string = '';
-  private oldPassword: string = '';
-  private password: string = '';
-  private repeatPassword: string = '';
+  public email: string = '';
+  public oldPassword: string = '';
+  public password: string = '';
+  public repeatPassword: string = '';
 
   // Locals
   public updateUserLocales;
