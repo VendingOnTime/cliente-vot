@@ -22,20 +22,26 @@
 <table class="table table-bordered table-hover table-condensed table-responsive">
   <thead>
   <tr>
-    <th style="min-width: 30px">
+    <th style="min-width: 30px;">
 
     </th>
     <th>
-      ID
+      {{listTechnicianLocales.dni}}
+    </th>
+    <th>
+      {{listTechnicianLocales.name}}
+    </th>
+    <th>
+      {{listTechnicianLocales.surname}}
+    </th>
+    <th>
+      {{listTechnicianLocales.user}}
+    </th>
+    <th>
+      {{listTechnicianLocales.email}}
     </th>
     <th>
       {{listTechnicianLocales.state}}
-    </th>
-    <th>
-      {{listTechnicianLocales.location}}
-    </th>
-    <th>
-      {{localesService.get_ListMachineComponent_Locales().assigned_technician}}
     </th>
   </tr>
   </thead>
@@ -45,16 +51,22 @@
       <input id="{{technician.id}}" class="form-control checkbox" type="checkbox" value="{{selections[i]}}" (change)="selectRow(i)">
     </td>
     <td>
-      {{technician.id}}
+      {{technician.dni}}
     </td>
     <td>
-      pe
+      {{technician.name}}
     </td>
     <td>
-      pi
+      {{technician.surname}}
     </td>
     <td>
-      to
+      {{technician.user}}
+    </td>
+    <td>
+      {{technician.email}}
+    </td>
+    <td>
+      {{technician.state}}
     </td>
   </tr>
   </tbody>

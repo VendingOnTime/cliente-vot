@@ -88,6 +88,6 @@ const routes : Routes = [
     ServerDirectionService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddMachineComponent, UpdateMachineComponent]
+  entryComponents: [AddMachineComponent, UpdateMachineComponent, AddTechnicianComponent]
 })
 export class AppModule { }
