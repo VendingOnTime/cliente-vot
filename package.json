@@ -13,7 +13,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "tscompile": "node_modules/.bin/tsc",
-    "postinstall": "ng build",
+    "postinstall": "ng build --aot -prod",
     "engines": {
       "node": "6.9.2",
       "npm": "3.10.9"
