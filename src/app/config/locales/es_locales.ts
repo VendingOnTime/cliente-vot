@@ -65,6 +65,26 @@ export const es_locales = {
       delete_confirm_cancel_button : "Cancelar",
       update_machines : "Debes seleccionar una sola máquina"
     },
+    list_technician : {
+      title : "Mis técnicos",
+      numSelections_1 : " ha sido seleccionado",
+      numSelections_more_than_1 : " han sido seleccionados",
+      modify : "Modificar",
+      createIssue : "Crear incidencia",
+      delete_machine : "Eliminar",
+      add_machine : "Añadir maquina",
+      state : "Estado",
+      location : "Ubicación",
+      last_update : "Última actualización",
+      assigned_technician : "Técnico responsable",
+      no_selected_machine : "Debe seleccionar al menos una máquina",
+      delete_a_machine : "¿Se encuentra seguro de que desea eliminar la máquina seleccionada?",
+      delete_machines : "¿Se encuentra seguro de que desea eliminar las máquinas seleccionadas?",
+      delete_confirm_title : "Precaución",
+      delete_confirm_confirm_button : "Confirmar borrado",
+      delete_confirm_cancel_button : "Cancelar",
+      update_machines : "Debes seleccionar una sola máquina"
+    },
 
     login_panel : {
       title : "Iniciar sesión",
