@@ -1,18 +1,19 @@
  <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitLogin()">
-    <h2 class="text-center">{{localesService.get_LoginPanelComponent_Locales().title}}</h2>
+    <h2 class="text-center">{{loginPanelLocales.title}}</h2>
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="text" class="form-control" [placeholder]="localesService.get_LoginPanelComponent_Locales().username_input_placeholder" [formControl]="userInput" [(ngModel)]="username">
-        <div class="alert alert-danger" *ngIf="userInput.hasError('required')" [hidden]="userInput.untouched">{{localesService.get_LoginPanelComponent_Locales().required_user}}</div>
+        <input type="text" class="form-control" [placeholder]="formLocales.placeholder.user" [formControl]="userInput" [(ngModel)]="username">
+        <div class="alert alert-danger" *ngIf="userInput.hasError('required')" [hidden]="userInput.untouched">{{formLocales.error.required_username}}</div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="password" class="form-control" id="inputPassword" [placeholder]="localesService.get_LoginPanelComponent_Locales().password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
+        <input type="password" class="form-control" id="inputPassword" [placeholder]="formLocales.placeholder.password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
+        <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{formLocales.error.isRequired}}</div>
       </div>
     </div>
     <div class="col-xs-12" *ngIf="loginError">
-      <div class="alert alert-danger">{{localesService.get_LoginPanelComponent_Locales().login_error}}</div>
+      <div class="alert alert-danger">{{formLocales.error.login_error}}</div>
     </div>
     <div class="form-group">
       <div class="col-xs-12">
@@ -21,5 +22,5 @@
     </div>
   </form>
   <div class="text-center">
-    {{localesService.get_LoginPanelComponent_Locales().registerMessage}} <a [routerLink]="['/signup']">{{localesService.get_LoginPanelComponent_Locales().registerLink}}</a>
+    {{loginPanelLocales.registerMessage}} <a [routerLink]="['/signup']">{{loginPanelLocales.registerLink}}</a>
   </div>

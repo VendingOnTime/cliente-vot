@@ -35,6 +35,8 @@ export const es_locales = {
       format_password : "La contraseña no es lo suficientemente segura",
       confirm_password_placeholder : "Confirmar contraseña",
       equal_passwords : "La contraseña introducida es diferente",
+
+      login_error : "La combinación de usuario y contraseña introducida es incorrecta",
     }
   },
   component : {

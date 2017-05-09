@@ -27,6 +27,9 @@ export class LoginPanelComponent {
   // Management
   private loginError: boolean = false;
 
+  // Locales
+  public loginPanelLocales;
+  public formLocales;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -43,6 +46,9 @@ export class LoginPanelComponent {
 
     this.userInput = this.form.controls['user'];
     this.passwordInput = this.form.controls['password'];
+
+  this.loginPanelLocales = localesService.get_LoginPanelComponent_Locales();
+  this.formLocales = localesService.get_Forms_Locales();
   }
 
 
