@@ -41,8 +41,6 @@ export const es_locales = {
     }
   },
   component : {
-    // TODO Hacer seccion para errores de formularios (Los campos se repiten en muchos formularios)
-
     add_machine : {
       title : "Añadir máquina"
     },
