@@ -1,46 +1,46 @@
 <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitCreate()">
-  <h2 class="text-center">Añadir tecnico</h2>
+  <h2 class="text-center">{{techLocales.title}}</h2>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Usuario" [formControl]="usernameInput" [(ngModel)]="username">
-    <div class="alert alert-danger" *ngIf="usernameInput.hasError('required')" [hidden]="usernameInput.untouched">{{techLocal.required_username}}</div>
-    <div class="alert alert-danger" *ngIf="usernameInput.hasError('short_username')" [hidden]="usernameInput.untouched">{{techLocal.short_username}}</div>
-    <div class="alert alert-danger" *ngIf="usernameInput.hasError('large_username')" [hidden]="usernameInput.untouched">{{techLocal.large_username}}</div>
-    <div class="alert alert-danger" *ngIf="usernameInput.hasError('format_username')" [hidden]="usernameInput.untouched">{{techLocal.format_username}}</div>
+    <input type="text" class="form-control" placeholder="{{formLocales.placeholder.user}}" [formControl]="usernameInput" [(ngModel)]="username">
+    <div class="alert alert-danger" *ngIf="usernameInput.hasError('required')" [hidden]="usernameInput.untouched">{{formLocales.error.required_username}}</div>
+    <div class="alert alert-danger" *ngIf="usernameInput.hasError('short_username')" [hidden]="usernameInput.untouched">{{formLocales.error.short_username}}</div>
+    <div class="alert alert-danger" *ngIf="usernameInput.hasError('large_username')" [hidden]="usernameInput.untouched">{{formLocales.error.large_username}}</div>
+    <div class="alert alert-danger" *ngIf="usernameInput.hasError('format_username')" [hidden]="usernameInput.untouched">{{formLocales.error.format_username}}</div>
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" id="inputPassword" [placeholder]="localesService.get_SignUpComponent_Locales().password_placeholder" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
-    <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpComponent_Locales().required_password}}</div>
-    <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">{{localesService.get_SignUpComponent_Locales().format_password}}</div>
+    <input type="password" class="form-control" id="inputPassword" [placeholder]="formLocales.placeholder.password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
+    <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{formLocales.error.required_password}}</div>
+    <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">{{formLocales.error.format_password}}</div>
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" [placeholder]="localesService.get_SignUpComponent_Locales().confirm_password_placeholder" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
-    <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="repeatPasswordInput.untouched">{{localesService.get_SignUpComponent_Locales().equal_passwords}}</div>
+    <input type="password" class="form-control" [placeholder]="formLocales.placeholder.confirm_password" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
+    <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="repeatPasswordInput.untouched">{{formLocales.error.equal_passwords}}</div>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Email" [formControl]="emailInput" [(ngModel)]="email">
-    <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">{{techLocal.required_email}}</div>
-    <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">{{techLocal.format_email}}</div>
+    <input type="text" class="form-control" [placeholder]="formLocales.placeholder.email" [formControl]="emailInput" [(ngModel)]="email">
+    <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">{{formLocales.error.required_email}}</div>
+    <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">{{formLocales.error.format_email}}</div>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="DNI" [formControl]="dniInput" [(ngModel)]="dni">
-    <div class="alert alert-danger" *ngIf="dniInput.hasError('required')" [hidden]="dniInput.untouched">{{techLocal.required_dni}}</div>
+    <input type="text" class="form-control" [placeholder]="formLocales.placeholder.dni" [formControl]="dniInput" [(ngModel)]="dni">
+    <div class="alert alert-danger" *ngIf="dniInput.hasError('required')" [hidden]="dniInput.untouched">{{formLocales.error.isRequired}}</div>
     <div class="alert alert-danger" *ngIf="dniInput.hasError('incorrectDniFormat')" [hidden]="dniInput.untouched">DNI formato</div>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Nombre" [formControl]="nameInput" [(ngModel)]="name">
-    <div class="alert alert-danger" *ngIf="nameInput.hasError('required')" [hidden]="nameInput.untouched">{{techLocal.required_name}}</div>
-    <div class="alert alert-danger" *ngIf="nameInput.hasError('short_username')" [hidden]="nameInput.untouched">{{localesService.get_SignUpComponent_Locales().short_username}}</div>
-    <div class="alert alert-danger" *ngIf="nameInput.hasError('large_username')" [hidden]="nameInput.untouched">{{localesService.get_SignUpComponent_Locales().large_username}}</div>
-    <div class="alert alert-danger" *ngIf="nameInput.hasError('format_username')" [hidden]="nameInput.untouched">{{localesService.get_SignUpComponent_Locales().format_username}}</div>
+    <input type="text" class="form-control" [placeholder]="formLocales.placeholder.name" [formControl]="nameInput" [(ngModel)]="name">
+    <div class="alert alert-danger" *ngIf="nameInput.hasError('required')" [hidden]="nameInput.untouched">{{formLocales.error.isRequired}}</div>
+    <div class="alert alert-danger" *ngIf="nameInput.hasError('short_username')" [hidden]="nameInput.untouched">{{formLocales.error.short_username}}</div>
+    <div class="alert alert-danger" *ngIf="nameInput.hasError('large_username')" [hidden]="nameInput.untouched">{{formLocales.error.large_username}}</div>
+    <div class="alert alert-danger" *ngIf="nameInput.hasError('format_username')" [hidden]="nameInput.untouched">{{formLocales.error.format_username}}</div>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Apellidos" [formControl]="surnameInput" [(ngModel)]="surname">
-    <div class="alert alert-danger" *ngIf="surnameInput.hasError('required')" [hidden]="surnameInput.untouched">{{techLocal.required_surname}}</div>
-    <div class="alert alert-danger" *ngIf="surnameInput.hasError('short_username')" [hidden]="surnameInput.untouched">{{localesService.get_SignUpComponent_Locales().short_username}}</div>
-    <div class="alert alert-danger" *ngIf="surnameInput.hasError('large_username')" [hidden]="surnameInput.untouched">{{localesService.get_SignUpComponent_Locales().large_username}}</div>
-    <div class="alert alert-danger" *ngIf="surnameInput.hasError('format_username')" [hidden]="surnameInput.untouched">{{localesService.get_SignUpComponent_Locales().format_username}}</div>
+    <input type="text" class="form-control" [placeholder]="formLocales.placeholder.surname" [formControl]="surnameInput" [(ngModel)]="surname">
+    <div class="alert alert-danger" *ngIf="surnameInput.hasError('required')" [hidden]="surnameInput.untouched">{{formLocales.error.isRequired}}</div>
+    <div class="alert alert-danger" *ngIf="surnameInput.hasError('short_username')" [hidden]="surnameInput.untouched">{{formLocales.error.short_username}}</div>
+    <div class="alert alert-danger" *ngIf="surnameInput.hasError('large_username')" [hidden]="surnameInput.untouched">{{formLocales.error.large_username}}</div>
+    <div class="alert alert-danger" *ngIf="surnameInput.hasError('format_username')" [hidden]="surnameInput.untouched">{{formLocales.error.format_username}}</div>
   </div>
   <div class="form-group">
-    <input type="submit" class="btn btn-block btn-lg btn-primary" value="Crear tecnico" [disabled]="form.status !== 'VALID'">
+    <input type="submit" class="btn btn-block btn-lg btn-primary" [value]="techLocales.sendButton" [disabled]="form.status !== 'VALID'">
   </div>
 </form>

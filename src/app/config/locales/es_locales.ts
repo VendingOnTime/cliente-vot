@@ -2,7 +2,14 @@ export const es_locales = {
   forms : {
     placeholder: {
       location: "",
-      description: ""
+      description: "",
+      user: "Usuario",
+      password: "Contraseña",
+      confirm_password: "Confirmar contraseña",
+      email: "Email",
+      dni: "DNI",
+      name: "Nombre",
+      surname: "Apellidos"
     },
     error: {
       isRequired : "Se requiere el campo",
@@ -15,6 +22,19 @@ export const es_locales = {
       incorrectDescriptionFormat : "Descripción no puede contener carácteres especiales",
 
       technicianError : "Es requerido que la administre alguien",
+
+      required_username : "Ha de introducirse un nombre de usuario",
+      short_username : "El nombre de usuario es demasiado corto",
+      large_username : "El nombre de usuario es demasiado largo",
+      format_username : "El nombre de usuario no puede contener caracteres especiales",
+
+      required_email : "Ha de introducirse un email",
+      format_email : "El formato del email no está admitido",
+
+      required_password : "Es necesario introducir una contraseña",
+      format_password : "La contraseña no es lo suficientemente segura",
+      confirm_password_placeholder : "Confirmar contraseña",
+      equal_passwords : "La contraseña introducida es diferente",
     }
   },
   component : {
@@ -121,16 +141,8 @@ export const es_locales = {
     }
   },
   technicians_panel : {
-    required_email : "Ha de introducirse un email",
-    incorrect_email: "El formato del email no está admitido",
-    required_username: "Ha de introducirse un numbre de usuario",
-    required_dni: "Ha de introducirse un dni",
-    required_name: "Ha de introducirse un nombre",
-    required_surname: "Ha de introducirse un apellido",
-    short_username : "El nombre de usuario es demasiado corto",
-    large_username : "El nombre de usuario es demasiado largo",
-    format_username : "El nombre de usuario no puede contener caracteres especiales",
-    format_email : "El formato del email no está admitido"
+    title: "Añadir tecnico",
+    sendButton: "Crear técnico"
   },
 
   model : {
