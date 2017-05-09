@@ -1,8 +1,8 @@
 export const es_locales = {
   forms : {
     placeholder: {
-      location: "",
-      description: "",
+      location: "Localización",
+      description: "Descripción",
       user: "Usuario",
       password: "Contraseña",
       confirm_password: "Confirmar contraseña",
