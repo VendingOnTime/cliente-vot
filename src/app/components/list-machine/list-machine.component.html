@@ -1,19 +1,19 @@
 
-<h1>{{localesService.get_ListMachineComponent_Locales().title}}</h1>
+<h1>{{listMachineLocales.title}}</h1>
 
 <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
   <div class="container-fluid">
     <div class="collapse navbar-collapse navbar-menubuilder">
-      <div class="navbar-text" *ngIf="numSelections == 1">{{numSelections}}{{localesService.get_ListMachineComponent_Locales().numSelections_1}}</div>
-      <div class="navbar-text" *ngIf="numSelections != 1">{{numSelections}}{{localesService.get_ListMachineComponent_Locales().numSelections_more_than_1}}</div>
+      <div class="navbar-text" *ngIf="numSelections == 1">{{numSelections}}{{listMachineLocales.numSelections_1}}</div>
+      <div class="navbar-text" *ngIf="numSelections != 1">{{numSelections}}{{listMachineLocales.numSelections_more_than_1}}</div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="btn" (click)="update()">{{localesService.get_ListMachineComponent_Locales().modify}}</a>
+        <li><a class="btn" (click)="update()">{{listMachineLocales.modify}}</a>
         </li>
-        <li><a class="btn" (click)="addIssue()">{{localesService.get_ListMachineComponent_Locales().createIssue}}</a>
+        <li><a class="btn" (click)="addIssue()">{{listMachineLocales.createIssue}}</a>
         </li>
-        <li><a class="btn" (click)="deleteMachine()">{{localesService.get_ListMachineComponent_Locales().delete_machine}}</a>
+        <li><a class="btn" (click)="deleteMachine()">{{listMachineLocales.delete_machine}}</a>
         </li>
-        <li><a class="btn" (click)="addMachine()">{{localesService.get_ListMachineComponent_Locales().add_machine}}</a>
+        <li><a class="btn" (click)="addMachine()">{{listMachineLocales.add_machine}}</a>
         </li>
       </ul>
     </div>
@@ -32,10 +32,10 @@
       ID
     </th>
     <th>
-      {{localesService.get_ListMachineComponent_Locales().state}}
+      {{listMachineLocales.state}}
     </th>
     <th>
-      {{localesService.get_ListMachineComponent_Locales().location}}
+      {{listMachineLocales.location}}
     </th>
     <th>
       {{localesService.get_ListMachineComponent_Locales().assigned_technician}}

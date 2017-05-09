@@ -33,6 +33,9 @@ export class SignupPanelComponent {
   public password: string = '';
   public repeatPassword: string = '';
 
+  // Locales
+  public signupLocales;
+  public formLocales;
 
   public constructor(
     private overlay: Overlay,
@@ -58,6 +61,9 @@ export class SignupPanelComponent {
     this.emailInput = this.form.controls['email'];
     this.passwordInput = this.form.controls['password'];
     this.repeatPasswordInput = this.form.controls['repeatPassword'];
+
+    this.signupLocales = localesService.get_SignUpComponent_Locales();
+    this.formLocales = localesService.get_Forms_Locales();
   }
 
 

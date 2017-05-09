@@ -36,7 +36,8 @@ export class AddTechnicianComponent {
   public surname: string = '';
 
   // Locals
-  public techLocal;
+  public techLocales;
+  public formLocales;
 
   public constructor(
     public formBuilder: FormBuilder,
@@ -62,7 +63,8 @@ export class AddTechnicianComponent {
     this.nameInput = this.form.controls['name'];
     this.surnameInput = this.form.controls['surname'];
 
-    this.techLocal = localesService.get_TechniciansPanelComponent_Locales();
+    this.techLocales = localesService.get_TechniciansPanelComponent_Locales();
+    this.formLocales = localesService.get_Forms_Locales();
   }
 
   public onSubmitCreate(): void{

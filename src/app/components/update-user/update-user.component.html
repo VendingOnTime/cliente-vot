@@ -1,25 +1,25 @@
 <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitUpdate()">
-  <h2 class="text-center">{{localesService.get_UpdateUserComponent_Locales().title}}</h2>
+  <h2 class="text-center">{{updateUserLocales.title}}</h2>
   <div class="form-group">
-      <input type="email" class="form-control" [placeholder]="localesService.get_UpdateUserComponent_Locales().email_placeholder" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
-      <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">{{localesService.get_UpdateUserComponent_Locales().required_email}}</div>
-      <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">{{localesService.get_UpdateUserComponent_Locales().incorrect_email}}</div>
+      <input type="email" class="form-control" [placeholder]="formLocales.placeholder.email" formControlName="email" [formControl]="emailInput" [(ngModel)]="email">
+      <div class="alert alert-danger" *ngIf="emailInput.hasError('required')" [hidden]="emailInput.untouched">{{formLocales.error.required_email}}</div>
+      <div class="alert alert-danger" *ngIf="emailInput.hasError('incorrectMailFormat')" [hidden]="emailInput.untouched">{{formLocales.error.format_email}}</div>
   </div>
   <div class="form-group">
-      <input type="password" class="form-control" id="inputOldPassword" [placeholder]="localesService.get_UpdateUserComponent_Locales().password_placeholder" formControlName="oldPassword" [formControl]="oldPasswordInput" [(ngModel)]="oldPassword">
-      <div class="alert alert-danger" *ngIf="oldPasswordInput.hasError('required')" [hidden]="oldPasswordInput.untouched">{{localesService.get_UpdateUserComponent_Locales().required_password}}</div>
-      <div class="alert alert-danger" *ngIf="oldPasswordInput.hasError('incorrectPasswordFormat')" [hidden]="oldPasswordInput.untouched">{{localesService.get_UpdateUserComponent_Locales().incorrect_password}}</div>
+      <input type="password" class="form-control" id="inputOldPassword" [placeholder]="formLocales.placeholder.password" formControlName="oldPassword" [formControl]="oldPasswordInput" [(ngModel)]="oldPassword">
+      <div class="alert alert-danger" *ngIf="oldPasswordInput.hasError('required')" [hidden]="oldPasswordInput.untouched">{{formLocales.error.required_password}}</div>
+      <div class="alert alert-danger" *ngIf="oldPasswordInput.hasError('incorrectPasswordFormat')" [hidden]="oldPasswordInput.untouched">{{formLocales.error.format_password}}</div>
   </div>
   <div class="form-group">
-      <input type="password" class="form-control" id="inputPassword" [placeholder]="localesService.get_UpdateUserComponent_Locales().new_password_placeholder" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
-      <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{localesService.get_UpdateUserComponent_Locales().new_password_required}}</div>
-      <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">{{localesService.get_UpdateUserComponent_Locales().new_password_incorrect}}</div>
+      <input type="password" class="form-control" id="inputPassword" [placeholder]="formLocales.placeholder.new_password" formControlName="password" [formControl]="passwordInput" [(ngModel)]="password">
+      <div class="alert alert-danger" *ngIf="passwordInput.hasError('required')" [hidden]="passwordInput.untouched">{{formLocales.error.new_password_required}}</div>
+      <div class="alert alert-danger" *ngIf="passwordInput.hasError('incorrectPasswordFormat')" [hidden]="passwordInput.untouched">{{formLocales.error.format_password}}</div>
   </div>
   <div class="form-group">
-      <input type="password" class="form-control" [placeholder]="localesService.get_UpdateUserComponent_Locales().confirm_password_placeholder" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
-      <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="passwordInput.untouched">{{localesService.get_UpdateUserComponent_Locales().equal_password_error}}</div>
+      <input type="password" class="form-control" [placeholder]="formLocales.placeholder.confirm_password" formControlName="repeatPassword" [formControl]="repeatPasswordInput" [(ngModel)]="repeatPassword">
+      <div class="alert alert-danger" *ngIf="form.getError('areEqual')" [hidden]="passwordInput.untouched">{{formLocales.error.equal_passwords}}</div>
   </div>
   <div class="form-group">
-      <input type="submit" class="btn btn-block btn-lg btn-primary" value="Modificar" [disabled]="form.status !== 'VALID'">
+      <input type="submit" class="btn btn-block btn-lg btn-primary" [value]="updateUserLocales.submitButton" [disabled]="form.status !== 'VALID'">
   </div>
 </form>
