@@ -20,12 +20,12 @@ import {Location} from "../../models/Location";
   providers : [Overlay]
 })
 export class ListMachineComponent {
-  private localesServiceList;
+  public localesServiceList;
 
     // Component interaction data
-  private machines : Machine[];
-  private selections : boolean[];
-  private numSelections: number = 0;
+  public machines : Machine[];
+  public selections : boolean[];
+  public numSelections: number = 0;
 
   constructor(
     public localesService: LocalesService,

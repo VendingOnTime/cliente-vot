@@ -28,7 +28,7 @@ import {LanguageReducer} from "./redux/reducers/Language.reducer";
 import {ServerConfigReducer} from "./redux/reducers/ServerConfig.reducer";
 import {UserReducer} from "./redux/reducers/User.reducer";
 import {StoreModule} from "@ngrx/store";
-import {DialogRef, ModalModule} from "angular2-modal";
+import {ModalModule} from "angular2-modal";
 import {ServerDirectionService} from "./services/server-direction/server-direction.service";
 import { AddTechnicianComponent } from './components/add-technician/add-technician.component';
 
@@ -52,7 +52,6 @@ const routes : Routes = [
     LoginPanelComponent,
     UpdateUserComponent,
     NavigationBarComponent,
-    CollapseDirective,
     UpdateUserComponent,
     AddMachineComponent,
     HomeSectionComponent,

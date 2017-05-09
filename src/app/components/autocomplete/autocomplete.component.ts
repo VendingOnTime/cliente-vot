@@ -13,7 +13,9 @@ import {LocalesService} from "../../services/LocalesService";
 })
 
 // TODO Mejorar
-@Directive({})
+@Directive({
+  selector: 'autocomplete'
+})
 export class AutocompleteComponent implements OnInit {
 
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
