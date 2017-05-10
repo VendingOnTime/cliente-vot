@@ -31,6 +31,7 @@ import {StoreModule} from "@ngrx/store";
 import {ModalModule} from "angular2-modal";
 import {ServerDirectionService} from "./services/server-direction/server-direction.service";
 import { AddTechnicianComponent } from './components/add-technician/add-technician.component';
+import { ListTechnicianComponent } from './components/list-technician/list-technician.component';
 
 
 const routes : Routes = [
@@ -42,7 +43,8 @@ const routes : Routes = [
   {path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard]},
   {path: 'issues', component: IssuesPanelComponent, canActivate: [AuthGuard]},
   {path: 'technicians', component: TechniciansPanelComponent, canActivate: [AuthGuard]},
-  {path: 'machines', component: ListMachineComponent, canActivate: [AuthGuard]}
+  {path: 'machines', component: ListMachineComponent, canActivate: [AuthGuard]},
+  {path: 'listTechnicians', component: ListTechnicianComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -62,7 +64,8 @@ const routes : Routes = [
     AddMachineComponent,
     AutocompleteComponent,
     ListMachineComponent,
-    AddTechnicianComponent
+    AddTechnicianComponent,
+    ListTechnicianComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,6 @@ const routes : Routes = [
     ServerDirectionService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddMachineComponent, UpdateMachineComponent]
+  entryComponents: [AddMachineComponent, UpdateMachineComponent, AddTechnicianComponent]
 })
 export class AppModule { }

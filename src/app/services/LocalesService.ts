@@ -33,6 +33,13 @@ export class LocalesService {
     }
   }
 
+  public get_ListTechnicianComponent_Locales() {
+    switch (this.storageService.getLanguage()) {
+      case Languages.ES:
+        return es_locales.component.list_technician;
+    }
+  }
+
   public get_MachineStateModel_Locales() {
     switch (this.storageService.getLanguage()) {
       case Languages.ES:

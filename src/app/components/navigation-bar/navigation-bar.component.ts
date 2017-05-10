@@ -59,7 +59,7 @@ export class NavigationBarComponent {
   }
 
   public goToTechniciansPanel() {
-    this.router.navigate(['technicians']);
+    this.router.navigate(['listTechnicians']);
   }
 
   public goToMachinesPanel() {
