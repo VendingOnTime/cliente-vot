@@ -97,7 +97,7 @@ export class AddTechnicianComponent {
         AddTechnicianComponent.onCreateTechnician.emit(true);
         this.dialog.close();
       },(error) => {
-        this.modal.alert().showClose(true).body("Ha ocurido un error" + error).open().then(
+        this.modal.alert().showClose(true).body(this.formLocales.error.undefinedError).open().then(
           (resultPromise) => {
             resultPromise.result.then((result) => {
                 this.dialog.close()

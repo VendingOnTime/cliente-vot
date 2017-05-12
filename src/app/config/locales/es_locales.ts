@@ -13,6 +13,7 @@ export const es_locales = {
       new_password: "Introduce nueva contraseña"
     },
     error: {
+      undefinedError: "Ha ocurrido un error",
       isRequired : "Se requiere el campo",
 
       incorrectPositionLength : "Localización solo puede tener más 140 carácteres",

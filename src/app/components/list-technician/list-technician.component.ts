@@ -24,6 +24,7 @@ export class ListTechnicianComponent implements CloseGuard{
   // Locales
 
   public listTechnicianLocales;
+  public formLocales;
 
   //
   public onCreatedTechnician;
@@ -42,6 +43,7 @@ export class ListTechnicianComponent implements CloseGuard{
     this.selections = [];
 
     this.listTechnicianLocales = localesService.get_ListTechnicianComponent_Locales();
+    this.formLocales = localesService.get_Forms_Locales();
 
     this.getTechnicians();
 
@@ -77,11 +79,11 @@ export class ListTechnicianComponent implements CloseGuard{
             this.selections[i] = false;
 
         } else {
-          this.modal.alert().body("Ha ocurido un error").open();
+          this.modal.alert().body(this.formLocales.error.undefinedError).open();
         }
       },
       (err) => {
-        this.modal.alert().body("Ha ocurido un error").open();
+        this.modal.alert().body(this.formLocales.error.undefinedError).open();
       },
       () => {}
     );
