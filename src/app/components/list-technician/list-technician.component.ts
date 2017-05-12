@@ -52,6 +52,10 @@ export class ListTechnicianComponent implements CloseGuard{
     this.onCreatedTechnician.subscribe(
       (created: boolean) => {
         this.getTechnicians();
+      },(err) => {
+        this.getTechnicians();
+      },() => {
+        this.getTechnicians();
       }
     );
   }
