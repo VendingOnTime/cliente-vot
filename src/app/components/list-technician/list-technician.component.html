@@ -1,0 +1,73 @@
+<h1>{{listTechnicianLocales.title}}</h1>
+
+<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse navbar-menubuilder">
+      <div class="navbar-text" *ngIf="numSelections == 1">{{numSelections}}{{listTechnicianLocales.numSelections_1}}</div>
+      <div class="navbar-text" *ngIf="numSelections != 1">{{numSelections}}{{listTechnicianLocales.numSelections_more_than_1}}</div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="btn" (click)="update()">{{listTechnicianLocales.modifyButton}}</a>
+        </li>
+        <li><a class="btn" (click)="delete()">{{listTechnicianLocales.deleteButton}}</a>
+        </li>
+        <li><a class="btn" (click)="add()">{{listTechnicianLocales.addButton}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<table class="table table-bordered table-hover table-condensed table-responsive">
+  <thead>
+  <tr>
+    <th style="min-width: 30px;">
+
+    </th>
+    <th>
+      {{listTechnicianLocales.dni}}
+    </th>
+    <th>
+      {{listTechnicianLocales.name}}
+    </th>
+    <th>
+      {{listTechnicianLocales.surname}}
+    </th>
+    <th>
+      {{listTechnicianLocales.user}}
+    </th>
+    <th>
+      {{listTechnicianLocales.email}}
+    </th>
+    <th>
+      {{listTechnicianLocales.state}}
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let technician of technicians; let i = index" [attr.data-index]="i">
+    <td>
+      <input id="{{technician.id}}" class="form-control checkbox" type="checkbox" value="{{selections[i]}}" (change)="selectRow(i)">
+    </td>
+    <td>
+      {{technician.dni}}
+    </td>
+    <td>
+      {{technician.name}}
+    </td>
+    <td>
+      {{technician.surname}}
+    </td>
+    <td>
+      {{technician.user}}
+    </td>
+    <td>
+      {{technician.email}}
+    </td>
+    <td>
+      {{technician.state}}
+    </td>
+  </tr>
+  </tbody>
+</table>
