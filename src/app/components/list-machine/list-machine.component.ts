@@ -3,7 +3,7 @@ import {MachineState} from "../../models/MachineState";
 import {LocalesService} from "../../services/LocalesService";
 import {MachineService} from "../../services/MachineService";
 import {StorageService} from "../../services/StorageService";
-import {Component, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef, EventEmitter} from '@angular/core';
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {overlayConfigFactory, Overlay, DialogRef} from "angular2-modal";
 import {AddMachineComponent} from "../add-machine/add-machine.component";
@@ -28,6 +28,8 @@ export class ListMachineComponent {
   public selections : boolean[];
   public numSelections: number = 0;
 
+  public onCreatedMachine = AddMachineComponent.onCreatedMachine;
+
   constructor(
     public localesService: LocalesService,
     public machineService: MachineService,
@@ -44,13 +46,21 @@ export class ListMachineComponent {
 
     this.listMachineLocales = localesService.get_ListMachineComponent_Locales();
 
-    for (let i = 0; i < this.machines.length; i++)
-      this.selections[i] = false;
+    this.onCreatedMachine.subscribe((created: boolean) => {this.getMachines()});
 
+    this.getMachines();
+  }
+
+
+  /** Actions */
+
+  public getMachines() {
     this.machineService.listMachines().subscribe(
       (response: Response) => {
         if (response.ok && response.json().success) {
           let data = response.json().data;
+
+          this.machines = [];
 
           for (let i = 0; i < data.length; i++) {
             let machine =
@@ -58,12 +68,18 @@ export class ListMachineComponent {
                 new Location(data[i].location.name),
                 data[i].type,
                 data[i].state,
+                //FIXME: Workaround until have the technician in the response
                 new Technician(''),
                 data[i].description
               );
 
+            machine.id = data[i].id;
+
             this.machines.push(machine);
           }
+
+          for (let i = 0; i < this.machines.length; i++)
+            this.selections[i] = false;
         }
 
         else {
@@ -76,9 +92,6 @@ export class ListMachineComponent {
       () => {}
     );
   }
-
-
-  /** Actions */
 
   public selectMachine(index: number) {
 
@@ -147,18 +160,18 @@ export class ListMachineComponent {
       .then((resultPromise) => {
         resultPromise.result.then((result) => {
           // Aqui llega cuando el usuario pulsa el boton OPERATIVE
-          this.prueba(machinesSelected); // TODO Colocar servicio de borrado de maquina
+          // TODO Colocar servicio de borrado de maquina
+
+          for (let i = 0; i < machinesSelected.length; i++) {
+
+            for (let j = 0; j < this.machines.length; j++) {
+
+            }
+          }
         },
           () => {} // Aqui llega cuando pulsa cancel
         );
       });
-  }
-
-  // TODO quitar cuando se implemente el bueno
-  public prueba(machinesSelected : Machine[]){
-    for (let i = 0 ; i<machinesSelected.length;i++) {
-      console.log(machinesSelected[i].id);
-    }
   }
   public addMachine() {
     this.modal.open(AddMachineComponent, overlayConfigFactory({ isBlocking: false }, BSModalContext));
