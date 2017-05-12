@@ -20,7 +20,7 @@ export class TechnicianService {
 
   public createTechnician(newTechnician: Technician): Observable<Response> {
     let serverUrl: string = this.serverDirection.getTechnicianDirection();
-    console.log("========");
+
     let json = {
 
         dni: newTechnician.dni,
