@@ -5,7 +5,8 @@ import {overlayConfigFactory, Overlay, DialogRef} from "angular2-modal";
 import {LocalesService} from "../../services/LocalesService";
 import {StorageService} from "../../services/StorageService";
 import {AddTechnicianComponent} from "../add-technician/add-technician.component";
-import {AddMachineComponent} from "../add-machine/add-machine.component";
+import {TechnicianService} from "../../services/TechnicianService"
+import {Response} from "@angular/http";
 
 @Component({
   selector: 'list-technician',
@@ -24,10 +25,13 @@ export class ListTechnicianComponent {
 
   public listTechnicianLocales;
 
+  //
+  public onCreatedTechnician;
+
   constructor(
     public localesService: LocalesService,
     // TODO poner el servicio de tecnicos
-    //public technicianService: TechnicianService,
+    public technicianService: TechnicianService,
     public store: StorageService,
     public vcRef: ViewContainerRef,
     public modal: Modal,
@@ -37,12 +41,50 @@ export class ListTechnicianComponent {
     this.modal.overlay = overlay;
     this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
-    this.technicians = [new Technician("Bartolomeo"), new Technician("Burriana")];
 
     this.listTechnicianLocales = localesService.get_ListTechnicianComponent_Locales();
 
-    for (let i = 0; i < this.technicians.length; i++)
-      this.selections[i] = false;
+    this.getTechnicians();
+
+    this.onCreatedTechnician = AddTechnicianComponent.onCreateTechnician;
+
+    this.onCreatedTechnician.subscribe(
+      (created: boolean) => {
+        this.getTechnicians();
+      }
+    );
+  }
+
+  public getTechnicians(){
+    this.technicianService.listTechnicians().subscribe(
+      (response: Response) => {
+        if (response.ok && response.json().success) {
+          let data = response.json().data;
+
+          this.technicians = [];
+
+          for (let i = 0; i < data.length; i++) {
+            let technician = new Technician(data[i].name);
+
+            technician.dni = data[i].dni;
+            technician.surname = data[i].surname;
+            technician.email = data[i].email;
+
+            this.technicians.push(technician);
+          }
+
+          for (let i = 0; i < this.technicians.length; i++)
+            this.selections[i] = false;
+
+        } else {
+          // TODO error
+        }
+      },
+      (err) => {
+        //FIXME: Manage error
+      },
+      () => {}
+    );
   }
 
   /** Actions */

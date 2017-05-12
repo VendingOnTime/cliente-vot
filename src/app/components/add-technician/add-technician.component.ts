@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LocalesService} from "../../services/LocalesService";
 import {UsernameValidator} from "../../validators/username/UsernameValidator";
@@ -6,6 +6,8 @@ import {EmailValidator} from "../../validators/EmailValidator";
 import {DniValidator} from "../../validators/dni/DniValidator";
 import {PasswordValidator} from "../../validators/password/PasswordValidator";
 import {RepeatPasswordValidator} from "../../validators/repeat-password/RepeatPasswordValidator";
+import {TechnicianService} from "../../services/TechnicianService";
+import {Technician} from "../../models/Technician";
 
 
 @Component({
@@ -39,9 +41,13 @@ export class AddTechnicianComponent {
   public techLocales;
   public formLocales;
 
+  //
+  public static onCreateTechnician = new EventEmitter(true);
+
   public constructor(
     public formBuilder: FormBuilder,
-    public localesService: LocalesService
+    public localesService: LocalesService,
+    public technicianService: TechnicianService
   ) {
 
     this.form = this.formBuilder.group({
@@ -52,7 +58,7 @@ export class AddTechnicianComponent {
       dni: new FormControl('', Validators.compose([Validators.required, DniValidator])),
       // FIXME hacer diferentes validadores para name y surname?
       name: new FormControl('', Validators.compose([Validators.required, UsernameValidator])),
-      surname: new FormControl('', Validators.compose([Validators.required, UsernameValidator]))
+      surname: new FormControl('', Validators.compose([Validators.required, UsernameValidator])),
     }, {validator: RepeatPasswordValidator});
 
     this.usernameInput = this.form.controls['username'];
@@ -68,6 +74,16 @@ export class AddTechnicianComponent {
   }
 
   public onSubmitCreate(): void{
-    console.log("Crealo")
+    let technician = new Technician(this.name);
+
+    technician.name = this.name;
+    technician.surname = this.surname;
+    technician.dni = this.dni;
+    technician.password = this.password;
+    technician.email = this.email;
+    technician.user = this.username;
+
+    this.technicianService.createTechnician(technician);
+    AddTechnicianComponent.onCreateTechnician.emit(true);
   }
 }

@@ -47,4 +47,10 @@ export class ServerDirectionService {
   public getMachinesDirection() : string {
     return `${this.getServerBaseUrl()}${directions["api-v1"].machines.root}`;
   }
+
+  /** TechnicianService */
+
+  public getTechnicianDirection() : string {
+    return `${this.getServerBaseUrl()}${directions["api-v1"].technicians.root}`;
+  }
 }

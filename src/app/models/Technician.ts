@@ -7,6 +7,7 @@ export class Technician {
   public user: string;
   public email: string;
   public state: string;
+  public password: string;
 
   public constructor(
     public name : string

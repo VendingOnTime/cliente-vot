@@ -17,6 +17,9 @@ export const directions = {
 
     "machines": {
       "root": "/api-v1/machines"
+    },
+    "technicians": {
+      "root": "/api-v1/technicians"
     }
   }
 };

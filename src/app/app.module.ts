@@ -32,6 +32,7 @@ import {ModalModule} from "angular2-modal";
 import {ServerDirectionService} from "./services/server-direction/server-direction.service";
 import { AddTechnicianComponent } from './components/add-technician/add-technician.component';
 import { ListTechnicianComponent } from './components/list-technician/list-technician.component';
+import {TechnicianService} from "./services/TechnicianService";
 
 
 const routes : Routes = [
@@ -85,7 +86,8 @@ const routes : Routes = [
     MachineService,
     AutocompleteService,
     LocalesService,
-    ServerDirectionService
+    ServerDirectionService,
+    TechnicianService
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddMachineComponent, UpdateMachineComponent, AddTechnicianComponent]
