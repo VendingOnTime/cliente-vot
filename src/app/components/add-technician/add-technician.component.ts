@@ -8,6 +8,8 @@ import {PasswordValidator} from "../../validators/password/PasswordValidator";
 import {RepeatPasswordValidator} from "../../validators/repeat-password/RepeatPasswordValidator";
 import {TechnicianService} from "../../services/TechnicianService";
 import {Technician} from "../../models/Technician";
+import {isSuccess} from "@angular/http/src/http_utils";
+import {DialogRef} from "angular2-modal";
 
 
 @Component({
@@ -47,7 +49,8 @@ export class AddTechnicianComponent {
   public constructor(
     public formBuilder: FormBuilder,
     public localesService: LocalesService,
-    public technicianService: TechnicianService
+    public technicianService: TechnicianService,
+    public dialog: DialogRef<any>
   ) {
 
     this.form = this.formBuilder.group({
@@ -83,7 +86,16 @@ export class AddTechnicianComponent {
     technician.email = this.email;
     technician.user = this.username;
 
-    this.technicianService.createTechnician(technician);
-    AddTechnicianComponent.onCreateTechnician.emit(true);
+    this.technicianService.createTechnician(technician).subscribe(
+      (response) => {
+        AddTechnicianComponent.onCreateTechnician.emit(true);
+        this.dialog.close();
+      },(error) => {
+        this.dialog.close();
+      }, () => {}
+    );
+
+
+
   }
 }

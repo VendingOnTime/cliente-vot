@@ -30,7 +30,6 @@ export class ListTechnicianComponent {
 
   constructor(
     public localesService: LocalesService,
-    // TODO poner el servicio de tecnicos
     public technicianService: TechnicianService,
     public store: StorageService,
     public vcRef: ViewContainerRef,
@@ -67,8 +66,9 @@ export class ListTechnicianComponent {
             let technician = new Technician(data[i].name);
 
             technician.dni = data[i].dni;
-            technician.surname = data[i].surname;
+            technician.surname = data[i].surnames;
             technician.email = data[i].email;
+            technician.user = data[i].username;
 
             this.technicians.push(technician);
           }
@@ -77,11 +77,11 @@ export class ListTechnicianComponent {
             this.selections[i] = false;
 
         } else {
-          // TODO error
+          this.modal.alert().body("Ha ocurido un error").open();
         }
       },
       (err) => {
-        //FIXME: Manage error
+        this.modal.alert().body("Ha ocurido un error").open();
       },
       () => {}
     );

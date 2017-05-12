@@ -22,15 +22,15 @@ export class TechnicianService {
     let serverUrl: string = this.serverDirection.getTechnicianDirection();
     console.log("========");
     let json = {
-      data: {
-        dni: newTechnician.name,
+
+        dni: newTechnician.dni,
         username: newTechnician.user,
         email: newTechnician.email,
         name: newTechnician.name,
-        surname: newTechnician.surname,
+        surnames: newTechnician.surname,
         password: newTechnician.password,
         role: "TECHNICIAN"
-      }
+
     };
 
     let headers = this.applyToken();
