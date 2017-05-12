@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Technician} from "../../models/Technician";
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {overlayConfigFactory, Overlay, DialogRef} from "angular2-modal";
+import {overlayConfigFactory, Overlay, DialogRef, CloseGuard} from "angular2-modal";
 import {LocalesService} from "../../services/LocalesService";
 import {StorageService} from "../../services/StorageService";
 import {AddTechnicianComponent} from "../add-technician/add-technician.component";
@@ -14,7 +14,7 @@ import {Response} from "@angular/http";
   styleUrls: ['./list-technician.component.css'],
   providers : [Overlay]
 })
-export class ListTechnicianComponent {
+export class ListTechnicianComponent implements CloseGuard{
 
   // Component interaction data
   public technicians : Technician[];

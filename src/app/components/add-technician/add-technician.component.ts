@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, ViewContainerRef} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LocalesService} from "../../services/LocalesService";
 import {UsernameValidator} from "../../validators/username/UsernameValidator";
@@ -8,8 +8,8 @@ import {PasswordValidator} from "../../validators/password/PasswordValidator";
 import {RepeatPasswordValidator} from "../../validators/repeat-password/RepeatPasswordValidator";
 import {TechnicianService} from "../../services/TechnicianService";
 import {Technician} from "../../models/Technician";
-import {isSuccess} from "@angular/http/src/http_utils";
-import {DialogRef} from "angular2-modal";
+import {Modal} from 'angular2-modal/plugins/bootstrap';
+import {Overlay, DialogRef} from "angular2-modal";
 
 
 @Component({
@@ -50,7 +50,10 @@ export class AddTechnicianComponent {
     public formBuilder: FormBuilder,
     public localesService: LocalesService,
     public technicianService: TechnicianService,
-    public dialog: DialogRef<any>
+    public dialog: DialogRef<any>,
+    public vcRef: ViewContainerRef,
+    public modal: Modal,
+    public overlay: Overlay
   ) {
 
     this.form = this.formBuilder.group({
@@ -74,6 +77,9 @@ export class AddTechnicianComponent {
 
     this.techLocales = localesService.get_TechniciansPanelComponent_Locales();
     this.formLocales = localesService.get_Forms_Locales();
+
+    this.modal.overlay = overlay;
+    this.modal.overlay.defaultViewContainer = vcRef;
   }
 
   public onSubmitCreate(): void{
@@ -91,11 +97,15 @@ export class AddTechnicianComponent {
         AddTechnicianComponent.onCreateTechnician.emit(true);
         this.dialog.close();
       },(error) => {
-        this.dialog.close();
-      }, () => {}
-    );
-
-
-
+        this.modal.alert().showClose(true).body("Ha ocurido un error" + error).open().then(
+          (resultPromise) => {
+            resultPromise.result.then((result) => {
+                this.dialog.close()
+              },
+              () => {this.dialog.close()}
+            );
+          }
+        );
+      })
   }
 }
