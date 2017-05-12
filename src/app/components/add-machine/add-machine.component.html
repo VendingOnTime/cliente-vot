@@ -10,14 +10,14 @@
   <div class="form-group">
     <select class="form-control" #select [formControl]="machineTypeInput" [(ngModel)]="machineType">
       <option *ngFor="let item of getAllMachineTypes();" [value]="item" [selected]="item == getAllMachineTypes()[0]">
-        {{item}}
+        {{getMachineType(item)}}
       </option>
     </select>
   </div>
   <div class="form-group">
     <select class="form-control" #select [formControl]="machineStateInput" [(ngModel)]="machineState">
       <option *ngFor="let item of getAllMachineStates();" [value]="item" [selected]="item == getAllMachineStates()[0]">
-        {{item}}
+        {{getMachineState(item)}}
       </option>
     </select>
   </div>

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MachineState} from "../../models/MachineState";
 import {EnumEx} from "../../utils/EnumEx";
@@ -22,6 +22,8 @@ import {Response} from "@angular/http";
   styleUrls: ['./add-machine.component.css']
 })
 export class AddMachineComponent {
+
+
 
   // Form components
   public form : FormGroup;
@@ -48,6 +50,8 @@ export class AddMachineComponent {
   // Locales
   public addMachineLocales;
   public formLocales;
+
+  public static onCreatedMachine: EventEmitter<boolean> = new EventEmitter(true);
 
   public constructor(
     public formBuilder: FormBuilder,
@@ -128,13 +132,40 @@ export class AddMachineComponent {
 
   /** Form building */
 
-  public getAllMachineTypes() : string[] {
+  public getAllMachineTypes() {
     return this.enumEx.getNames(MachineType);
   }
-  public getAllMachineStates() : string[] {
+  public getAllMachineStates() {
     return this.enumEx.getNames(MachineState);
   }
 
+  public getMachineType(machineType: MachineType) : string {
+    switch (machineType.toString().toUpperCase()) {
+
+      case MachineType[MachineType.COFFEE]:
+        return 'Café';
+
+      case MachineType[MachineType.DRINKS]:
+        return 'Bebidas';
+
+      case MachineType[MachineType.SNACKS]:
+        return 'Snacks';
+
+    }
+  }
+
+  public getMachineState(machineState: MachineState) {
+    switch (machineState.toString().toUpperCase()) {
+      case MachineState[MachineState.OUT_OF_SERVICE]:
+        return 'Fuera de servicio';
+
+      case MachineState[MachineState.WAREHOUSE]:
+        return 'Almacenada';
+
+      case MachineState[MachineState.OPERATIVE]:
+        return 'Operativa';
+    }
+  }
 
   /** Utility */
 
@@ -147,6 +178,6 @@ export class AddMachineComponent {
   }
 
   private machineCreatedOK() {
-    //TODO: Crear método para notificar al usuario que la máquina se ha añadido (recargar vista de máquinas)
+    AddMachineComponent.onCreatedMachine.emit(true);
   }
 }
