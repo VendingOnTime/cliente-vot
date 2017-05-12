@@ -39,6 +39,16 @@ export const es_locales = {
       equal_passwords : "La contraseña introducida es diferente",
 
       login_error : "La combinación de usuario y contraseña introducida es incorrecta",
+
+      required_dni: "Es necesario introducir un dni",
+      format_dni: "El formato del dni es incorrecto",
+
+      required_name: "Es necesario introducir un nombre",
+
+      required_surnames: "Es necesario introducir surnames",
+
+      required_role: "Es necesario introducir un role",
+      format_role: "El role es invalido"
     }
   },
   component : {

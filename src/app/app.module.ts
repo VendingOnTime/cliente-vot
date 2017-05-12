@@ -33,6 +33,7 @@ import {ServerDirectionService} from "./services/server-direction/server-directi
 import { AddTechnicianComponent } from './components/add-technician/add-technician.component';
 import { ListTechnicianComponent } from './components/list-technician/list-technician.component';
 import {TechnicianService} from "./services/TechnicianService";
+import {ErrorType} from "./models/ErrorType";
 
 
 const routes : Routes = [
@@ -87,7 +88,8 @@ const routes : Routes = [
     AutocompleteService,
     LocalesService,
     ServerDirectionService,
-    TechnicianService
+    TechnicianService,
+    ErrorType
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddMachineComponent, UpdateMachineComponent, AddTechnicianComponent]

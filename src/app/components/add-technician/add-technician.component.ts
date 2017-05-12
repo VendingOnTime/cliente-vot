@@ -10,6 +10,7 @@ import {TechnicianService} from "../../services/TechnicianService";
 import {Technician} from "../../models/Technician";
 import {Modal} from 'angular2-modal/plugins/bootstrap';
 import {Overlay, DialogRef} from "angular2-modal";
+import {ErrorType} from "../../models/ErrorType";
 
 
 @Component({
@@ -53,7 +54,8 @@ export class AddTechnicianComponent {
     public dialog: DialogRef<any>,
     public vcRef: ViewContainerRef,
     public modal: Modal,
-    public overlay: Overlay
+    public overlay: Overlay,
+    public errorType: ErrorType
   ) {
 
     this.form = this.formBuilder.group({
@@ -94,10 +96,21 @@ export class AddTechnicianComponent {
 
     this.technicianService.createTechnician(technician).subscribe(
       (response) => {
+        console.log("success");
         AddTechnicianComponent.onCreateTechnician.emit(true);
         this.dialog.close();
       },(error) => {
-        this.modal.alert().showClose(true).body(this.formLocales.error.undefinedError).open().then(
+
+        const errors = error.json().error;
+        let message = '';
+
+        for (let i = 0; i < errors.length; i++) {
+          message += "<p>";
+          message += this.errorType.getMessage(errors[i]);
+          message += "</p>";
+        }
+
+        this.modal.alert().showClose(true).body(message).open().then(
           (resultPromise) => {
             resultPromise.result.then((result) => {
                 this.dialog.close()
