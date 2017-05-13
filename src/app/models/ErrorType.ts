@@ -43,6 +43,12 @@ export class ErrorType {
         return this.formLocales.error.format_password;
       case "LONG_USERNAME":
         return this.formLocales.error.large_username;
+      case "EMAIL_EXISTS":
+        return this.formLocales.error.email_exist;
+      case "USERNAME_EXISTS":
+        return this.formLocales.error.username_exist;
+      case "DNI_EXISTS":
+        return this.formLocales.error.dni_exist;
       default:
         break;
     }
