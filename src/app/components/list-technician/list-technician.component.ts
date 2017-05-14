@@ -71,6 +71,7 @@ export class ListTechnicianComponent implements CloseGuard{
           for (let i = 0; i < data.length; i++) {
             let technician = new Technician(data[i].name);
 
+            technician.id = data[i].id;
             technician.dni = data[i].dni;
             technician.surname = data[i].surnames;
             technician.email = data[i].email;
@@ -145,8 +146,7 @@ export class ListTechnicianComponent implements CloseGuard{
         .open()
         .then((resultPromise) => {
           resultPromise.result.then((result) => {
-              // Aqui llega cuando el usuario pulsa el boton OPERATIVE
-              this.prueba(selecteds); // TODO Colocar servicio de borrado de tecnico
+              this.technicianService.deleteTechnician(selecteds[0].id).subscribe();
             },
             () => {} // Aqui llega cuando pulsa cancel
           );

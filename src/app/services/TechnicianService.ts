@@ -46,6 +46,16 @@ export class TechnicianService {
     return this.http.get(serverUrl, {headers});
   }
 
+  public deleteTechnician(idTechnician: string): Observable<Response>{
+    let serverUrl : string = this.serverDirection.getDeleteTechnicianDirection(idTechnician);
+
+    let headers = this.applyToken();
+
+    return this.http.delete(serverUrl, {headers});
+  }
+
+
+
 
   /** Utility */
 
