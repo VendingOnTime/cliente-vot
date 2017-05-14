@@ -1,11 +1,12 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Technician} from "../../models/Technician";
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {overlayConfigFactory, Overlay, DialogRef} from "angular2-modal";
+import {overlayConfigFactory, Overlay, DialogRef, CloseGuard} from "angular2-modal";
 import {LocalesService} from "../../services/LocalesService";
 import {StorageService} from "../../services/StorageService";
 import {AddTechnicianComponent} from "../add-technician/add-technician.component";
-import {AddMachineComponent} from "../add-machine/add-machine.component";
+import {TechnicianService} from "../../services/TechnicianService"
+import {Response} from "@angular/http";
 
 @Component({
   selector: 'list-technician',
@@ -13,7 +14,7 @@ import {AddMachineComponent} from "../add-machine/add-machine.component";
   styleUrls: ['./list-technician.component.css'],
   providers : [Overlay]
 })
-export class ListTechnicianComponent {
+export class ListTechnicianComponent implements CloseGuard{
 
   // Component interaction data
   public technicians : Technician[];
@@ -23,11 +24,14 @@ export class ListTechnicianComponent {
   // Locales
 
   public listTechnicianLocales;
+  public formLocales;
+
+  //
+  public onCreatedTechnician;
 
   constructor(
     public localesService: LocalesService,
-    // TODO poner el servicio de tecnicos
-    //public technicianService: TechnicianService,
+    public technicianService: TechnicianService,
     public store: StorageService,
     public vcRef: ViewContainerRef,
     public modal: Modal,
@@ -37,12 +41,56 @@ export class ListTechnicianComponent {
     this.modal.overlay = overlay;
     this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
-    this.technicians = [new Technician("Bartolomeo"), new Technician("Burriana")];
 
     this.listTechnicianLocales = localesService.get_ListTechnicianComponent_Locales();
+    this.formLocales = localesService.get_Forms_Locales();
 
-    for (let i = 0; i < this.technicians.length; i++)
-      this.selections[i] = false;
+    this.getTechnicians();
+
+    this.onCreatedTechnician = AddTechnicianComponent.onCreateTechnician;
+
+    this.onCreatedTechnician.subscribe(
+      (created: boolean) => {
+        this.getTechnicians();
+      },(err) => {
+        this.getTechnicians();
+      },() => {
+        this.getTechnicians();
+      }
+    );
+  }
+
+  public getTechnicians(){
+    this.technicianService.listTechnicians().subscribe(
+      (response: Response) => {
+        if (response.ok && response.json().success) {
+          let data = response.json().data;
+
+          this.technicians = [];
+
+          for (let i = 0; i < data.length; i++) {
+            let technician = new Technician(data[i].name);
+
+            technician.dni = data[i].dni;
+            technician.surname = data[i].surnames;
+            technician.email = data[i].email;
+            technician.user = data[i].username;
+
+            this.technicians.push(technician);
+          }
+
+          for (let i = 0; i < this.technicians.length; i++)
+            this.selections[i] = false;
+
+        } else {
+          this.modal.alert().body(this.formLocales.error.undefinedError).open();
+        }
+      },
+      (err) => {
+        this.modal.alert().body(this.formLocales.error.undefinedError).open();
+      },
+      () => {}
+    );
   }
 
   /** Actions */

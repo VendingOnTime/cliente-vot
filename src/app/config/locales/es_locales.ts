@@ -13,6 +13,7 @@ export const es_locales = {
       new_password: "Introduce nueva contraseña"
     },
     error: {
+      undefinedError: "Ha ocurrido un error",
       isRequired : "Se requiere el campo",
 
       incorrectPositionLength : "Localización solo puede tener más 140 carácteres",
@@ -28,9 +29,11 @@ export const es_locales = {
       short_username : "El nombre de usuario es demasiado corto",
       large_username : "El nombre de usuario es demasiado largo",
       format_username : "El nombre de usuario no puede contener caracteres especiales",
+      username_exist: "El nombre de usuario ya existe",
 
       required_email : "Ha de introducirse un email",
       format_email : "El formato del email no está admitido",
+      email_exist:"El email introducido ya existe",
 
       required_password : "Es necesario introducir una contraseña",
       format_password : "La contraseña no es lo suficientemente segura",
@@ -38,6 +41,17 @@ export const es_locales = {
       equal_passwords : "La contraseña introducida es diferente",
 
       login_error : "La combinación de usuario y contraseña introducida es incorrecta",
+
+      required_dni: "Es necesario introducir un dni",
+      format_dni: "El formato del dni es incorrecto",
+      dni_exist: "El dni introducido ya existe",
+
+      required_name: "Es necesario introducir un nombre",
+
+      required_surnames: "Es necesario introducir surnames",
+
+      required_role: "Es necesario introducir un role",
+      format_role: "El role es invalido"
     }
   },
   component : {
