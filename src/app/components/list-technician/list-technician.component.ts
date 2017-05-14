@@ -146,18 +146,17 @@ export class ListTechnicianComponent implements CloseGuard{
         .open()
         .then((resultPromise) => {
           resultPromise.result.then((result) => {
-              this.technicianService.deleteTechnician(selecteds[0].id).subscribe();
+              this.technicianService.deleteTechnician(selecteds[0].id).subscribe(
+                (response: Response) => {
+                  this.getTechnicians()
+                }, (error) => {
+                  // TODO mostrar error
+                }, () => {}
+              );
             },
             () => {} // Aqui llega cuando pulsa cancel
           );
         });
-    }
-  }
-
-  // TODO quitar cuando se implemente el bueno
-  public prueba(technicians : Technician[]){
-    for (let i = 0 ; i<technicians.length;i++) {
-      console.log(technicians[i].name);
     }
   }
 
