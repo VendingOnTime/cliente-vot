@@ -49,6 +49,12 @@ export class ErrorType {
         return this.formLocales.error.username_exist;
       case "DNI_EXISTS":
         return this.formLocales.error.dni_exist;
+      case "NOT_FOUND":
+        return this.formLocales.error.not_found;
+      case "INSUFFICIENT_PERMISSIONS":
+        return this.formLocales.error.insufficient_permissions;
+      case "UNAUTHORIZED":
+        return this.formLocales.error.unauthorized;
       default:
         break;
     }

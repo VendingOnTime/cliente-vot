@@ -7,6 +7,7 @@ import {StorageService} from "../../services/StorageService";
 import {AddTechnicianComponent} from "../add-technician/add-technician.component";
 import {TechnicianService} from "../../services/TechnicianService"
 import {Response} from "@angular/http";
+import {ErrorType} from "../../models/ErrorType";
 
 @Component({
   selector: 'list-technician',
@@ -35,7 +36,8 @@ export class ListTechnicianComponent implements CloseGuard{
     public store: StorageService,
     public vcRef: ViewContainerRef,
     public modal: Modal,
-    public overlay: Overlay
+    public overlay: Overlay,
+    public errorType: ErrorType
   ) {
 
     this.modal.overlay = overlay;
@@ -150,7 +152,10 @@ export class ListTechnicianComponent implements CloseGuard{
                 (response: Response) => {
                   this.getTechnicians()
                 }, (error) => {
-                  // TODO mostrar error
+                  const errors = error.json().error;
+
+                  this.modal.alert().showClose(true).body(this.errorType.getMessage(errors)).open();
+
                 }, () => {}
               );
             },
