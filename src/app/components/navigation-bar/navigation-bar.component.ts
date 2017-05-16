@@ -13,8 +13,7 @@ import {overlayConfigFactory, Modal, ModalComponent, Overlay} from "angular2-mod
 @Component({
   selector: 'navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.css'],
-  providers : [Overlay]
+  styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent {
 

@@ -11,8 +11,7 @@ import {Response} from "@angular/http";
 @Component({
   selector: 'list-technician',
   templateUrl: './list-technician.component.html',
-  styleUrls: ['./list-technician.component.css'],
-  providers : [Overlay]
+  styleUrls: ['./list-technician.component.css']
 })
 export class ListTechnicianComponent implements CloseGuard{
 
