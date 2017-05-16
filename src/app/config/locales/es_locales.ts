@@ -51,7 +51,7 @@ export const es_locales = {
       required_surnames: "Es necesario introducir surnames",
 
       required_role: "Es necesario introducir un role",
-      format_role: "El role es invalido",
+      format_role: "El role es inválido",
 
       not_found: "Error, no se ha encontrado",
       insufficient_permissions: "Error, no tienes los permisos necesarios",
