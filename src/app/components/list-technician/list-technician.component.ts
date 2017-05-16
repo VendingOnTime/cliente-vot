@@ -33,13 +33,9 @@ export class ListTechnicianComponent implements CloseGuard{
     public localesService: LocalesService,
     public technicianService: TechnicianService,
     public store: StorageService,
-    public vcRef: ViewContainerRef,
-    public modal: Modal,
-    public overlay: Overlay
+    public modal: Modal
   ) {
 
-    this.modal.overlay = overlay;
-    this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
 
     this.listTechnicianLocales = localesService.get_ListTechnicianComponent_Locales();

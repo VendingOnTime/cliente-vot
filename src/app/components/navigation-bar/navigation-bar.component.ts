@@ -25,13 +25,9 @@ export class NavigationBarComponent {
     public storage: StorageService,
     private router: Router,
     public localesService: LocalesService,
-    public vcRef: ViewContainerRef,
-    public modal: Modal,
-    public overlay: Overlay
+    public modal: Modal
   ) {
     this.storage.getStore().subscribe( state => console.log('Initial App State: ', state));
-    this.modal.overlay = overlay;
-    this.modal.overlay.defaultViewContainer = vcRef;
   }
 
 

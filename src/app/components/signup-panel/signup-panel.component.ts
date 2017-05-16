@@ -38,17 +38,13 @@ export class SignupPanelComponent {
   public formLocales;
 
   public constructor(
-    private overlay: Overlay,
-    private vcRef: ViewContainerRef,
     private formBuilder: FormBuilder,
     private userService: UserService,
     private storeService: StorageService,
-    private modal: Modal,
     private router: Router,
-    public localesService : LocalesService
+    public localesService : LocalesService,
+    private modal: Modal
   ) {
-
-    overlay.defaultViewContainer = vcRef;
 
     this.form = this.formBuilder.group({
       user: new FormControl('', Validators.compose([Validators.required, UsernameValidator])),
