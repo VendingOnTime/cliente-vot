@@ -37,16 +37,12 @@ export class UpdateUserComponent {
   public formLocales;
 
   public constructor(
-    public overlay: Overlay,
-    public vcRef: ViewContainerRef,
     public formBuilder: FormBuilder,
     public userService: UserService,
     public modal: Modal,
     public localesService: LocalesService,
     public storageService: StorageService
   ) {
-
-    overlay.defaultViewContainer = vcRef;
 
     this.form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([Validators.required, EmailValidator])),

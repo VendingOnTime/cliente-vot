@@ -52,9 +52,7 @@ export class AddTechnicianComponent {
     public localesService: LocalesService,
     public technicianService: TechnicianService,
     public dialog: DialogRef<any>,
-    public vcRef: ViewContainerRef,
     public modal: Modal,
-    public overlay: Overlay,
     public errorType: ErrorType
   ) {
 
@@ -79,9 +77,6 @@ export class AddTechnicianComponent {
 
     this.techLocales = localesService.get_TechniciansPanelComponent_Locales();
     this.formLocales = localesService.get_Forms_Locales();
-
-    this.modal.overlay = overlay;
-    this.modal.overlay.defaultViewContainer = vcRef;
   }
 
   public onSubmitCreate(): void{

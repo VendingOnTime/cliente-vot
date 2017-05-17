@@ -13,8 +13,7 @@ import {overlayConfigFactory, Modal, ModalComponent, Overlay} from "angular2-mod
 @Component({
   selector: 'navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.css'],
-  providers : [Overlay]
+  styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent {
 
@@ -25,13 +24,9 @@ export class NavigationBarComponent {
     public storage: StorageService,
     private router: Router,
     public localesService: LocalesService,
-    public vcRef: ViewContainerRef,
-    public modal: Modal,
-    public overlay: Overlay
+    public modal: Modal
   ) {
     this.storage.getStore().subscribe( state => console.log('Initial App State: ', state));
-    this.modal.overlay = overlay;
-    this.modal.overlay.defaultViewContainer = vcRef;
   }
 
 

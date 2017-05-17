@@ -16,8 +16,7 @@ import {Location} from "../../models/Location";
 @Component({
   selector: 'list-machine',
   templateUrl: './list-machine.component.html',
-  styleUrls: ['./list-machine.component.css'],
-  providers : [Overlay]
+  styleUrls: ['./list-machine.component.css']
 })
 export class ListMachineComponent {
 
@@ -34,13 +33,9 @@ export class ListMachineComponent {
     public localesService: LocalesService,
     public machineService: MachineService,
     public store: StorageService,
-    public vcRef: ViewContainerRef,
-    public modal: Modal,
-    public overlay: Overlay
+    private modal: Modal
   ) {
 
-    this.modal.overlay = overlay;
-    this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
     this.machines = [];
 

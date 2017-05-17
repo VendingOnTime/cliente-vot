@@ -12,8 +12,7 @@ import {ErrorType} from "../../models/ErrorType";
 @Component({
   selector: 'list-technician',
   templateUrl: './list-technician.component.html',
-  styleUrls: ['./list-technician.component.css'],
-  providers : [Overlay]
+  styleUrls: ['./list-technician.component.css']
 })
 export class ListTechnicianComponent implements CloseGuard{
 
@@ -34,14 +33,11 @@ export class ListTechnicianComponent implements CloseGuard{
     public localesService: LocalesService,
     public technicianService: TechnicianService,
     public store: StorageService,
-    public vcRef: ViewContainerRef,
-    public modal: Modal,
-    public overlay: Overlay,
+
+    public modal: Modal
     public errorType: ErrorType
   ) {
 
-    this.modal.overlay = overlay;
-    this.modal.overlay.defaultViewContainer = vcRef;
     this.selections = [];
 
     this.listTechnicianLocales = localesService.get_ListTechnicianComponent_Locales();
