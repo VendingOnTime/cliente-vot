@@ -7,6 +7,7 @@ import {StorageService} from "../../services/StorageService";
 import {AddTechnicianComponent} from "../add-technician/add-technician.component";
 import {TechnicianService} from "../../services/TechnicianService"
 import {Response} from "@angular/http";
+import {ErrorType} from "../../models/ErrorType";
 
 @Component({
   selector: 'list-technician',
@@ -32,7 +33,9 @@ export class ListTechnicianComponent implements CloseGuard{
     public localesService: LocalesService,
     public technicianService: TechnicianService,
     public store: StorageService,
+
     public modal: Modal
+    public errorType: ErrorType
   ) {
 
     this.selections = [];
@@ -66,6 +69,7 @@ export class ListTechnicianComponent implements CloseGuard{
           for (let i = 0; i < data.length; i++) {
             let technician = new Technician(data[i].name);
 
+            technician.id = data[i].id;
             technician.dni = data[i].dni;
             technician.surname = data[i].surnames;
             technician.email = data[i].email;
@@ -140,19 +144,20 @@ export class ListTechnicianComponent implements CloseGuard{
         .open()
         .then((resultPromise) => {
           resultPromise.result.then((result) => {
-              // Aqui llega cuando el usuario pulsa el boton OPERATIVE
-              this.prueba(selecteds); // TODO Colocar servicio de borrado de tecnico
+              this.technicianService.deleteTechnician(selecteds[0].id).subscribe(
+                (response: Response) => {
+                  this.getTechnicians()
+                }, (error) => {
+                  const errors = error.json().error;
+
+                  this.modal.alert().showClose(true).body(this.errorType.getMessage(errors)).open();
+
+                }, () => {}
+              );
             },
             () => {} // Aqui llega cuando pulsa cancel
           );
         });
-    }
-  }
-
-  // TODO quitar cuando se implemente el bueno
-  public prueba(technicians : Technician[]){
-    for (let i = 0 ; i<technicians.length;i++) {
-      console.log(technicians[i].name);
     }
   }
 

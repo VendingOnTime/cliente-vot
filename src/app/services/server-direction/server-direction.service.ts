@@ -53,4 +53,8 @@ export class ServerDirectionService {
   public getTechnicianDirection() : string {
     return `${this.getServerBaseUrl()}${directions["api-v1"].technicians.root}`;
   }
+
+  public getDeleteTechnicianDirection(id:string) : string {
+    return `${this.getServerBaseUrl()}${directions["api-v1"].technicians.delete}/${id}`;
+  }
 }

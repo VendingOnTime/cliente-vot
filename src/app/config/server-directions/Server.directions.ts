@@ -19,7 +19,8 @@ export const directions = {
       "root": "/api-v1/machines"
     },
     "technicians": {
-      "root": "/api-v1/technicians"
+      "root": "/api-v1/technicians",
+      "delete": "/api-v1/technicians"
     }
   }
 };
