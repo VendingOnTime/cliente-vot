@@ -34,7 +34,7 @@ export class ListTechnicianComponent implements CloseGuard{
     public technicianService: TechnicianService,
     public store: StorageService,
 
-    public modal: Modal
+    public modal: Modal,
     public errorType: ErrorType
   ) {
 
