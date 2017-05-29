@@ -34,7 +34,8 @@ export class ListMachineComponent {
     public localesService: LocalesService,
     public machineService: MachineService,
     public store: StorageService,
-    private modal: Modal
+    public modal: Modal,
+    public cdr: ChangeDetectorRef
   ) {
 
     this.selections = [];
@@ -46,7 +47,8 @@ export class ListMachineComponent {
 
     this.onDeletedMachine.subscribe((deleted: boolean) => {
       this.getMachines();
-      this.updateMachineListCounter();
+      this.numSelections = 0;
+      this.cdr.detectChanges();
     });
 
     this.getMachines();
@@ -168,16 +170,25 @@ export class ListMachineComponent {
           for (let i = 0; i < machinesSelected.length; i++) {
             this.machineService.deleteMachine(machinesSelected[i].id).subscribe(
               (deletedOK: Response) => {
-                console.log(deletedOK);
+
                 if (deletedOK.ok) {
                   let newMachinesList : Machine[] = [];
+                  let newSelectionList : boolean[] = [];
 
-                  for (let i = this.machines.length - 1; i >= 0; i--) {
-                    if (this.machines[i].id !== machinesSelected[i].id)
-                      newMachinesList.push(this.machines[i]);
+                  for (let j = 0; j < machinesSelected.length; j++) {
+                    for (let i = this.machines.length - 1; i >= 0; i--)
+                      if (this.machines[i].id !== machinesSelected[j].id) {
+                        newMachinesList.push(this.machines[i]);
+                        break;
+                      }
                   }
 
+
+                  for (let i = 0; i < newMachinesList.length; i++)
+                    newSelectionList.push(false);
+
                   this.machines = newMachinesList;
+                  this.selections = newSelectionList;
                   this.onDeletedMachine.emit(true);
                 }
                 else
