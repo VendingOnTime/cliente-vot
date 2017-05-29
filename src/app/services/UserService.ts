@@ -63,7 +63,7 @@ export class UserService {
     user.email = userData.email;
     user.id = userData.id;
     user.role = userData.role;
-    user.username = userData.username;
+    user.username = userData.email;
     return user;
   }
 }

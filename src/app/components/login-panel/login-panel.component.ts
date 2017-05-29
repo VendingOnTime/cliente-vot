@@ -21,7 +21,7 @@ export class LoginPanelComponent {
   public passwordInput: AbstractControl;
 
   // Model binding
-  public username: string = '';
+  public email: string = '';
   public password: string = '';
 
   // Management

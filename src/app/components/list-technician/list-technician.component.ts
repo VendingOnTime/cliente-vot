@@ -73,7 +73,7 @@ export class ListTechnicianComponent implements CloseGuard{
             technician.dni = data[i].dni;
             technician.surname = data[i].surnames;
             technician.email = data[i].email;
-            technician.user = data[i].username;
+            technician.user = data[i].email;
 
             this.technicians.push(technician);
           }
