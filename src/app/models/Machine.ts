@@ -7,7 +7,7 @@ import * as uuid from 'uuid/v4';
 
 export class Machine {
 
-  public id: String = '';
+  public id: string = '';
 
   public constructor(
     public location : Location,

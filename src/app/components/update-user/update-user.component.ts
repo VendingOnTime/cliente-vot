@@ -96,7 +96,7 @@ export class UpdateUserComponent {
   }
 
   public userUpdatedOK() : void {
-    //TODO: Manage update
+    //TODO: Manage updateMachineListCounter
 
   }
 

@@ -41,7 +41,7 @@ const routes : Routes = [
   {path: 'home', component: HomeSectionComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginPanelComponent},
   {path: 'signup', component: SignupPanelComponent},
-  {path: 'update', component: UpdateUserComponent},
+  {path: 'updateMachineListCounter', component: UpdateUserComponent},
   {path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard]},
   {path: 'issues', component: IssuesPanelComponent, canActivate: [AuthGuard]},
   {path: 'technicians', component: TechniciansPanelComponent, canActivate: [AuthGuard]},

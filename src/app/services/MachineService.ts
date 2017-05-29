@@ -60,6 +60,14 @@ export class MachineService {
     return this.http.get(serverUrl, {headers});
   }
 
+  public deleteMachine(machineID: string) : Observable<Response> {
+    let serverUrl : string = `${this.serverDirection.getMachinesDirection()}/${machineID}`;
+
+    let headers = this.applyToken();
+
+    return this.http.delete(serverUrl, {headers});
+  }
+
 
   /** Utility */
 

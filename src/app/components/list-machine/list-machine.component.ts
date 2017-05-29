@@ -3,7 +3,7 @@ import {MachineState} from "../../models/MachineState";
 import {LocalesService} from "../../services/LocalesService";
 import {MachineService} from "../../services/MachineService";
 import {StorageService} from "../../services/StorageService";
-import {Component, ViewContainerRef, EventEmitter} from '@angular/core';
+import {Component, ViewContainerRef, EventEmitter, ChangeDetectorRef} from '@angular/core';
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
 import {overlayConfigFactory, Overlay, DialogRef} from "angular2-modal";
 import {AddMachineComponent} from "../add-machine/add-machine.component";
@@ -28,6 +28,7 @@ export class ListMachineComponent {
   public numSelections: number = 0;
 
   public onCreatedMachine = AddMachineComponent.onCreatedMachine;
+  public onDeletedMachine = new EventEmitter(true);
 
   constructor(
     public localesService: LocalesService,
@@ -42,6 +43,11 @@ export class ListMachineComponent {
     this.listMachineLocales = localesService.get_ListMachineComponent_Locales();
 
     this.onCreatedMachine.subscribe((created: boolean) => {this.getMachines()});
+
+    this.onDeletedMachine.subscribe((deleted: boolean) => {
+      this.getMachines();
+      this.updateMachineListCounter();
+    });
 
     this.getMachines();
   }
@@ -99,7 +105,7 @@ export class ListMachineComponent {
     this.selections[index] = !this.selections[index];
   }
 
-  public update() {
+  public updateMachineListCounter() {
     let machinesSelected = this.getSelectedMachines();
 
     if (machinesSelected.length == 1) {
@@ -128,10 +134,10 @@ export class ListMachineComponent {
   }
 
   public deleteMachine() {
-    let machinesSelected = this.getSelectedMachines();
+    let machinesSelected : Machine[] = this.getSelectedMachines();
 
     // Si no se han seleccionado maquinas avisa y sal
-    if (machinesSelected.length == 0){
+    if (machinesSelected.length == 0) {
       this.modal.alert().body(this.listMachineLocales.no_selected_machine).open();
       return;
     }
@@ -139,7 +145,7 @@ export class ListMachineComponent {
     // Pone el texto correspondiente al aviso de borrado de maquinas
     let bodyext= "";
 
-    if (machinesSelected.length == 1){
+    if (machinesSelected.length == 1) {
       bodyext = this.listMachineLocales.delete_a_machine;
     } else {
       bodyext = this.listMachineLocales.delete_machines;
@@ -155,12 +161,42 @@ export class ListMachineComponent {
       .then((resultPromise) => {
         resultPromise.result.then((result) => {
           // Aqui llega cuando el usuario pulsa el boton OPERATIVE
-          // TODO Colocar servicio de borrado de maquina
+
+          let err : boolean = false;
+          let deleteErr : boolean = false;
 
           for (let i = 0; i < machinesSelected.length; i++) {
+            this.machineService.deleteMachine(machinesSelected[i].id).subscribe(
+              (deletedOK: Response) => {
+                console.log(deletedOK);
+                if (deletedOK.ok) {
+                  let newMachinesList : Machine[] = [];
 
-            for (let j = 0; j < this.machines.length; j++) {
+                  for (let i = this.machines.length - 1; i >= 0; i--) {
+                    if (this.machines[i].id !== machinesSelected[i].id)
+                      newMachinesList.push(this.machines[i]);
+                  }
 
+                  this.machines = newMachinesList;
+                  this.onDeletedMachine.emit(true);
+                }
+                else
+                  deleteErr = true;
+
+              },
+              (err) => {
+                err = true;
+              }
+            );
+
+            if (err) {
+              this.modal.alert().body('No se han podido eliminar las máquinas. ¿Está conectado a internet?').open();
+              break;
+            }
+
+            else if (deleteErr) {
+              this.modal.alert().body('Ha habido un error en el servidor al intentar eliminar las máquinas.').open();
+              break;
             }
           }
         },

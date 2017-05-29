@@ -115,7 +115,7 @@ export class ListTechnicianComponent implements CloseGuard{
       this.modal.alert().body(this.listTechnicianLocales.much_selected).open();
       return;
     } else {
-      // TODO mostrar modal con el componente de update technician
+      // TODO mostrar modal con el componente de updateMachineListCounter technician
     }
   }
 

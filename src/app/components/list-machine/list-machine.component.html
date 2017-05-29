@@ -7,7 +7,7 @@
       <div class="navbar-text" *ngIf="numSelections == 1">{{numSelections}}{{listMachineLocales.numSelections_1}}</div>
       <div class="navbar-text" *ngIf="numSelections != 1">{{numSelections}}{{listMachineLocales.numSelections_more_than_1}}</div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="btn" (click)="update()">{{listMachineLocales.modify}}</a>
+        <li><a class="btn" (click)="updateMachineListCounter()">{{listMachineLocales.modify}}</a>
         </li>
         <li><a class="btn" (click)="addIssue()">{{listMachineLocales.createIssue}}</a>
         </li>
