@@ -27,7 +27,7 @@ export class AdditionMachinePanelData extends BSModalContext {
   styleUrls: ['update-machine.component.css']
 })
 
-export class UpdateMachineComponent implements CloseGuard, ModalComponent<AdditionMachinePanelData> {
+export class UpdateMachineComponent implements ModalComponent<AdditionMachinePanelData> {
 
   // Form components
   public form : FormGroup;

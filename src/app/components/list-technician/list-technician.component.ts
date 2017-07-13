@@ -14,7 +14,7 @@ import {ErrorType} from "../../models/ErrorType";
   templateUrl: './list-technician.component.html',
   styleUrls: ['./list-technician.component.css']
 })
-export class ListTechnicianComponent implements CloseGuard{
+export class ListTechnicianComponent {
 
   // Component interaction data
   public technicians : Technician[];
