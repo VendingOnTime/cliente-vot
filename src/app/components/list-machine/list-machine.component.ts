@@ -3,9 +3,9 @@ import {MachineState} from "../../models/MachineState";
 import {LocalesService} from "../../services/LocalesService";
 import {MachineService} from "../../services/MachineService";
 import {StorageService} from "../../services/StorageService";
-import {Component, ViewContainerRef, EventEmitter, ChangeDetectorRef} from '@angular/core';
+import {Component, EventEmitter, ChangeDetectorRef} from '@angular/core';
 import {Modal, BSModalContext} from 'angular2-modal/plugins/bootstrap';
-import {overlayConfigFactory, Overlay, DialogRef} from "angular2-modal";
+import {overlayConfigFactory} from "angular2-modal";
 import {AddMachineComponent} from "../add-machine/add-machine.component";
 import {UpdateMachineComponent} from "../update-machine/update-machine.component";
 import {Response} from "@angular/http";
@@ -107,27 +107,6 @@ export class ListMachineComponent {
     this.selections[index] = !this.selections[index];
   }
 
-  public updateMachineListCounter() {
-    let machinesSelected = this.getSelectedMachines();
-
-    if (machinesSelected.length == 1) {
-      // FIXME Arreglar que el tecnico de la maquina no se añade automaticamente en el formulario
-      this.modal.open(
-        UpdateMachineComponent,
-        overlayConfigFactory({
-          isBlocking: false,
-          machine: machinesSelected[0]
-        }, BSModalContext ));
-
-    }
-    else if (machinesSelected.length == 0) {
-      this.modal.alert().body(this.listMachineLocales.no_selected_machine).open();
-    }
-    else {
-      this.modal.alert().body(this.listMachineLocales.update_machines).open();
-    }
-  }
-
   public addIssue() {
     let machinesSelected = this.getSelectedMachines();
 
@@ -166,8 +145,10 @@ export class ListMachineComponent {
 
           let err : boolean = false;
           let deleteErr : boolean = false;
+          let i : number = 0;
+          let subscriptionStateClosed : boolean = true;
 
-          for (let i = 0; i < machinesSelected.length; i++) {
+          while (i < machinesSelected.length) {
             this.machineService.deleteMachine(machinesSelected[i].id).subscribe(
               (deletedOK: Response) => {
 
@@ -176,26 +157,25 @@ export class ListMachineComponent {
                   let newSelectionList : boolean[] = [];
 
                   for (let j = 0; j < machinesSelected.length; j++) {
-                    for (let i = this.machines.length - 1; i >= 0; i--)
-                      if (this.machines[i].id !== machinesSelected[j].id) {
-                        newMachinesList.push(this.machines[i]);
+                    for (let k = this.machines.length - 1; k >= 0; k--) {
+                      if (this.machines[k].id !== machinesSelected[j].id) {
+                        newMachinesList.push(this.machines[k]);
                         break;
                       }
+                    }
                   }
-
 
                   for (let i = 0; i < newMachinesList.length; i++)
                     newSelectionList.push(false);
 
                   this.machines = newMachinesList;
                   this.selections = newSelectionList;
-                  this.onDeletedMachine.emit(true);
                 }
                 else
                   deleteErr = true;
 
               },
-              (err) => {
+              (error) => {
                 err = true;
               }
             );
@@ -209,14 +189,21 @@ export class ListMachineComponent {
               this.modal.alert().body('Ha habido un error en el servidor al intentar eliminar las máquinas.').open();
               break;
             }
+
+            i++;
           }
         },
           () => {} // Aqui llega cuando pulsa cancel
-        );
+        ).then(() => {this.onDeletedMachine.emit(true)});
       });
   }
   public addMachine() {
     this.modal.open(AddMachineComponent, overlayConfigFactory({ isBlocking: false }, BSModalContext));
+  }
+
+  public showMachineData(machine: Machine) {
+    let addMachine = AddMachineComponent;
+    this.modal.open(addMachine, overlayConfigFactory({ isBlocking: false }, BSModalContext));
   }
 
 
@@ -243,6 +230,27 @@ export class ListMachineComponent {
 
       case MachineState[MachineState.OUT_OF_SERVICE]:
         return this.localesService.get_MachineStateModel_Locales().retirada;
+    }
+  }
+
+  public updateMachineListCounter() {
+    let machinesSelected = this.getSelectedMachines();
+
+    if (machinesSelected.length == 1) {
+      // FIXME Arreglar que el tecnico de la maquina no se añade automaticamente en el formulario
+      this.modal.open(
+        UpdateMachineComponent,
+        overlayConfigFactory({
+          isBlocking: false,
+          machine: machinesSelected[0]
+        }, BSModalContext ));
+
+    }
+    else if (machinesSelected.length == 0) {
+      this.modal.alert().body(this.listMachineLocales.no_selected_machine).open();
+    }
+    else {
+      this.modal.alert().body(this.listMachineLocales.update_machines).open();
     }
   }
 }

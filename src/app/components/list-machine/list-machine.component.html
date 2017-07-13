@@ -43,7 +43,7 @@
   </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let machine of machines; let i = index" [attr.data-index]="i">
+      <tr *ngFor="let machine of machines; let i = index" [attr.data-index]="i" (click)="showMachineData(machine)">
         <td>
           <input id="{{machine.id}}" class="form-control checkbox" type="checkbox" value="{{selections[i]}}" (change)="selectMachine(i)">
         </td>
