@@ -31,11 +31,11 @@ export class AddMachineComponent {
   public descriptionInput: AbstractControl;
 
   // Data binding
-  public static positionAddress: string;
-  public static machineType: string = MachineType[0];
-  public static machineState: string = MachineState[0];
-  public static descriptionText: string;
-  public static technician: string = "";
+  public positionAddress: string;
+  public machineType: string = MachineType[0];
+  public machineState: string = MachineState[0];
+  public descriptionText: string;
+  public technician: string = "";
 
   // Errors management
   public technicianError: boolean = false;
@@ -84,11 +84,11 @@ export class AddMachineComponent {
 
       let introducedMachine : Machine =
         new Machine(
-          new Location(AddMachineComponent.positionAddress),
-          MachineType[AddMachineComponent.machineType],
-          MachineState[AddMachineComponent.machineState],
-          new Technician(AddMachineComponent.technician),
-          AddMachineComponent.descriptionText
+          new Location(this.positionAddress),
+          MachineType[this.machineType],
+          MachineState[this.machineState],
+          new Technician(this.technician),
+          this.descriptionText
         );
 
       this.machineService.createMachine(introducedMachine).subscribe(
@@ -114,11 +114,11 @@ export class AddMachineComponent {
   /** Autocomplete management */
 
   public onNotify(event: string) {
-    AddMachineComponent.technician = event;
+    this.technician = event;
 
     // Maneja la validacion del error
     // TODO Ver si se puede hacer algo para manejar esto como los demas
-    if (AddMachineComponent.technician == "") {
+    if (this.technician == "") {
       this.technicianError = true;
       this.technicianErrorHidden = false;
     } else {
